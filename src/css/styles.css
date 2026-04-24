@@ -16,3 +16,7 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+/* Mert Ana İçerik */
+@import url('./all-category.css');
+@import url('./popular-recipes.css');
