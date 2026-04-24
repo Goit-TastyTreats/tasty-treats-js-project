@@ -8,10 +8,24 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <main>
-      <load src="./partials/all-category.html" />
-      <load src="./partials/populer-recipes.html" />
-      <ul class="recipe-list-container"></ul>
+    <main class="container main-layout">
+      <aside class="sidebar">
+        <load src="./partials/all-category.html" />
+        <load src="./partials/populer-recipes.html" />
+      </aside>
+
+      <section class="recipes-content">
+        <div class="filters-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search recipes..."
+            class="search-field"
+          />
+        </div>
+
+        <ul class="recipe-list-container"></ul>
+      </section>
     </main>
 
     <load src="./partials/modal-recipe.html" />
