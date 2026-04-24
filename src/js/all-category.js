@@ -1,14 +1,13 @@
 import { fetchCategories } from './api.js';
+import { renderRecipeCards } from './recipe-cards.js'; // Bu importun olduğundan emin ol
 
+// HATANIN KAYNAĞI BURASI: Bu iki satırın en üstte olduğundan emin olmalısın
 const categoryList = document.querySelector('#category-list');
 const allCatBtn = document.querySelector('#all-category-btn');
 
 async function initCategories() {
   try {
-    // 1. Veriyi çek
     const categories = await fetchCategories();
-
-    // 2. HTML taslağını (markup) oluştur
     const markup = categories
       .map(
         ({ name }) => `
@@ -19,16 +18,15 @@ async function initCategories() {
       )
       .join('');
 
-    // 3. Ekrana bas
     if (categoryList) {
       categoryList.innerHTML = markup;
     }
   } catch (error) {
-    console.error('Kategoriler yüklenirken bir hata oluştu:', error);
+    console.error('Kategoriler yüklenirken hata oluştu:', error);
   }
 }
 
-// Tıklama olaylarını dinle (Event Delegation)
+// Olay dinleyicileri (Event Listeners)
 if (categoryList) {
   categoryList.addEventListener('click', e => {
     if (e.target.nodeName !== 'BUTTON') return;
@@ -39,19 +37,20 @@ if (categoryList) {
       .forEach(btn => btn.classList.remove('active'));
     e.target.classList.add('active');
 
-    console.log('Seçilen Kategori:', e.target.dataset.name);
+    // Filtreleme fonksiyonunu çağır
+    const categoryName = e.target.dataset.name;
+    renderRecipeCards({ category: categoryName });
   });
 }
 
-// "All Categories" butonu için sıfırlama
 if (allCatBtn) {
   allCatBtn.addEventListener('click', () => {
     document
       .querySelectorAll('.category-btn')
       .forEach(btn => btn.classList.remove('active'));
     allCatBtn.classList.add('active');
+    renderRecipeCards(); // Filtreyi sıfırla
   });
 }
 
-// Dosya yüklendiğinde çalıştır
 initCategories();
