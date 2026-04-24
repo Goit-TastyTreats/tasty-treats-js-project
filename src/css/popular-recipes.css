@@ -1,13 +1,26 @@
-.popular-recipe-description {
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* Sadece 2 satır gösterir */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis; /* Sonuna ... ekler */
+.popular-recipe-item {
+  display: flex;
+  gap: 16px;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 250ms ease;
+}
 
-  /* Tasarıma uygun renk ve boyut */
-  color: rgba(5, 5, 5, 0.5);
-  font-size: 12px;
-  line-height: 1.33;
-  margin-top: 8px;
+.popular-recipe-item:hover {
+  transform: translateY(-2px); /* Küçük bir hover animasyonu */
+}
+
+.popular-recipe-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover; /* Resmin yamulmasını engeller */
+}
+
+.popular-recipe-title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  text-transform: uppercase; /* Figma'da büyük harfse ekle */
+  color: #050505;
 }

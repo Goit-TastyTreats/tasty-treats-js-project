@@ -1,80 +1,57 @@
-import { fetchCategories, fetchRecipes } from './api';
-import Notiflix from 'notiflix';
+import { fetchCategories } from './api.js';
 
 const categoryList = document.querySelector('#category-list');
-const allCategoriesBtn = document.querySelector('#all-category-btn');
+const allCatBtn = document.querySelector('#all-category-btn');
 
-// 1. Sayfa açıldığında kategorileri getir
 async function initCategories() {
   try {
+    // 1. Veriyi çek
     const categories = await fetchCategories();
-    renderCategories(categories);
+
+    // 2. HTML taslağını (markup) oluştur
+    const markup = categories
+      .map(
+        ({ name }) => `
+      <li class="cat-items">
+        <button type="button" class="category-btn" data-name="${name}">${name}</button>
+      </li>
+    `
+      )
+      .join('');
+
+    // 3. Ekrana bas
+    if (categoryList) {
+      categoryList.innerHTML = markup;
+    }
   } catch (error) {
-    Notiflix.Notify.failure('Kategoriler yüklenirken bir hata oluştu.');
+    console.error('Kategoriler yüklenirken bir hata oluştu:', error);
   }
 }
 
-// 2. Kategorileri HTML olarak ekrana bas
-function renderCategories(categories) {
-  const markup = categories
-    .map(
-      ({ name }) => `
-    <li class="cat-items">
-      <button type="button" class="category-btn" data-name="${name}">${name}</button>
-    </li>
-  `
-    )
-    .join('');
+// Tıklama olaylarını dinle (Event Delegation)
+if (categoryList) {
+  categoryList.addEventListener('click', e => {
+    if (e.target.nodeName !== 'BUTTON') return;
 
-  categoryList.innerHTML = markup;
-}
+    // Aktif buton görselini değiştir
+    document
+      .querySelectorAll('.category-btn, #all-category-btn')
+      .forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
 
-// 3. Kategoriye tıklandığında çalışacak olan o meşhur fonksiyon
-async function onCategoryClick(e) {
-  // Sadece butonlara tıklandığında çalış (Event Delegation)
-  if (e.target.nodeName !== 'BUTTON') return;
-
-  const categoryName = e.target.dataset.name;
-
-  // Aktiflik sınıfını yönet
-  document
-    .querySelectorAll('.category-btn, .all-category-button')
-    .forEach(btn => btn.classList.remove('active'));
-  e.target.classList.add('active');
-
-  try {
-    // Senin verdiğin o akıllı fetchRecipes çağrısı:
-    const data = await fetchRecipes({
-      category: categoryName,
-      keyword: document.querySelector('#search-input')?.value.trim() || '',
-    });
-
-    console.log(`${categoryName} için tarifler:`, data.results);
-    // TODO: Burada arkadaşının yazdığı veya senin yazacağın
-    // renderRecipesList(data.results) fonksiyonunu çağıracaksın.
-  } catch (error) {
-    Notiflix.Notify.warning('Tarifler filtrelenirken hata oluştu.');
-  }
-}
-
-// 4. "All Categories" butonu için özel durum
-async function onAllCategoryClick() {
-  document
-    .querySelectorAll('.category-btn')
-    .forEach(btn => btn.classList.remove('active'));
-  allCategoriesBtn.classList.add('active');
-
-  const data = await fetchRecipes({
-    category: '',
-    keyword: document.querySelector('#search-input')?.value.trim() || '',
+    console.log('Seçilen Kategori:', e.target.dataset.name);
   });
-
-  console.log('Tüm tarifler getirildi:', data.results);
 }
 
-// Dinleyicileri Bağla
-categoryList.addEventListener('click', onCategoryClick);
-allCategoriesBtn.addEventListener('click', onAllCategoryClick);
+// "All Categories" butonu için sıfırlama
+if (allCatBtn) {
+  allCatBtn.addEventListener('click', () => {
+    document
+      .querySelectorAll('.category-btn')
+      .forEach(btn => btn.classList.remove('active'));
+    allCatBtn.classList.add('active');
+  });
+}
 
-// Başlat
+// Dosya yüklendiğinde çalıştır
 initCategories();
