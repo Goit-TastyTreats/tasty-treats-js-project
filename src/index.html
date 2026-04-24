@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,13 +10,27 @@
   <body>
     <load src="./partials/header.html" />
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/hero.html" />
-      <load src="./partials/main-wrapper.html" />
+    <main class="container main-layout">
+      <aside class="sidebar">
+        <load src="./partials/all-category.html" />
+        <load src="./partials/populer-recipes.html" />
+      </aside>
+
+      <section class="recipes-content">
+        <div class="filters-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search recipes..."
+            class="search-field"
+          />
+        </div>
+
+        <ul class="recipe-list-container"></ul>
+      </section>
     </main>
 
-    <load src="./partials/footer.html" />
+    <load src="./partials/modal-recipe.html" />
 
     <script type="module" src="./main.js"></script>
   </body>

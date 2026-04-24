@@ -16,3 +16,41 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+/* Mert Ana İçerik */
+@import url('./all-category.css');
+@import url('./popular-recipes.css');
+@import url('./recipe-cards.css');
+@import url('./modal-recipes.css');
+
+/* Ana Layout Düzeni */
+.main-layout {
+  display: flex;
+  gap: 64px; /* Sidebar ile İçerik arasındaki boşluk */
+  padding: 40px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Sol taraf sabit genişlikte */
+.sidebar {
+  width: 256px;
+  flex-shrink: 0;
+}
+
+/* Sağ taraf kalan alanı doldurur */
+.recipes-content {
+  flex-grow: 1;
+}
+
+/* Mobil uyum (Ekran küçülünce alt alta gelsinler) */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
