@@ -1,0 +1,60 @@
+/* Ana konteyner: Kartları dikeyde dizer ve aralarına boşluk bırakır */
+.popular-recipes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none; /* Noktaları kaldırır */
+  padding: 0;
+}
+
+/* Tek bir kart satırı */
+.popular-recipe-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.1);
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.popular-recipe-item:hover {
+  background-color: rgba(5, 5, 5, 0.03);
+}
+
+/* Resim: Boyutu sabit tutar ve köşeleri yuvarlar */
+.popular-recipe-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0; /* Yazı alanı genişlese bile resmin ezilmesini engeller */
+}
+
+/* Bilgi alanı: Başlık ve açıklamayı dikeyde hizalar */
+.popular-recipe-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.popular-recipe-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  color: #050505;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+/* Açıklama: Figma'daki gibi 2 satırda keser ve "..." ekler */
+.popular-recipe-description {
+  font-size: 12px;
+  line-height: 1.33;
+  color: rgba(5, 5, 5, 0.5);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
