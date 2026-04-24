@@ -31,3 +31,19 @@ async function renderPopularRecipes() {
 }
 
 renderPopularRecipes();
+
+// Kartlara tıklama olayı (Event Delegation)
+if (popularList) {
+  popularList.addEventListener('click', e => {
+    // Tıklanan yerin en yakınındaki li elementini bul (data-id orada çünkü)
+    const recipeCard = e.target.closest('.popular-recipe-item');
+
+    if (recipeCard) {
+      const recipeId = recipeCard.dataset.id;
+      console.log('Açılacak Tarif ID:', recipeId);
+
+      // Buraya modalı açacak fonksiyonu ileride ekleyeceğiz
+      // Örn: openModal(recipeId);
+    }
+  });
+}
