@@ -1,0 +1,61 @@
+/* Genel Liste Yapısı */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Figma'daki scroll yüksekliğini buraya verebilirsin */
+  height: 400px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+/* Standart Buton Hali */
+.category-btn,
+.all-category-button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: rgba(5, 5, 5, 0.5); /* Figma'daki gri tonu */
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* HOVER DURUMU (Figma'da belirtilen renk) */
+.category-btn:hover,
+.all-category-button:hover {
+  color: #9bbd4c; /* Figma'daki o yeşil/fıstık yeşili tonu */
+}
+
+/* ACTIVE (SEÇİLİ) DURUMU */
+.category-btn.active,
+.all-category-button.active {
+  color: #9bbd4c;
+  font-weight: 700; /* Seçilince yazıyı kalınlaştırarak vurgula */
+}
+
+/* Custom Scrollbar (Figma'daki gibi ince ve zarif) */
+.category-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.category-list::-webkit-scrollbar-thumb {
+  background-color: rgba(5, 5, 5, 0.1);
+  border-radius: 12px;
+}
+.all-category-button {
+  margin-bottom: 20px;
+  padding: 14px 24px;
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  border-radius: 15px;
+  /* Seçiliyse çerçeve rengini de değiştir */
+}
+
+.all-category-button.active {
+  border-color: #9bbd4c;
+}
