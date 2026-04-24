@@ -1,0 +1,47 @@
+.recipe-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.recipe-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 287px;
+  background-color: #050505; /* Arka planı koyulaştıralım */
+  cursor: pointer;
+  transition: transform 250ms ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6; /* Üzerindeki yazıların okunması için resmi biraz karartıyoruz */
+}
+
+.card-content {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  color: #fff;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  /* Başlık çok uzunsa 1 satırda keser */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
