@@ -1,40 +1,13 @@
-.popular-recipe-img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover; /* Resmi ezmeden kutuya sığdırır */
-  border-radius: 8px;
-}
-
-/* Popüler Tarif Kartı Açıklaması */
 .popular-recipe-description {
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Metni 2 satırda keser */
+  -webkit-line-clamp: 2; /* Sadece 2 satır gösterir */
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  color: rgba(5, 5, 5, 0.5); /* Canlı sayfadaki gri tonu */
+  text-overflow: ellipsis; /* Sonuna ... ekler */
+
+  /* Tasarıma uygun renk ve boyut */
+  color: rgba(5, 5, 5, 0.5);
   font-size: 12px;
   line-height: 1.33;
-}
-
-/* Kategori Listesi Kaydırma Alanı */
-.category-list {
-  height: 352px; /* Canlı sayfadaki yaklaşık yükseklik */
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-/* Kategori Listesi Scrollbar (Kaydırma Çubuğu) Tasarımı */
-.category-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.category-list::-webkit-scrollbar-thumb {
-  background-color: rgba(5, 5, 5, 0.1);
-  border-radius: 12px;
-}
-
-.popular-recipe-item:hover {
-  cursor: pointer;
-  background-color: #f8f8f8; /* Hafif bir gri tonu */
+  margin-top: 8px;
 }
