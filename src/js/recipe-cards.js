@@ -9,17 +9,14 @@ export async function renderRecipeCards(filters = {}) {
     const markup = results
       .map(
         ({ _id, title, preview, description, rating }) => `
-  <li class="recipe-card" data-id="${_id}">
-    <button type="button" class="favorite-btn">
-       <svg class="heart-icon" width="22" height="22">
-          </svg>
-    </button>
-    <img src="${preview}" alt="${title}" class="recipe-card-img">
+  <li class="recipe-card" data-id="${_id}" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('${preview}')">
     <div class="card-content">
       <h3 class="card-title">${title}</h3>
       <p class="card-description">${description}</p>
       <div class="card-footer">
-        <span class="card-rating">${rating.toFixed(1)}</span>
+        <div class="rating-wrapper">
+          <span class="rating-number">${rating.toFixed(1)}</span>
+          </div>
         <button type="button" class="see-recipe-btn">See recipe</button>
       </div>
     </div>

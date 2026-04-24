@@ -20,3 +20,5 @@
 /* Mert Ana İçerik */
 @import url('./all-category.css');
 @import url('./popular-recipes.css');
+@import url('./recipe-cards.css');
+@import url('./modal-recipes.css');

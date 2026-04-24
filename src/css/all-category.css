@@ -2,7 +2,7 @@
 .category-list {
   height: 400px;
   overflow-y: auto;
-  padding-right: 14px;
+  padding-right: 10px;
 }
 
 /* Scroll çubuğunu güzelleştirelim (Figma'daki gibi ince) */
@@ -15,22 +15,25 @@
   border-radius: 12px;
 }
 
-/* Butonların standart hali */
+/* Standart Buton Hali */
 .category-btn,
 .all-category-button {
-  color: rgba(5, 5, 5, 0.5); /* Figma gri tonu */
-  font-weight: 500;
-  transition: color 250ms ease;
+  width: 100%;
   text-align: left;
   background: none;
   border: none;
+  padding: 8px 0;
+  font-size: 16px;
+  color: rgba(5, 5, 5, 0.5); /* Figma gri tonu */
   cursor: pointer;
+  transition: all 250ms ease;
 }
 
-/* Üzerine gelince ve aktifken (Figma Yeşili: #9BBD4C) */
+/* Hover ve Aktif Hali (Referans projedeki yeşil tonu) */
 .category-btn:hover,
 .category-btn.active,
 .all-category-button.active {
-  color: #9bbd4c;
+  color: #9bbd4c; /* Yeşil renk */
   font-weight: 700;
+  transform: translateX(5px); /* Hafif sağa kayma efekti */
 }
