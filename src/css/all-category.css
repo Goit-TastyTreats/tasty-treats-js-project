@@ -37,3 +37,39 @@
   font-weight: 700;
   transform: translateX(5px); /* Hafif sağa kayma efekti */
 }
+
+
+
+
+Bu kısımdan itibaren Mert bey
+/* Ana Layout Düzeni */
+.main-layout {
+  display: flex;
+  gap: 64px; /* Sidebar ile İçerik arasındaki boşluk */
+  padding: 40px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Sol taraf sabit genişlikte */
+.sidebar {
+  width: 256px;
+  flex-shrink: 0;
+}
+
+/* Sağ taraf kalan alanı doldurur */
+.recipes-content {
+  flex-grow: 1;
+}
+
+/* Mobil uyum (Ekran küçülünce alt alta gelsinler) */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
