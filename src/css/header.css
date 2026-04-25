@@ -42,14 +42,14 @@
   align-items: center;
   justify-content: center;
 
-  color: #161616;
+  color: var(--black);
   transition: color 0.3s ease;
   text-decoration: none;
 }
 
 /* Dark mode phone */
 body.dark-theme .phone-btn {
-  color: #ffffff;
+  color: var(--bg-color);
 }
 
 /* burger menü*/
@@ -68,12 +68,12 @@ body.dark-theme .phone-btn {
   cursor: pointer;
 
   outline: none;
-  color: #161616;
+  color: var(--black);
 
   transition: color 0.3s ease;
 }
 body.dark-theme .hamburger-btn {
-  color: #ffffff;
+  color: var(--bg-color);
 }
 
 /* desktop toggle */
@@ -94,7 +94,7 @@ body.dark-theme .hamburger-btn {
 
   height: 100vh;
 
-  background-color: #9bb537;
+  background-color: var(--color-primary);
 
   z-index: 2000;
 
@@ -110,7 +110,7 @@ body.dark-theme .hamburger-btn {
 
 /* Dark mod mobil menu */
 body.dark-theme .mobile-menu {
-  background-color: #050505;
+  background-color: var(--black);
 }
 
 /* Active menu */
@@ -124,7 +124,7 @@ body.dark-theme .mobile-menu {
   border: none;
   background: transparent;
 
-  color: #ffffff;
+  color: var(--bg-color);
 
   cursor: pointer;
 
@@ -149,7 +149,7 @@ body.dark-theme .mobile-menu {
 
   font-weight: 500;
 
-  color: #ffffff;
+  color: var(--bg-color);
 }
 
 /* MOBIL toggle */
@@ -174,7 +174,7 @@ body:not(.dark-theme) .theme-toggle {
 
 /* Dark mod toggle */
 body.dark-theme .theme-toggle {
-  background-color: #9bb537;
+  background-color: var(--color-primary);
 }
 
 .toggle-circle {
@@ -183,7 +183,7 @@ body.dark-theme .theme-toggle {
 
   border-radius: 50%;
 
-  background-color: #fff;
+  background-color: var(--bg-color);
 
   position: absolute;
 
@@ -229,7 +229,7 @@ svler text rengiyle aynı
 }
 .phone-btn:hover,
 .hamburger-btn:hover {
-  color: #9bb537;
+  color: var(--color-primary);
 }
 
 .hamburger-icon {
@@ -278,16 +278,16 @@ svler text rengiyle aynı
     font-size: 12px;
     font-weight: 500;
 
-    color: #161616;
+    color: var(--black);
   }
 
   /* dark mode nav link */
   body.dark-theme .nav-link {
-    color: #ffffff;
+    color: var(--bg-color);
   }
 
   .active-link {
-    color: #9bb537;
+    color: var(--color-primary);
   }
 
   /* desktop toggle */
@@ -313,7 +313,7 @@ svler text rengiyle aynı
 
   /* dark mod toggle */
   body.dark-theme .desktop-theme-toggle {
-    background-color: #9bb537;
+    background-color: var(--color-primary);
   }
 
   /* desktop toggle circle */
@@ -323,7 +323,7 @@ svler text rengiyle aynı
 
     border-radius: 50%;
 
-    background-color: white;
+    background-color: var(--bg-color);
 
     position: absolute;
 
