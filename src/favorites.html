@@ -20,7 +20,56 @@
           <span class="main-title-gradient">Welcome</span> to page 2
         </h1>
       </div>
-    </main>
+   
+
+<section class="fav-hero-section">
+  <div class="container fav-hero-container">
+    <picture class="fav-hero-pic">
+      <source media="(min-width: 1280px)" srcset="
+                ./src/img/webp/favorites-deskop_1x.webp    1x,
+                ./src/img/webp/favorites-deskop_2x.webp 2x
+              " />
+
+      <source media="(min-width: 768px)" srcset="
+                ./src/img/webp/favorites-table_1x.webp    1x,
+                ./src/img/webp/favorites-table_2x.webp 2x
+              " />
+
+      <source media="(max-width: 767px)" srcset="
+                ./src/img/webp/favorites-mob_1x.webp    1x,
+                ./src/img/webp/favorites-mob_2x.webp 2x
+              " />
+
+      <img loading="lazy" src="./src/img/webp/favorites-deskop_1x.webp" alt="Dish" />
+    </picture>
+  </div>
+</section>
+
+<section class="fav-content-section">
+  <div class="container fav-content-container">
+    <ul class="fav-category-recipe-list recipes-list">
+      <button type="button" class="all-category-btn category-btn">
+        All categories
+      </button>
+    </ul>
+
+    <ul class="fav-resipes-list"></ul>
+
+    <div class="fav-no-recipes-content is-hidden">
+      <svg class="no-recipes-icon">
+        <use href="./src/img/favicon.svg"></use>
+      </svg>
+
+      <p class="no-recipes-descr">
+        It appears that you haven't added any recipes to your favorites
+        yet. To get started, you can add recipes that you like to your
+        favorites for easier access in the future.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
 
     <load src="./partials/footer.html" />
   </body>
