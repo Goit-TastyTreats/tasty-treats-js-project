@@ -1,33 +1,59 @@
-<div id="recipeModal" class="recipe-modal-backdrop js-recipe-modal-backdrop X-is-hidden"> <div class="recipe-modal-window js-recipe-modal-window">
+<div id="recipeModal" class="recipe-modal-backdrop js-recipe-modal-backdrop">
+  <div class="recipe-modal-window js-recipe-modal-window">
     
-    <button type="button" class="modal-close-btn js-modal-close-btn" aria-label="Close modal">
-      <svg width="20" height="20">
-        <use href="./img/sprite.svg#icon-close"></use>
-      </svg>
-    </button>
+    <button type="button" class="modal-close-btn js-modal-close-btn">
+  &times;
+</button>
 
     <div class="recipe-modal-content js-recipe-modal-content">
-      
       <div class="video-wrapper">
         <div id="youtubePlayer"></div>
       </div>
 
-      <h2 class="recipe-title">Battenberg Cake</h2>
-      
-      <div class="recipe-info-bar">
-        <ul class="recipe-tags js-tags"></ul>
-        <div class="recipe-stats">
-          <span class="recipe-rating">3.71 ★</span>
-          <span class="recipe-time">60 min</span>
-        </div>
-      </div>
+      <h2 class="recipe-title">BANANA PANCAKES</h2>
 
-      <div class="ingredients-container">
-        <ul class="ingredients-list js-ingredients"></ul>
-      </div>
+      <div class="recipe-stats">
+  <span class="recipe-rating">4.5</span>
+  <div class="recipe-stars js-stars">
+    <img src="./img/favicon.svg" class="star-icon filled" alt="star">
+    <img src="./img/favicon.svg" class="star-icon filled" alt="star">
+    <img src="./img/favicon.svg" class="star-icon filled" alt="star">
+    <img src="./img/favicon.svg" class="star-icon filled" alt="star">
+    <img src="./img/favicon.svg" class="star-icon" alt="star">
+  </div>
+  <span class="recipe-time">40 min</span>
+</div>
+
+    <div class="ingredients-container">
+  <ul class="ingredients-list js-ingredients">
+    <li class="ingredient-item">
+      <span class="ingredient-name">Banana</span>
+      <span class="ingredient-measure">1 large</span>
+    </li>
+    <li class="ingredient-item">
+      <span class="ingredient-name">Eggs</span>
+      <span class="ingredient-measure">2 medium</span>
+    </li>
+    <li class="ingredient-item">
+      <span class="ingredient-name">Oil</span>
+      <span class="ingredient-measure">1 tsp</span>
+    </li>
+  </ul>
+</div>
+
+      <ul class="recipe-tags js-tags">
+    <li class="recipe-tag-item">#Breakfast</li>
+    <li class="recipe-tag-item">#Desert</li>
+    <li class="recipe-tag-item">#Sweet</li>
+  </ul>
 
       <div class="instructions-container">
-         <p class="recipe-instructions js-instructions"></p>
+         <p class="recipe-instructions js-instructions"> Mash the ripe banana in a medium mixing bowl.
+Add the egg and whisk together until well combined.
+Add the flour, baking powder, cinnamon (if using), and salt, and stir until just combined.
+Heat a non-stick skillet or griddle over medium heat and add the vegetable oil or melted butter.
+Scoop the batter onto the skillet or griddle using a 1/4 cup measure, and cook for 2-3 minutes on each side, or until the pancakes are golden brown and cooked through.
+Serve warm with your favorite toppings such as maple syrup, sliced bananas, or whipped cream.</p>
       </div>
 
       <div class="modal-btn-group">
@@ -35,4 +61,6 @@
         <button id="giveRatingBtn" class="btn btn-rating" type="button">Give a rating</button>
       </div>
 
-    </div> </div> </div>
+    </div>
+  </div>
+</div>

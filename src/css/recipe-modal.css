@@ -1,74 +1,263 @@
-/* Modalın dış karartılmış arka planı */
-.recipe-modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--overlay-color); /* Liderinin değişkeni */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  transition: opacity 250ms ease;
-}
+/* --- MOBİL VARSAYILAN (335px) --- */
+* { box-sizing: border-box; }
 
-/* Modal Kutusu (Box) */
 .recipe-modal-window {
-  
-  background-color: white;
-  color: #050505; /* Yazı rengi net olsun */
-  border-radius: 10px;
-  padding: 40px;
-  width: 90%;
-  max-width: 540px;
-  max-height: 90vh;
-  height: auto;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Kutuyu derinleştirir */
-  overflow-y: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  width: 335px;
+  min-height: 1171px; /* Verdiğin ölçüye göre */
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px 20px; /* Üstten 40, yanlardan 20px (Verdiğin top/left değerlerine göre) */
   position: relative;
+  margin: auto;
+  opacity: 1;
 }
 
-/* Kapatma Butonu (Sağ üstte sabit durmalı) */
+
 .modal-close-btn {
+  /* 1. Yerini belirle */
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
+
+  /* 2. Boyut ve Stil */
+  width: 30px;
+  height: 30px;
+  font-size: 24px; /* X işaretinin büyüklüğü */
+  color: #050505;  /* X işaretinin rengi (Siyah) */
+  
+  /* 3. Arka planı temizle */
   background: none;
   border: none;
   cursor: pointer;
-  stroke: #050505; /* X ikonunun rengi */
+
+  /* 4. Ortala */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 5. En üstte olduğundan emin ol */
+  z-index: 999;
 }
 
-/* Video Responsive Yapısı */
+/* Video Alanı */
 .video-wrapper {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background-color: #000;
+  width: %100;
+  height: 295px;
   border-radius: 8px;
-  margin-bottom: 20px;
   overflow: hidden;
+  background-color: #f0f0f0;
+  
 }
 
-.video-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+/* Başlık */
+.recipe-title {
+  width: %100;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.29em;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color: #050505;
+  margin-top: 20px;
+  margin-bottom: 14px;
+  text-align: left;
 }
 
-/* Malzemeler Listesi Stili */
+/* Rating ve Zaman Çubuğu */
+/* Yıldızların yan yana durması için konteyner */
+.recipe-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Puan, yıldızlar ve süre arasındaki boşluk */
+  margin-top: 14px;
+  margin-bottom: 33px;
+}
+
+.recipe-stars {
+  display: flex;
+  gap: 2px; /* Yıldızların kendi arasındaki boşluk */
+   border: 1px solid red;
+}
+
+/* Yıldız İkonu Genel Stil */
+.star-icon {
+  width: 18px;
+  height: 18px;
+  /* Varsayılan (Boş) Yıldız Rengi: Çok açık gri */
+  filter: grayscale(1) opacity(0.2); 
+}
+
+/* Dolu Yıldız (Sarı/Altın) */
+.star-icon.filled {
+  /* Bu filtre görseldeki sarı tonunu yakalar */
+  filter: invert(76%) sepia(54%) saturate(682%) hue-rotate(354deg) brightness(101%) contrast(90%);
+  opacity: 1;
+}
+
+.recipe-rating {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29em;
+  color: #05050580;
+}
+
+/* Yıldızlar */
+.star-icon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) opacity(0.1);
+}
+
+.star-icon.filled {
+  filter: invert(72%) sepia(87%) saturate(614%) hue-rotate(352deg) brightness(98%) contrast(92%);
+  opacity: 1 !important;
+}
+
+.recipe-time {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29em;
+  letter-spacing: 0em;
+  color: #05050580;
+  margin-left: 16px;
+}
+
+//malzeme listesi//
 .ingredients-list {
-  border-top: 1px solid rgba(5, 5, 5, 0.1);
-  padding-top: 20px;
-  margin-bottom: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Satırlar arası boşluk */
+  
 }
 
 .ingredient-item {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  justify-content: space-between; /* İsim sola, ölçü sağa yaslanır */
+  align-items: center;
+  padding-top: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #0505051a; /* Altlarındaki o ince gri çizgi */
+ 
+  min-width: 295px;
 }
 
-.is-hidden {
-  display: none !important;
+.ingredient-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2em;
+  color: #050505;
+}
+
+.ingredient-measure {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2em;
+  color: #05050580; /* Miktar kısmı görseldeki gibi daha gri/hafif */
+}
+
+.recipe-tags {
+  display: flex;
+  flex-wrap: nowrap; /* Mobilde sığmazsa alt satıra geçmesi için */
+  gap: 8px;        /* Etiketlerin arasındaki boşluk */
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+
+.recipe-tag-item {
+  
+  min-width: 95px; /* Sabit 95 yerine min-width daha güvenlidir */
+  height: 33px;    /* Paddinglerle beraber yaklaşık bu yüksekliğe ulaşır */
+  box-sizing: border-box;
+  
+  /* Dolgu ve Köşeler */
+  padding: 8px;
+  border-radius: 35px;
+  border: 1px solid #0505051a; /* 1px border-width ve hafif gri renk */
+  
+  /* Yazı Stili */
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2em;
+  color: #050505;
+  
+  /* Hizalama */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  opacity: 1;
+}
+
+/* tarif */
+.recipe-instructions {
+width: %100;
+font-family: Inter;
+font-weight: 400;
+font-style: Regular;
+font-size: 14px;
+leading-trim: NONE;
+line-height: 1.29em;
+letter-spacing: 0em;
+color: #050505CC;
+}
+
+/* --- BUTON GRUBU --- */
+.modal-btn-group {
+  display: flex;
+  justify-content: center; /* Mobilde ortalıyoruz */
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.btn {
+  /* 1. ÖLÇÜLER (Figma Birebir) */
+  width: 148px;
+  height: 41px;
+  box-sizing: border-box; /* ÖLÇÜYÜ SABİTLER: Padding'i içeri dahil eder */
+  white-space: nowrap;
+  /* 2. PADDING VE BOŞLUKLAR */
+  padding: 12px;
+  border-radius: 15px;
+  
+  /* 3. YAZI STİLİ */
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; /* Eğer hala büyükse 12px deneyebilirsin */
+  font-weight: 500;
+  line-height: 1; /* Yazının yukarı/aşağı kaymasını önler */
+  
+  /* 4. MERKEZLEME (Yazıyı butona tam ortalar) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: -0.02em;
+  
+  
+  /* 5. GÖRÜNÜM */
+  background-color: transparent;
+  border: 1px solid #9bb537;
+  color: #050505;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #9bb537;    /* İçi yeşil doluyor */
+  color: #ffffff;               /* Yazı beyaza dönüyor */
+  
 }
