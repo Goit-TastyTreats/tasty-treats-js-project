@@ -354,11 +354,13 @@ svler text rengiyle aynı
     gap: 14px;
     flex-shrink: 0;
   }
+  .logo-icon {
+    width: 92px;
+    height: 20px;
 }
-.logo-icon {
-  width: 92px;
-  height: 20px;
+
 }
+
 
 /* DESKTOP */
 
@@ -378,8 +380,5 @@ svler text rengiyle aynı
   .header-actions {
     gap: 16px;
   }
-  .logo-icon {
-    width: 92px;
-    height: 20px;
-  }
+  
 }
