@@ -248,15 +248,33 @@ svler text rengiyle aynı
 }
 
 .logo-icon {
-  width: 83px;
-  height: 18px;
-
   display: block;
 }
 
+.logo-mobile {
+  width: 93px;
+  height: 20px;
+}
+
+/* desktop logo gizli */
+.logo-desktop {
+  display: none;
+}
+
 /* TABLET */
-/* ahah*/
+
 @media screen and (min-width: 768px) {
+  /* mobile logo gizle */
+  .logo-mobile {
+    display: none;
+  }
+
+  .logo-desktop {
+    display: block;
+
+    width: 140px;
+    height: 30px;
+  }
   .nav {
     height: 80px;
 
@@ -284,10 +302,6 @@ svler text rengiyle aynı
   /* dark mode nav link */
   body.dark-theme .nav-link {
     color: var(--bg-color);
-  }
-
-  .active-link {
-    color: var(--color-primary);
   }
 
   /* desktop toggle */
@@ -354,13 +368,7 @@ svler text rengiyle aynı
     gap: 14px;
     flex-shrink: 0;
   }
-  .logo-icon {
-    width: 92px;
-    height: 20px;
 }
-
-}
-
 
 /* DESKTOP */
 
@@ -380,5 +388,12 @@ svler text rengiyle aynı
   .header-actions {
     gap: 16px;
   }
-  
+}
+/* şimdilik query dışında mobilde olmaması lazım */
+.active-link {
+  color: var(--color-primary);
+}
+
+body.dark-theme {
+    background-color: black;
 }
