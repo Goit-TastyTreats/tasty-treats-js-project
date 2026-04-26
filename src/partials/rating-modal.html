@@ -1,28 +1,28 @@
 <div id="ratingModal" class="modal-overlay is-hidden">
   <div class="modal-content rating-modal-content">
-    <button class="close-btn" data-rating-close>
-      <svg width="20" height="20"><use href="./img/sprite.svg#icon-close"></use></svg>
-    </button>
+    <button type="button" class="modal-close-btn js-modal-close-btn">
+  &times;
+</button>
 
     <p class="rating-label">Rating</p>
     
     <div class="star-rating-container">
       <span class="rating-value js-rating-value">0.0</span>
-      <div class="stars-group js-stars">
-        <svg class="star-icon" width="18" height="18"><use href="./img/sprite.svg#icon-star"></use></svg>
-        <svg class="star-icon" width="18" height="18"><use href="./img/sprite.svg#icon-star"></use></svg>
-        <svg class="star-icon" width="18" height="18"><use href="./img/sprite.svg#icon-star"></use></svg>
-        <svg class="star-icon" width="18" height="18"><use href="./img/sprite.svg#icon-star"></use></svg>
-        <svg class="star-icon" width="18" height="18"><use href="./img/sprite.svg#icon-star"></use></svg>
+      
+      <div class="rating-stars js-rating-stars">
+        <img src="./img/favicon.svg" class="star-icon" data-value="1" alt="star">
+        <img src="./img/favicon.svg" class="star-icon" data-value="2" alt="star">
+        <img src="./img/favicon.svg" class="star-icon" data-value="3" alt="star">
+        <img src="./img/favicon.svg" class="star-icon" data-value="4" alt="star">
+        <img src="./img/favicon.svg" class="star-icon" data-value="5" alt="star">
       </div>
-    </div>
-
-    <form class="rating-form js-rating-form">
+    </div> <form class="rating-form js-rating-form">
       <input 
         type="email" 
         class="rating-input" 
         name="email" 
         placeholder="Enter email" 
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         required
       >
       <button type="submit" class="btn btn-send">Send</button>

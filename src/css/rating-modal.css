@@ -1,0 +1,130 @@
+/* 1. Kendi renk değişkenlerini tanımla (base.css'tekilerle çakışmaz) */
+.rating-modal-content {
+  /* Işık modu (Light Mode) renkleri */
+  --modal-bg: #FFFFFF;
+  --modal-text: var(--black); /* base.css'teki değişkeni kullandık */
+  --input-border: rgba(5, 5, 5, 0.2);
+  --star-empty: rgba(5, 5, 5, 0.1);
+}
+
+/* 2. Dark Mode geldiğinde bu değişkenleri güncelle */
+/* (Takım liderin dark modu body'ye 'dark' class'ı vererek yaptıysa böyle kullanırsın) */
+body.dark .rating-modal-content {
+  --modal-bg: #111111;
+  --modal-text: #F8F8F8;
+  --input-border: rgba(248, 248, 248, 0.3);
+  --star-empty: rgba(248, 248, 248, 0.2);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Arka planı hafif karartır */
+  display: flex;
+  align-items: center; /* Dikeyde ortalar */
+  justify-content: center; /* Yatayda ortalar */
+  z-index: 999; /* Her şeyin üstünde görünmesi için */
+}
+
+/* 3. Şimdi bu değişkenleri kullan */
+.rating-modal-content {
+  width: 100%;
+  max-width: 335px;
+  background-color: var(--modal-bg);
+  border-radius: 15px;
+  padding: 20px;
+  color: var(--modal-text);
+  min-height: 216px;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  
+}
+
+.rating-input {
+    border: 1px solid var(--input-border);
+    background: transparent;
+    color: var(--modal-text);
+}
+
+.rating-label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.20em;
+  color: var(--rating-text-color);
+  margin-bottom: 4px;
+}
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  gap: 0.57em; /* 8px civarı (gap:2 Figma'da bazen farklı yorumlanabilir) */
+  margin-bottom: 24px;
+}
+
+.rating-value {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.28em; /* 18px / 14px = 1.28em */
+  letter-spacing: 0em;
+  color: var(--rating-text-color);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+  border: 1px solid red;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  filter: grayscale(1) opacity(0.3); /* Boş yıldızlar için soluk gri efekt */
+  transition: transform 0.2s;
+}
+
+.star-icon.filled {
+  filter: none; /* Filtreyi kaldırır */
+  /* Eğer ikon SVG ise rengini değiştirmek için: */
+  /* fill: var(--rating-star-filled); */
+}
+
+/* Email Kutusu */
+.rating-input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #05050533;
+  border-radius: 15px;
+  padding: 14px 18px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28em;
+  outline: none;
+  background: transparent;
+  margin-bottom: 14px;
+}
+
+.rating-input::placeholder {
+  color: rgba(5, 5, 5, 0.5); /* Koyu modda bunu da değişkene bağlayabilirsin */
+}
+
+/* Send Butonu */
+.btn-send {
+  width: 100%;
+  height: 46px;
+  background: #9BB537;
+  border-radius: 15px;
+  border: none;
+  color: var(--rating-btn-text);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-send:hover {
+  background: #8aa131; /* Hafif koyu bir hover efekti güzel olur */
+}
