@@ -98,7 +98,7 @@ orderModal.addEventListener('click', event => {
     orderModal.classList.add('is-hidden');
   }
 });
-
+//
 document.addEventListener('click', event => {
   const isMenuOpen = mobileMenu.classList.contains('active');
 
