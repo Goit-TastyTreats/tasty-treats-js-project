@@ -217,11 +217,9 @@
     padding: 40px 0 56px;
   }
 
-  .main-wrapper {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
-}
+.main-wrapper {
+    display: flex;
+  }
 
   .hero-content {
     width: 446px;
@@ -321,3 +319,4 @@
     height: 271px;
   }
 }
+
