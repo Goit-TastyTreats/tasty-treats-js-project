@@ -389,6 +389,46 @@ body.dark-theme {
 
   --text-color: #f8f8f8;
 }
+body.dark-theme input::placeholder,
+body.dark-theme select,
+body.dark-theme .filter-label,
+body.dark-theme span,
+body.dark-theme li,
+body.dark-theme a,
+body.dark-theme button {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-theme .category-btn {
+  color: rgba(248, 248, 248, 0.3);
+}
+
+body.dark-theme .shopping-icon {
+  stroke: #ffffff;
+  color: #ffffff;
+}
+
+body.dark-theme .filter-input,
+body.dark-theme select {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .see-recipe-btn,
+body.dark-theme p,
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme .nav-link,
+body.dark-theme .hero-btn {
+  color: #fff;
+}
+
+body.dark-theme .recipe-card-description, 
+body.dark-theme .popular-recipe-description{
+  color: rgba(255, 255, 255, 0.8);
+}
+
 body {
   background-color: var(--bg-color);
 
