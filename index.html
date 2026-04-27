@@ -1,263 +1,128 @@
-<!doctype html>
-<html data-theme="dark" lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/tasty-treats-js-project/spoon-knife.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="icon" type="image/svg+xml" href="/tasty-treats-js-project/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TastyTreats</title>
+    <title>Vanilla App Template</title>
     <script type="module" crossorigin src="/tasty-treats-js-project/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/tasty-treats-js-project/assets/vendor-BWiNTx3g.js">
-    <link rel="stylesheet" crossorigin href="/tasty-treats-js-project/assets/styles-DKG_tgR_.css">
+    <link rel="stylesheet" crossorigin href="/tasty-treats-js-project/assets/styles-DvPDDfy5.css">
   </head>
   <body>
     <header class="header">
   <div class="container">
     <nav class="nav">
-      <!-- sol taraf -->
-      <!-- desktop nav -->
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link active-link" href="../index.html"> Home </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="../favorites.html"> Favorites </a>
-        </li>
-      </ul>
-
-      <!-- logo -->
-
-      <a class="nav-logo" href="../index.html" aria-label="Site logo">
-        <svg class="logo-icon">
-          <use href="../img/favicon.svg#icon-tasty-desk"></use>
+      <a class="nav-logo" href="./index.html" aria-label="Site logo">
+        <svg class="nav-logo-icon" width="100" height="30">
+          <use href="/tasty-treats-js-project/assets/sprite-E8vg0sBb.svg#logo"></use>
         </svg>
       </a>
-
-      <!-- sag taraf -->
-
-      <div class="header-actions">
-        <!-- MODAL BUTON -->
-
-        <a href="#" class="phone-btn" id="openOrderModal">
-          <!-- sepet SVG -->
-          <svg class="shopping-icon">
-            <use href="../img/favicon.svg#icon-shopping"></use>
-          </svg>
-        </a>
-
-        <!-- bilg.tablet toggle -->
-        <button class="desktop-theme-toggle" id="desktopThemeToggle">
-          <span class="desktop-toggle-circle"></span>
-        </button>
-
-        <!-- hamburger menü -->
-        <button class="hamburger-btn" id="hamburgerBtn">
-          <svg class="hamburger-icon">
-            <use href="../img/favicon.svg#icon-burger"></use>
-          </svg>
-        </button>
-      </div>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
+        </li>
+      </ul>
     </nav>
   </div>
-
-  <!-- mobil menü -->
-
-  <aside class="mobile-menu" id="mobileMenu">
-    <!-- close buton -->
-    <button class="close-menu-btn" id="closeMenuBtn">
-      <svg class="close-icon">
-        <use href="../img/favicon.svg#icon-close"></use>
-      </svg>
-    </button>
-
-    <!-- Mobil nav -->
-    <nav class="mobile-nav">
-      <a href="./index.html" class="mobile-nav-link"> Home </a>
-
-      <a href="./favorites.html" class="mobile-nav-link"> Favorites </a>
-    </nav>
-
-    <!-- mobile toggle/switch -->
-    <button class="theme-toggle" id="themeToggle">
-      <span class="toggle-circle"></span>
-    </button>
-  </aside>
 </header>
 
+
     <main>
-      <section class="hero">
-  <div class="container hero-container">
-    <div class="hero-content">
-      <h1 class="hero-title">Learn to Cook <em class="hero-accent">Tasty Treats'</em> Customizable Masterclass</h1>
-      <p class="hero-desc">
-        TastyTreats - Customize Your Meal with Ingredient Options and
-        Step-by-Step Video Guides.
-      </p>
-      <button class="hero-btn" type="button" data-modal-open="order-now">
-        Order now
-      </button>
-    </div>
-
-    <div class="hero-slider">
-      <ul class="hero-slides" data-slider></ul>
-
-      <div class="hero-dots" data-dots></div>
-    </div>
-  </div>
-</section>
-
-      <div class="main-wrapper">
-        <div class="left-panel">
-          <div class="category-sidebar container">
-  <button
-    type="button"
-    class="all-category-button active"
-    id="all-category-btn"
-  >
-    All categories
-  </button>
-
-  <div class="categories-wrapper">
-    <ul class="category-list" id="category-list"></ul>
-  </div>
-</div>
-
-          <section class="popular-recipes  container">
-  <h2 class="popular-title">POPULAR RECIPES</h2>
-  <ul class="popular-recipes-list" id="popular-list"></ul>
-</section>
-
-        </div>
-    
-        <div class="right-panel">
-          
-          
-        </div>
-      </div>
-    </main>
-    
-    <footer class="footer">
+      <!-- Loads the specified .html file -->
+      <section class="vite-promo">
   <div class="container">
-    <p class="footer-text">
-      &copy; 2026 | All Rights Reserved | Developed with 
-      <span class="footer-heart">❤</span> by 
-      <button type="button" class="footer-team-button" id="open-team-modal">GoIT Students</button>
-    </p>
+    <div class="vite-promo-thumb">
+      <a
+        class="vite-promo-link"
+        href="https://vitejs.dev/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Link to Vite official website"
+        title="Vite.js  build tool"
+      >
+        <!-- Path to images as from index.html file -->
+        <img
+          class="pic"
+          src="/tasty-treats-js-project/assets/vite-logo-9o_aqrTe.png"
+          alt="Vite logo"
+          width="640"
+          height="640"
+        />
+      </a>
+    </div>
+    <h1 class="main-title">
+      <span class="main-title-gradient">Vite</span>
+      Template by
+      <a
+        class="main-title-link"
+        href="https://github.com/goitacademy/vanilla-app-template"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GoIT
+      </a>
+    </h1>
   </div>
-</footer>
-<div class="team-backdrop is-hidden" id="team-modal">
-  <div class="team-modal-content">
-    <button type="button" class="modal-close-btn" id="close-team-modal">&times;</button>
-    <h2 class="team-title">Our Team</h2>
-    
-    <ul class="team-list" id="team-list">
-      <li class="team-item">
-        <img src="./img/team/member1.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 1</h3>
-        <p class="member-role">Role / Task</p>
+</section>
+
+      <article class="badges">
+  <div class="container">
+    <ul class="badges-list">
+      <li class="badges-item">
+        <a
+          class="badges-link"
+          href="https://www.npmjs.com/package/vite-plugin-html-inject"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          HTML Inject
+        </a>
       </li>
-      <li class="team-item">
-        <img src="./img/team/member2.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 2</h3>
-        <p class="member-role">Role / Task</p>
+      <li class="badges-item">
+        <a
+          class="badges-link"
+          href="https://www.npmjs.com/package/vite-plugin-full-reload"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Full Reload
+        </a>
       </li>
-      <li class="team-item">
-        <img src="./img/team/member3.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 3</h3>
-        <p class="member-role">Role / Task</p>
-      </li>
-      <li class="team-item">
-        <img src="./img/team/member4.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 4</h3>
-        <p class="member-role">Role / Task</p>
-      </li>
-      <li class="team-item">
-        <img src="./img/team/member5.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 5</h3>
-        <p class="member-role">Role / Task</p>
-      </li>
-      <li class="team-item">
-        <img src="./img/team/member6.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 6</h3>
-        <p class="member-role">Role / Task</p>
-      </li>
-      <li class="team-item">
-        <img src="./img/team/member7.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 7</h3>
-        <p class="member-role">Role / Task</p>
-      </li>
-      <li class="team-item">
-        <img src="./img/team/member8.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 8</h3>
-        <p class="member-role">Role / Task</p>
-      </li>
-      <li class="team-item">
-        <img src="./img/team/member9.jpg" alt="Team Member" class="team-img" />
-        <h3 class="member-name">Member Name 9</h3>
-        <p class="member-role">Role / Task</p>
+      <li class="badges-item">
+        <a
+          class="badges-link"
+          href="https://www.npmjs.com/package/postcss-sort-media-queries"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Sort Media Queries
+        </a>
       </li>
     </ul>
   </div>
-</div> 
+</article>
 
-    <div class="modal-overlay is-hidden" data-modal-id="order-now">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <button class="modal-close" type="button" data-modal-close aria-label="Close modal">
-      &times;
-    </button>
+    </main>
 
-    <h2 class="modal-title" id="modal-title">Order Now</h2>
-
-    <form class="modal-form" novalidate>
-      <label class="modal-label">
-        Name
-        <input class="modal-input" type="text" name="name" autocomplete="name" />
-      </label>
-
-      <label class="modal-label">
-        Phone number
-        <input class="modal-input" type="tel" name="phone" autocomplete="tel" />
-      </label>
-
-      <label class="modal-label">
-        Email
-        <input class="modal-input" type="email" name="email" autocomplete="email" />
-      </label>
-
-      <label class="modal-label">
-        Comment
-        <textarea class="modal-textarea" name="comment" rows="4"></textarea>
-      </label>
-
-      <button class="modal-submit" type="submit">Send</button>
-    </form>
+    <footer class="footer">
+  <div class="container">
+    <p class="footer-desc">
+      Made with ✨ by
+      <a
+        class="footer-link"
+        href="https://goit.global/ua/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GoIT team
+      </a>
+    </p>
   </div>
-</div>
+</footer>
 
-    <div class="recipe-modal-backdrop js-recipe-modal-backdrop">
-  <div class="recipe-modal-window js-recipe-modal-window">
-    <button
-      type="button"
-      class="modal-close-btn js-modal-close-btn"
-      aria-label="Close modal"
-    >
-      <svg width="20" height="20">
-        <use href="./img/sprite.svg#icon-close"></use>
-      </svg>
-    </button>
 
-    <div class="recipe-modal-content js-recipe-modal-content"></div>
-  </div>
-</div>
-
-    
-     
   </body>
 </html>
