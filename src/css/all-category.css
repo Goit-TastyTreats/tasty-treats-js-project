@@ -1,4 +1,4 @@
-/* 1. ANA PANEL AYARI: Sol tarafın sınırlarını belirliyoruz */
+/* 1. ANA PANEL AYARI: Sol tarafın sınırlarını belirliyorum */
 .main-wrapper {
   display: flex;
   gap: 64px;
@@ -39,7 +39,7 @@
 .all-category-button:hover {
   background-color: #9bbd4c; /* Figma Yeşili */
   font-weight: 600;
-  color: rgba(248, 248, 248, 1); /* Beyaz yaparak kontrastı artırıyoruz */
+  color: rgba(248, 248, 248, 1); /* Beyaz yaparak kontrastı artırdım */
   transition:
     background-color 0.5s ease,
     color 0.3s ease;
@@ -48,10 +48,13 @@
 /* Kategori Listesi ve Scrollbar */
 .category-list {
   display: flex;
-  flex-direction: column; /* Her zaman dikey liste */
-  max-height: 352px; /* Figma'daki standart yükseklik */
-  overflow-y: auto; /* Dikey kaydırma aktif */
-  overflow-x: hidden; /* Yatay kaydırmayı tamamen kapat */
+  flex-direction: column;
+
+  height: 352px; /* Sabit bir yükseklik verdim */
+  overflow-y: scroll; /* auto yerine scroll diyerek alanı kesinleştirdim */
+  overflow-x: hidden;
+
+  /* Diğer kodların */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -59,11 +62,11 @@
 
 /* Scrollbar'ı modern ve ince hale getiren dokunuş */
 .category-list::-webkit-scrollbar {
-  width: 4px;
+  width: 7px; /* Figma'daki genişlik */
 }
 .category-list::-webkit-scrollbar-thumb {
-  background: rgba(5, 5, 5, 0.1);
-  border-radius: 10px;
+  background-color: rgba(5, 5, 5, 0.1);
+  border-radius: 12px;
 }
 
 /* Tekil Kategori Butonları */
@@ -76,16 +79,15 @@
   cursor: pointer;
   width: 100%;
   text-align: left;
-  transition: color 250ms ease;
+  transition:
+    color 250ms ease,
+    font-weight 250ms ease;
 }
 
 .category-btn.active,
 .category-btn:hover {
   color: #9bbd4c;
   font-weight: 600;
-  transition:
-    background-color 0.5s ease,
-    color 0.3s ease;
 }
 
 /* --- GENEL AYARLAR (Desktop Öncelikli) --- */
@@ -97,35 +99,68 @@
   width: 100%;
 }
 
-/* Scrollbar Tasarımı (Tüm ekranlarda görünecek) */
-.category-list::-webkit-scrollbar {
-  width: 7px; /* Figma'daki genişlik */
-}
-
-.category-list::-webkit-scrollbar-thumb {
-  background-color: rgba(5, 5, 5, 0.1);
-  border-radius: 12px;
-}
-
 /* --- EKRAN BOYUTLARINA GÖRE PANEL GENİŞLİĞİ --- */
 
 /* Tablet (768px ve üstü) */
 @media screen and (min-width: 768px) {
-  .left-panel {
-    width: 250px; /* Tablette biraz dar kalsın */
-  }
   .main-wrapper {
     display: flex;
     gap: 32px;
+    /* EKLENEN KISIM: Sayfayı ortalamak için */
+    max-width: 768px; /* Tablet genişliği */
+    margin-left: auto;
+    margin-right: auto;
+    align-items: flex-start;
+  }
+
+  .left-panel {
+    width: 250px;
+    flex-shrink: 0; /* Panelin daralmasını engeller */
   }
 }
 
 /* Desktop (1280px ve üstü) */
+
 @media screen and (min-width: 1280px) {
-  .left-panel {
-    width: 256px; /* Masaüstünde tam Figma ölçüsü */
+  /* Ekip arkadaşımın  container padding'ini benim alanım için etkisiz hale getirdim */
+  .category-sidebar.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0;
+    max-width: 100%;
+    margin-bottom: 40px; /* Alt boşluk ekleyelim */
   }
+
   .main-wrapper {
-    gap: 64px;
+    gap: 64px; /* Sağ panelle aradaki boşluk */
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-panel {
+    /* Popüler tariflerde 280px yaptıysan burayı da 280px yaptım ki hizalı olsunlar */
+    width: 280px;
+    flex-shrink: 0;
+  }
+
+  .category-list {
+    /* Scrollbar ve metinlerin hizada kalması için */
+    width: 100%;
+    height: 352px;
+    padding-right: 20px; /* Metinlerin scrollbar'dan uzaklaşması için */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cat-items {
+    width: 100%;
+  }
+
+  /* Kaydırma çubuğunu sabitledim */
+  .category-list::-webkit-scrollbar {
+    width: 7px;
   }
 }

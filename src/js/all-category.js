@@ -29,18 +29,21 @@ async function initCategories() {
 // Olay dinleyicileri (Event Listeners)
 if (categoryList) {
   categoryList.addEventListener('click', e => {
+    // Sadece butonlara tıklandığında çalışması için kontrol
     if (e.target.nodeName !== 'BUTTON') return;
 
-    // Aktif buton görselini değiştir
+    // 1. Önce tüm butonlardan (hem liste içindekiler hem de All Categories) active sınıfını sil
     document
-      .querySelectorAll('.category-btn, #all-category-btn')
+      .querySelectorAll('.category-btn, .all-category-button')
       .forEach(btn => btn.classList.remove('active'));
+
+    // 2. Sadece tıklanan butona active sınıfını ekle
     e.target.classList.add('active');
 
-    // Filtreleme fonksiyonunu çağır
+    // 3. Filtreleme fonksiyonunu çağır
     const categoryName = e.target.dataset.name;
     renderRecipeCards({ category: categoryName });
-  });
+  }); // Parantez hatası burada düzeltildi: };); yerine });
 }
 
 if (allCatBtn) {
