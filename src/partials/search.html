@@ -1,49 +1,54 @@
+<section class="filters-section">
+    <div class="filters-container">
+        <form class="filters-form">
+            <label class="filter-label search-field">
+                Search
+                <span class="search-wrapper">
+                    <span class="search-icon">⌕</span>
+                    <input class="filter-input search-input" type="text" name="search" placeholder="Enter Text"
+                        autocomplete="off" />
+                </span>
+            </label>
 
-   <section class="filters-section">
-        <div class="filters-container">
-            <form class="filters-form">
-                <label class="filter-label search-field">
-                    Search
-                    <span class="search-wrapper">
-                        <span class="search-icon">⌕</span>
-                        <input class="filter-input search-input" type="text" name="search" placeholder="Enter Text"
-                            autocomplete="off" />
-                    </span>
-                </label>
-
-                <label class="filter-label time-field">
-                    Time
-                    <span class="select-wrapper">
-                        <select class="filter-select time-select" name="time">
-                            <option value="">Any time</option>
-                        </select>
+            <label class="filter-label time-field">
+                Time
+                <div class="custom-select" data-filter="time">
+                    <button class="custom-select-trigger" type="button">
+                        Any time
                         <span class="select-chevron"></span>
-                    </span>
-                </label>
+                    </button>
 
-                <label class="filter-label area-field">
-                    Area
-                    <span class="select-wrapper">
-                        <select class="filter-select area-select" name="area">
-                            <option value="">Any area</option>
-                        </select>
+                    <ul class="custom-dropdown time-dropdown"></ul>
+                </div>
+            </label>
+
+            <label class="filter-label area-field">
+                Area
+                <div class="custom-select" data-filter="area">
+                    <button class="custom-select-trigger" type="button">
+                        Any area
                         <span class="select-chevron"></span>
-                    </span>
-                </label>
+                    </button>
 
-                <label class="filter-label ingredients-field">
-                    Ingredients
-                    <span class="select-wrapper">
-                        <select class="filter-select ingredients-select" name="ingredient">
-                            <option value="">Any ingredient</option>
-                        </select>
+                    <ul class="custom-dropdown area-dropdown"></ul>
+                </div>
+            </label>
+
+            <label class="filter-label ingredients-field">
+                Ingredients
+                <div class="custom-select" data-filter="ingredient">
+                    <button class="custom-select-trigger" type="button">
+                        Any ingredient
                         <span class="select-chevron"></span>
-                    </span>
-                </label>
-            </form>
+                    </button>
 
-            <button class="reset-btn" type="button">
-                Reset the filter
-            </button>
-        </div>
-    </section>
+                    <ul class="custom-dropdown ingredients-dropdown"></ul>
+                </div>
+            </label>
+        </form>
+
+        <button class="reset-btn" type="button">
+            Reset the filter
+        </button>
+    </div>
+</section>
