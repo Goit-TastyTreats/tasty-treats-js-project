@@ -6,17 +6,21 @@ const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
 const closeMenuBtn = document.getElementById('closeMenuBtn');
-
+const menuOverlay = document.getElementById('menuOverlay');
 // burger açma
 
 hamburgerBtn.addEventListener('click', () => {
   mobileMenu.classList.add('active');
+
+  menuOverlay.classList.add('active');
 });
 
 // burger kapama
 
 closeMenuBtn.addEventListener('click', () => {
   mobileMenu.classList.remove('active');
+
+  menuOverlay.classList.remove('active');
 });
 
 // ACTIVE PAGE LINK
