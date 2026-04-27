@@ -1,21 +1,168 @@
+/* --- Footer Genel Stilleri --- */
 .footer {
-  padding: 20px 0;
+
+  padding: 60px 0 28px 0; 
+  background-color: var(--bg-color); 
+
+  border: none; 
 }
-.footer-desc {
+
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: rgba(5, 5, 5, 0.6); 
+  line-height: 1.2;
+}
+
+.footer-heart {
+
+  color: var(--color-primary); 
+}
+
+.footer-team-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-decoration: none; 
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+/* --- Hover Efekti (Turuncu Yazı + Yeşil Çizgi) --- */
+.footer-team-button:hover,
+.footer-team-button:focus {
+  color: rgb(255, 107, 8); 
+  
+  /* Alt çizgi aktif ve yeşil */
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+/* --- Team Modal (Ekip Penceresi) --- */
+.team-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(5, 5, 5, 0.5); 
+  z-index: 9999; /* En üstte görünmesi için */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 250ms ease, visibility 250ms ease;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.team-modal-content {
+  position: relative;
+  width: 95%;
+  max-width: 600px;
+  min-height: 300px; /* İçerik boş olsa da kutu görünsün */
+  background-color: var(--bg-color);
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--black);
+}
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.team-item {
   text-align: center;
 }
-.footer-link {
-  position: relative;
+
+.team-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;   object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid var(--color-primary);
 }
-.footer-link::before {
-  content: '';
-  position: absolute;
-  bottom: 6%;
-  left: 50%;
-  transform: translateX(-50%) skewX(-12deg);
-  z-index: -1;
-  width: 110%;
-  height: 24%;
-  background-color: #41d1ff;
-  transition: 200ms ease;
+
+.member-name {
+  font-size: 16px;
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+.member-role {
+  font-size: 12px;
+  color: rgba(5, 5, 5, 0.6);
+}
+
+.team-title {
+  text-align: center;
+  font-size: 24px;
+  color: var(--black);
+  text-transform: uppercase;
+}
+/* --- RESPONSIVE --- */
+/* Mobil cihazlarda 3 sütun yerine 1 veya 2 sütun görünsün */
+@media (max-width: 768px) {
+  .team-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* 1. Footer Yazısı İçin Mobil Düzenleme */
+@media screen and (max-width: 767px) {
+  .footer-text {
+    display: flex;
+    flex-direction: column; /* Mobilde alt alta dizer */
+    align-items: center;
+    gap: 8px; /* Aradaki boşluk */
+    line-height: 1.4;
+  }
+}
+
+/* 2. Modal İçindeki Resimlerin Mobilde Boyutu */
+@media screen and (max-width: 767px) {
+  .team-img {
+    width: 70px; /* Mobilde biraz daha küçük resimler */
+    height: 70px;
+  }
+  
+  .team-list {
+    gap: 15px; /* Mobilde daha dar boşluk */
+  }
+
+  .team-modal-content {
+    padding: 30px 15px; /* Mobilde iç boşluğu azaltır */
+  }
+}
+
+/* 3. Büyük Ekranlarda Modal Genişliği */
+@media screen and (min-width: 1280px) {
+  .team-modal-content {
+    max-width: 700px; /* Geniş ekranda modal biraz daha büyük görünebilir */
+  }
 }
