@@ -5,18 +5,24 @@
       <!-- desktop nav -->
       <ul class="nav-list">
         <li class="nav-item">
-          <a class="nav-link active-link" href="../index.html"> Home </a>
+          <a class="nav-link" href="/index.html"> Home </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="../favorites.html"> Favorites </a>
+          <a class="nav-link" href="/favorites.html"> Favorites </a>
         </li>
       </ul>
 
       <!-- logo -->
 
-      <a class="nav-logo" href="../index.html" aria-label="Site logo">
-        <svg class="logo-icon">
+      <a class="nav-logo" href="/index.html" aria-label="Site logo">
+        <!-- mobile logo -->
+        <svg class="logo-icon logo-mobile">
+          <use href="../img/favicon.svg#icon-tasty-mob"></use>
+        </svg>
+
+        <!-- tablet & desktop logo -->
+        <svg class="logo-icon logo-desktop">
           <use href="../img/favicon.svg#icon-tasty-desk"></use>
         </svg>
       </a>
