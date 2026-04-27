@@ -1,55 +1,54 @@
 import { fetchCategories } from './api.js';
-import { renderRecipeCards } from './recipe-cards.js'; // Bu importun olduğundan emin ol
+import { renderRecipeCards } from './recipe-cards.js'; // Diğer dosyadan fonksiyonu çağırdık
 
-// HATANIN KAYNAĞI BURASI: Bu iki satırın en üstte olduğundan emin olmalısın
 const categoryList = document.querySelector('#category-list');
 const allCatBtn = document.querySelector('#all-category-btn');
 
+// Kategorileri sol menüye basan fonksiyon
 async function initCategories() {
-  try {
-    const categories = await fetchCategories();
-    const markup = categories
-      .map(
-        ({ name }) => `
-      <li class="cat-items">
-        <button type="button" class="category-btn" data-name="${name}">${name}</button>
-      </li>
-    `
-      )
-      .join('');
+  const categories = await fetchCategories();
+  const markup = categories
+    .map(
+      ({ name }) => `
+    <li class="cat-items">
+      <button type="button" class="category-btn" data-name="${name}">${name}</button>
+    </li>
+  `
+    )
+    .join('');
 
-    if (categoryList) {
-      categoryList.innerHTML = markup;
-    }
-  } catch (error) {
-    console.error('Kategoriler yüklenirken hata oluştu:', error);
-  }
+  if (categoryList) categoryList.innerHTML = markup;
 }
 
-// Olay dinleyicileri (Event Listeners)
+// KATEGORİ TIKLAMA OLAYI
 if (categoryList) {
   categoryList.addEventListener('click', e => {
     if (e.target.nodeName !== 'BUTTON') return;
 
-    // Aktif buton görselini değiştir
+    // Aktiflik görselini güncelle
     document
-      .querySelectorAll('.category-btn, #all-category-btn')
+      .querySelectorAll('.category-btn, .all-category-button')
       .forEach(btn => btn.classList.remove('active'));
     e.target.classList.add('active');
 
-    // Filtreleme fonksiyonunu çağır
+    // Tıklanan kategoriyi al
     const categoryName = e.target.dataset.name;
+
+    // api.js'in beklediği formatta gönderiyoruz: { category: "Breakfast" }
     renderRecipeCards({ category: categoryName });
   });
 }
 
+// ALL CATEGORIES TIKLAMA OLAYI
 if (allCatBtn) {
   allCatBtn.addEventListener('click', () => {
     document
       .querySelectorAll('.category-btn')
       .forEach(btn => btn.classList.remove('active'));
     allCatBtn.classList.add('active');
-    renderRecipeCards(); // Filtreyi sıfırla
+
+    // Filtreyi boş gönderince api.js tüm tarifleri çeker
+    renderRecipeCards({});
   });
 }
 

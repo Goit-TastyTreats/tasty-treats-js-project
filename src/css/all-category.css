@@ -1,75 +1,167 @@
-/* Kategoriler listesinin kutusu */
+/* 1. ANA PANEL AYARI: Sol tarafın sınırlarını belirliyorum */
+.main-wrapper {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. KATEGORİ ALANI: Scrollbar ve buton düzeni */
+.category-sidebar {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* "All Categories" Butonu */
+.all-category-button {
+  /* display: block; */
+  width: 176px;
+  height: 50px;
+  text-align: center;
+  background: none;
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(5, 5, 5, 0.5);
+  padding: 10px 0;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: color 250ms ease;
+}
+
+.all-category-button.active,
+.all-category-button:hover {
+  background-color: #9bbd4c; /* Figma Yeşili */
+  font-weight: 600;
+  color: rgba(248, 248, 248, 1); /* Beyaz yaparak kontrastı artırdım */
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease;
+}
+
+/* Kategori Listesi ve Scrollbar */
 .category-list {
-  height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+
+  height: 352px; /* Sabit bir yükseklik verdim */
+  overflow-y: scroll; /* auto yerine scroll diyerek alanı kesinleştirdim */
+  overflow-x: hidden;
+
+  /* Diğer kodların */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Scroll çubuğunu güzelleştirelim (Figma'daki gibi ince) */
+/* Scrollbar'ı modern ve ince hale getiren dokunuş */
 .category-list::-webkit-scrollbar {
-  width: 6px;
+  width: 7px; /* Figma'daki genişlik */
 }
-
 .category-list::-webkit-scrollbar-thumb {
   background-color: rgba(5, 5, 5, 0.1);
   border-radius: 12px;
 }
 
-/* Standart Buton Hali */
-.category-btn,
-.all-category-button {
-  width: 100%;
-  text-align: left;
+/* Tekil Kategori Butonları */
+.category-btn {
   background: none;
   border: none;
-  padding: 8px 0;
+  color: rgba(5, 5, 5, 0.5);
   font-size: 16px;
-  color: rgba(5, 5, 5, 0.5); /* Figma gri tonu */
+  padding: 8px 0;
   cursor: pointer;
-  transition: all 250ms ease;
+  width: 100%;
+  text-align: left;
+  transition:
+    color 250ms ease,
+    font-weight 250ms ease;
 }
 
-/* Hover ve Aktif Hali (Referans projedeki yeşil tonu) */
-.category-btn:hover,
 .category-btn.active,
-.all-category-button.active {
-  color: #9bbd4c; /* Yeşil renk */
-  font-weight: 700;
-  transform: translateX(5px); /* Hafif sağa kayma efekti */
+.category-btn:hover {
+  color: #9bbd4c;
+  font-weight: 600;
 }
 
-
-
-
-Bu kısımdan itibaren Mert bey
-/* Ana Layout Düzeni */
-.main-layout {
+/* --- GENEL AYARLAR (Desktop Öncelikli) --- */
+.left-panel {
   display: flex;
-  gap: 64px; /* Sidebar ile İçerik arasındaki boşluk */
-  padding: 40px 20px;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-/* Sol taraf sabit genişlikte */
-.sidebar {
-  width: 256px;
+  flex-direction: column;
   flex-shrink: 0;
+  /* Başlangıçta mobil genişliği */
+  width: 100%;
 }
 
-/* Sağ taraf kalan alanı doldurur */
-.recipes-content {
-  flex-grow: 1;
-}
+/* --- EKRAN BOYUTLARINA GÖRE PANEL GENİŞLİĞİ --- */
 
-/* Mobil uyum (Ekran küçülünce alt alta gelsinler) */
-@media (max-width: 768px) {
-  .main-layout {
-    flex-direction: column;
+/* Tablet (768px ve üstü) */
+@media screen and (min-width: 768px) {
+  .main-wrapper {
+    display: flex;
     gap: 32px;
+    /* EKLENEN KISIM: Sayfayı ortalamak için */
+    max-width: 768px; /* Tablet genişliği */
+    margin-left: auto;
+    margin-right: auto;
+    align-items: flex-start;
   }
 
-  .sidebar {
+  .left-panel {
+    width: 250px;
+    flex-shrink: 0; /* Panelin daralmasını engeller */
+  }
+}
+
+/* Desktop (1280px ve üstü) */
+
+@media screen and (min-width: 1280px) {
+  /* Ekip arkadaşımın  container padding'ini benim alanım için etkisiz hale getirdim */
+  .category-sidebar.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0;
+    max-width: 100%;
+    margin-bottom: 40px; /* Alt boşluk ekleyelim */
+  }
+
+  .main-wrapper {
+    gap: 64px; /* Sağ panelle aradaki boşluk */
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 100px; /* Sayfayı ortalamak için */
+  }
+
+  .left-panel {
+    /* Popüler tariflerde 280px yaptıysan burayı da 280px yaptım ki hizalı olsunlar */
+    width: 280px;
+    flex-shrink: 0;
+  }
+
+  .category-list {
+    /* Scrollbar ve metinlerin hizada kalması için */
     width: 100%;
+    height: 352px;
+    padding-right: 20px; /* Metinlerin scrollbar'dan uzaklaşması için */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cat-items {
+    width: 100%;
+  }
+
+  /* Kaydırma çubuğunu sabitledim */
+  .category-list::-webkit-scrollbar {
+    width: 7px;
   }
 }
