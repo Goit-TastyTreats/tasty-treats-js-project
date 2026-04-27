@@ -1,19 +1,10 @@
-<!doctype html>
-<html data-theme="dark" lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/tasty-treats-js-project/spoon-knife.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TastyTreats</title>
-    <script type="module" crossorigin src="/tasty-treats-js-project/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/tasty-treats-js-project/assets/vendor-BWiNTx3g.js">
+    <title>Favorites</title>
     <link rel="stylesheet" crossorigin href="/tasty-treats-js-project/assets/styles-DKG_tgR_.css">
   </head>
   <body>
@@ -92,57 +83,49 @@
 </header>
 
     <main>
-      <section class="hero">
-  <div class="container hero-container">
-    <div class="hero-content">
-      <h1 class="hero-title">Learn to Cook <em class="hero-accent">Tasty Treats'</em> Customizable Masterclass</h1>
-      <p class="hero-desc">
-        TastyTreats - Customize Your Meal with Ingredient Options and
-        Step-by-Step Video Guides.
-      </p>
-      <button class="hero-btn" type="button" data-modal-open="order-now">
-        Order now
+   
+<!-- favorites .-->
+<section class="fav-hero-section">
+  <div class="container fav-hero-container">
+    <picture class="fav-hero-pic">
+      <source media="(min-width: 1280px)" srcset="./src/img/webp/favorites-desktop_1x.webp 1x, ./src/img/webp/favorites-desktop_2x.webp 2x" />
+
+      <source media="(min-width: 768px)" srcset="./src/img/webp/favorıtes-tablet_1x.webp 1x, ./src/img/webp/favorıtes-tablet_2x.webp 2x" />
+
+      <source media="(max-width: 767px)" srcset="./src/img/webp/favorites-mob_1x.webp 1x, ./src/img/webp/favorites-mob_2x.webp 2x" />
+
+      <img loading="lazy" src="./src/img/webp/favorıtes-desktop_1x.webp" alt="Dish" />
+    </picture>
+  </div>
+</section>
+<!-- fav
+      -->
+<section class="fav-content-section">
+  <div class="container fav-content-container">
+    <ul class="fav-category-recipe-list recipes-list">
+      <button type="button" class="all-category-btn category-btn">
+        All categories
       </button>
-    </div>
+    </ul>
 
-    <div class="hero-slider">
-      <ul class="hero-slides" data-slider></ul>
+    <ul class="fav-recipes-list"></ul>
 
-      <div class="hero-dots" data-dots></div>
+    <div class="fav-no-recipes-content is-hidden">
+      <svg class="no-recipes-icon">
+        <use href="./src/img/webp/favicon.svg"></use>
+      </svg>
+
+      <p class="no-recipes-descr">
+        It appears that you haven't added any recipes to your favorites
+        yet. To get started, you can add recipes that you like to your
+        favorites for easier access in the future.
+      </p>
     </div>
   </div>
 </section>
 
-      <div class="main-wrapper">
-        <div class="left-panel">
-          <div class="category-sidebar container">
-  <button
-    type="button"
-    class="all-category-button active"
-    id="all-category-btn"
-  >
-    All categories
-  </button>
+</main>
 
-  <div class="categories-wrapper">
-    <ul class="category-list" id="category-list"></ul>
-  </div>
-</div>
-
-          <section class="popular-recipes  container">
-  <h2 class="popular-title">POPULAR RECIPES</h2>
-  <ul class="popular-recipes-list" id="popular-list"></ul>
-</section>
-
-        </div>
-    
-        <div class="right-panel">
-          
-          
-        </div>
-      </div>
-    </main>
-    
     <footer class="footer">
   <div class="container">
     <p class="footer-text">
@@ -205,59 +188,6 @@
       </li>
     </ul>
   </div>
-</div> 
-
-    <div class="modal-overlay is-hidden" data-modal-id="order-now">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <button class="modal-close" type="button" data-modal-close aria-label="Close modal">
-      &times;
-    </button>
-
-    <h2 class="modal-title" id="modal-title">Order Now</h2>
-
-    <form class="modal-form" novalidate>
-      <label class="modal-label">
-        Name
-        <input class="modal-input" type="text" name="name" autocomplete="name" />
-      </label>
-
-      <label class="modal-label">
-        Phone number
-        <input class="modal-input" type="tel" name="phone" autocomplete="tel" />
-      </label>
-
-      <label class="modal-label">
-        Email
-        <input class="modal-input" type="email" name="email" autocomplete="email" />
-      </label>
-
-      <label class="modal-label">
-        Comment
-        <textarea class="modal-textarea" name="comment" rows="4"></textarea>
-      </label>
-
-      <button class="modal-submit" type="submit">Send</button>
-    </form>
-  </div>
 </div>
-
-    <div class="recipe-modal-backdrop js-recipe-modal-backdrop">
-  <div class="recipe-modal-window js-recipe-modal-window">
-    <button
-      type="button"
-      class="modal-close-btn js-modal-close-btn"
-      aria-label="Close modal"
-    >
-      <svg width="20" height="20">
-        <use href="./img/sprite.svg#icon-close"></use>
-      </svg>
-    </button>
-
-    <div class="recipe-modal-content js-recipe-modal-content"></div>
-  </div>
-</div>
-
-    
-     
   </body>
 </html>
