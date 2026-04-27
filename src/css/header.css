@@ -42,14 +42,9 @@
   align-items: center;
   justify-content: center;
 
-  color: var(--black);
+  color: var(--text-color);
   transition: color 0.3s ease;
   text-decoration: none;
-}
-
-/* Dark mode phone */
-body.dark-theme .phone-btn {
-  color: var(--bg-color);
 }
 
 /* burger menü*/
@@ -68,12 +63,9 @@ body.dark-theme .phone-btn {
   cursor: pointer;
 
   outline: none;
-  color: var(--black);
+  color: var(--text-color);
 
   transition: color 0.3s ease;
-}
-body.dark-theme .hamburger-btn {
-  color: var(--bg-color);
 }
 
 /* desktop toggle */
@@ -108,11 +100,13 @@ body.dark-theme .hamburger-btn {
   justify-content: space-between;
 }
 
-/* Dark mod mobil menu */
+
 body.dark-theme .mobile-menu {
   background-color: var(--black);
 }
-
+body.dark-theme .mobile-nav-link {
+  color: #f8f8f8;
+}
 /* Active menu */
 .mobile-menu.active {
   right: 0;
@@ -124,7 +118,7 @@ body.dark-theme .mobile-menu {
   border: none;
   background: transparent;
 
-  color: var(--bg-color);
+  color: #f8f8f8;
 
   cursor: pointer;
 
@@ -152,7 +146,7 @@ body.dark-theme .mobile-menu {
   color: var(--bg-color);
 }
 
-/* MOBIL toggle */
+
 
 .theme-toggle {
   width: 46px;
@@ -248,15 +242,33 @@ svler text rengiyle aynı
 }
 
 .logo-icon {
-  width: 93px;
-  height: 20px;
-
   display: block;
 }
 
+.logo-mobile {
+  width: 93px;
+  height: 20px;
+}
+
+/* desktop logo gizli */
+.logo-desktop {
+  display: none;
+}
+
 /* TABLET */
-/* ahah*/
+
 @media screen and (min-width: 768px) {
+  /* mobile logo gizle */
+  .logo-mobile {
+    display: none;
+  }
+
+  .logo-desktop {
+    display: block;
+
+    width: 140px;
+    height: 30px;
+  }
   .nav {
     height: 80px;
 
@@ -278,16 +290,7 @@ svler text rengiyle aynı
     font-size: 12px;
     font-weight: 500;
 
-    color: var(--black);
-  }
-
-  /* dark mode nav link */
-  body.dark-theme .nav-link {
-    color: var(--bg-color);
-  }
-
-  .active-link {
-    color: var(--color-primary);
+    color: var(--text-color);
   }
 
   /* desktop toggle */
@@ -355,10 +358,6 @@ svler text rengiyle aynı
     flex-shrink: 0;
   }
 }
-.logo-icon {
-  width: 92px;
-  height: 20px;
-}
 
 /* DESKTOP */
 
@@ -378,8 +377,68 @@ svler text rengiyle aynı
   .header-actions {
     gap: 16px;
   }
-  .logo-icon {
-    width: 92px;
-    height: 20px;
-  }
+}
+/* şimdilik query dışında mobilde olmaması lazım */
+.active-link {
+  color: var(--color-primary);
+}
+
+body.dark-theme {
+  background-color: #1d1d1d;
+  --bg-color: #161616;
+
+  --text-color: #f8f8f8;
+}
+body {
+  background-color: var(--bg-color);
+
+  color: var(--text-color);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+:root {
+  --text-color: #050505;
+}
+
+/* logo color */
+
+/* light mode logo */
+.nav-logo {
+  color: #050505;
+}
+
+/* dark mode mobile logo */
+
+body.dark-theme .nav-logo {
+  color: #f8f8f8;
+}
+/* dark mode close icon */
+
+body.dark-theme .close-menu-btn {
+  color: #f8f8f8;
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 1500;
+}
+
+/* aktif overlay */
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
