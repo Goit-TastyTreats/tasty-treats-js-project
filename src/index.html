@@ -1,43 +1,23 @@
-<!doctype html>
-<html data-theme="dark" lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/spoon-knife.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TastyTreats</title>
+    <title>Vanilla App Template</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <load src="./partials/header.html" />
+    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
 
     <main>
-      <load src="./partials/hero.html" />
-      <div class="main-wrapper">
-        <div class="left-panel">
-          <load src="./partials/all-category.html" />
-          <load src="./partials/popular-recipes.html" />
-        </div>
-    
-        <div class="right-panel">
-          <load src="./partials/search.html" />
-          <load src="./partials/recipe.html" />
-        </div>
-      </div>
+      <!-- Loads the specified .html file -->
+      <load src="./partials/vite-promo.html" />
+      <load src="./partials/badges.html" />
     </main>
-    
-    <load src="./partials/footer.html" /> 
 
-    <load src="./partials/order-now-modal.html" />
-    <load src="./partials/recipe-modal.html" />
-    <load src="./partials/rating-modal.html" />
-     
+    <load src="./partials/footer.html" />
+
     <script type="module" src="./main.js"></script>
   </body>
 </html>
