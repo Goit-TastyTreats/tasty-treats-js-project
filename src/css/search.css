@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: #050505;
+    background-color: #ffffff;
+}
+
+.filters-container {
+    width: 100%;
+    max-width: 782px;
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+.filters-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: nowrap;
+}
+
+.filter-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    color: rgba(5, 5, 5, 0.5);
+}
+
+.search-field {
+    width: 278px;
+}
+
+.time-field {
+    width: 125px;
+}
+
+.area-field {
+    width: 141px;
+}
+
+.ingredients-field {
+    width: 188px;
+}
+
+.search-wrapper,
+.select-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: rgba(5, 5, 5, 0.5);
+}
+
+.filter-input,
+.filter-select {
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgba(5, 5, 5, 0.2);
+    border-radius: 15px;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(5, 5, 5, 0.5);
+}
+
+.filter-input {
+    padding: 14px 18px 14px 48px;
+}
+
+.filter-input::placeholder {
+    color: rgba(5, 5, 5, 0.5);
+}
+
+.filter-select {
+    padding: 0 38px 0 18px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select-chevron {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid rgba(5, 5, 5, 0.5);
+    border-bottom: 2px solid rgba(5, 5, 5, 0.5);
+    transform: translateY(-60%) rotate(-45deg);
+    pointer-events: none;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    border-color: #9bb537;
+}
+
+.reset-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 16px 0 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    color: rgba(5, 5, 5, 0.5);
+    cursor: pointer;
+}
+
+.reset-icon {
+    font-size: 22px;
+    line-height: 1;
+    color: #9bb537;
+}
+
+@media screen and (max-width: 767px) {
+    .filters-container {
+        max-width: 335px;
+        padding: 32px 0;
+    }
+
+    .filters-form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 14px 16px;
+    }
+
+    .search-field {
+        width: 100%;
+    }
+
+    .time-field,
+    .area-field {
+        width: calc((100% - 16px) / 2);
+    }
+
+    .ingredients-field {
+        width: 188px;
+    }
+
+    .reset-btn {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 14px;
+    }
+}
