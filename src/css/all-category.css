@@ -136,6 +136,7 @@
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 100px; /* Sayfayı ortalamak için */
   }
 
   .left-panel {
