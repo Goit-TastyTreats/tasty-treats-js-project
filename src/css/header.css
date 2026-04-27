@@ -100,7 +100,7 @@
   justify-content: space-between;
 }
 
-/* Dark mod mobil menu */
+
 body.dark-theme .mobile-menu {
   background-color: var(--black);
 }
