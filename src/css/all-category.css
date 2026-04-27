@@ -1,75 +1,134 @@
-/* Kategoriler listesinin kutusu */
-.category-list {
-  height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
+/* 1. ANA PANEL AYARI: Sol tarafın sınırlarını belirliyoruz */
+.main-wrapper {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Scroll çubuğunu güzelleştirelim (Figma'daki gibi ince) */
-.category-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.category-list::-webkit-scrollbar-thumb {
-  background-color: rgba(5, 5, 5, 0.1);
-  border-radius: 12px;
-}
-
-/* Standart Buton Hali */
-.category-btn,
-.all-category-button {
+/* 2. KATEGORİ ALANI: Scrollbar ve buton düzeni */
+.category-sidebar {
   width: 100%;
-  text-align: left;
+  margin-bottom: 40px;
+}
+
+/* "All Categories" Butonu */
+.all-category-button {
+  /* display: block; */
+  width: 176px;
+  height: 50px;
+  text-align: center;
+  background: none;
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(5, 5, 5, 0.5);
+  padding: 10px 0;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: color 250ms ease;
+}
+
+.all-category-button.active,
+.all-category-button:hover {
+  background-color: #9bbd4c; /* Figma Yeşili */
+  font-weight: 600;
+  color: rgba(248, 248, 248, 1); /* Beyaz yaparak kontrastı artırıyoruz */
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease;
+}
+
+/* Kategori Listesi ve Scrollbar */
+.category-list {
+  max-height: 400px; /* Belirli bir yükseklikten sonra scroll çıksın */
+  overflow-y: auto;
+  overflow-x: hidden; /* Yatayda o çirkin çubuğu çıkarmaz */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Scrollbar'ı modern ve ince hale getiren dokunuş */
+.category-list::-webkit-scrollbar {
+  width: 4px;
+}
+.category-list::-webkit-scrollbar-thumb {
+  background: rgba(5, 5, 5, 0.1);
+  border-radius: 10px;
+}
+
+/* Tekil Kategori Butonları */
+.category-btn {
   background: none;
   border: none;
-  padding: 8px 0;
+  color: rgba(5, 5, 5, 0.5);
   font-size: 16px;
-  color: rgba(5, 5, 5, 0.5); /* Figma gri tonu */
+  padding: 8px 0;
   cursor: pointer;
-  transition: all 250ms ease;
+  width: 100%;
+  text-align: left;
+  transition: color 250ms ease;
 }
 
-/* Hover ve Aktif Hali (Referans projedeki yeşil tonu) */
-.category-btn:hover,
 .category-btn.active,
-.all-category-button.active {
-  color: #9bbd4c; /* Yeşil renk */
-  font-weight: 700;
-  transform: translateX(5px); /* Hafif sağa kayma efekti */
+.category-btn:hover {
+  color: #9bbd4c;
+  font-weight: 600;
+  transition:
+    background-color 0.5s ease,
+    color 0.3s ease;
 }
 
-
-
-
-Bu kısımdan itibaren Mert bey
-/* Ana Layout Düzeni */
-.main-layout {
-  display: flex;
-  gap: 64px; /* Sidebar ile İçerik arasındaki boşluk */
-  padding: 40px 20px;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-/* Sol taraf sabit genişlikte */
-.sidebar {
+/* --- GENEL AYARLAR (Desktop Öncelikli) --- */
+.left-panel {
   width: 256px;
   flex-shrink: 0;
 }
 
-/* Sağ taraf kalan alanı doldurur */
-.recipes-content {
-  flex-grow: 1;
-}
-
-/* Mobil uyum (Ekran küçülünce alt alta gelsinler) */
-@media (max-width: 768px) {
-  .main-layout {
-    flex-direction: column;
-    gap: 32px;
+/* --- TABLET AYARLARI (768px ve 1280px arası) --- */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .main-wrapper {
+    gap: 32px; /* Aradaki boşluğu yarıya indirdik */
+    padding: 20px;
   }
 
-  .sidebar {
-    width: 100%;
+  .left-panel {
+    width: 220px; /* Paneli biraz daraltarak sağ tarafa yer açtık */
+  }
+
+  .category-list {
+    max-height: 350px; /* Tablette ekran boyu kısaldığı için listeyi daralttık */
+  }
+}
+
+/* --- MOBİL DÜZENİ (375px - 767px) --- */
+@media screen and (max-width: 767px) {
+  .main-wrapper {
+    flex-direction: column; /* Her şey alt alta dizilir */
+    gap: 40px;
+  }
+
+  .left-panel {
+    width: 100%; /* Mobilde tüm genişliği kapla */
+  }
+
+  /* Kategori listesini mobilde yan yana dizme örneği */
+  .category-list {
+    display: flex;
+    overflow-x: auto; /* Yan yana kaydırma özelliği */
+    gap: 15px;
+    max-height: none; /* Yükseklik sınırını kaldır */
+    padding-bottom: 10px;
+  }
+
+  .category-btn {
+    white-space: nowrap; /* Kelimeler aşağı kaymasın, yan yana kalsın */
   }
 }
