@@ -1,3 +1,4 @@
+window.addEventListener('load', () => {
 const savedTheme = localStorage.getItem('theme');
 
 const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -5,29 +6,40 @@ const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
 const closeMenuBtn = document.getElementById('closeMenuBtn');
-
+const menuOverlay = document.getElementById('menuOverlay');
 // burger açma
 
 hamburgerBtn.addEventListener('click', () => {
   mobileMenu.classList.add('active');
+
+  menuOverlay.classList.add('active');
 });
 
 // burger kapama
 
 closeMenuBtn.addEventListener('click', () => {
   mobileMenu.classList.remove('active');
+
+  menuOverlay.classList.remove('active');
 });
 
 // ACTIVE PAGE LINK
 
-const currentPage = window.location.pathname;
+const currentPage = window.location.pathname
+  .split('/')
+  .pop();
 
-const desktopLinks = document.querySelectorAll('.nav-link');
+const allLinks = document.querySelectorAll(
+  '.nav-link, .mobile-nav-link'
+);
 
-desktopLinks.forEach(link => {
-  const linkPath = new URL(link.href).pathname;
+allLinks.forEach(link => {
+  const linkPage = link
+    .getAttribute('href')
+    .split('/')
+    .pop();
 
-  if (currentPage === linkPath) {
+  if (currentPage === linkPage) {
     link.classList.add('active-link');
   }
 });
@@ -64,12 +76,38 @@ desktopThemeToggle.addEventListener('click', () => {
 // ORDER MODAL penceresi
 
 const openOrderModalBtn = document.getElementById('openOrderModal');
-
-const orderModal = document.getElementById('orderModal');
+const orderModal = document.querySelector(
+  '[data-modal-id="order-now"]'
+);
 
 openOrderModalBtn.addEventListener('click', event => {
   event.preventDefault();
 
-  // modal aç
-  orderModal.classList.add('is-open');
+  orderModal.classList.remove('is-hidden');
+});
+
+const closeOrderModalBtn =
+  orderModal.querySelector('[data-modal-close]');
+
+closeOrderModalBtn.addEventListener('click', () => {
+  orderModal.classList.add('is-hidden');
+});
+
+orderModal.addEventListener('click', event => {
+  if (event.target === orderModal) {
+    orderModal.classList.add('is-hidden');
+  }
+});
+
+document.addEventListener('click', event => {
+  const isMenuOpen = mobileMenu.classList.contains('active');
+
+  if (
+    isMenuOpen &&
+    !mobileMenu.contains(event.target) &&
+    !hamburgerBtn.contains(event.target)
+  ) {
+    mobileMenu.classList.remove('active');
+  }
+});
 });

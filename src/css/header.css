@@ -100,7 +100,7 @@
   justify-content: space-between;
 }
 
-/* Dark mod mobil menu */
+
 body.dark-theme .mobile-menu {
   background-color: var(--black);
 }
@@ -118,7 +118,7 @@ body.dark-theme .mobile-nav-link {
   border: none;
   background: transparent;
 
-  color: #161616;
+  color: #f8f8f8;
 
   cursor: pointer;
 
@@ -146,7 +146,7 @@ body.dark-theme .mobile-nav-link {
   color: var(--bg-color);
 }
 
-/* MOBIL toggle */
+
 
 .theme-toggle {
   width: 46px;
@@ -418,4 +418,27 @@ body.dark-theme .nav-logo {
 
 body.dark-theme .close-menu-btn {
   color: #f8f8f8;
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 1500;
+}
+
+/* aktif overlay */
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
