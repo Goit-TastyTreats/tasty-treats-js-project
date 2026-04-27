@@ -65,17 +65,16 @@
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .popular-recipe-item {
-    gap: 12px; /* Resim ve yazı arasını daralttık */
-    margin-bottom: 20px;
+    gap: 10px; /* Resim ve yazı arasındaki boşluğu kıstık */
   }
 
   .popular-recipe-title {
-    font-size: 12px; /* Başlığı bir tık küçülttük */
+    font-size: 12px; /* Yazıyı bir tık küçülttük */
   }
 
   .popular-recipe-description {
-    font-size: 11px; /* Açıklamayı küçülttük */
-    -webkit-line-clamp: 1; /* Tablette yer darsa tek satıra düşürebilirsin */
+    /* Tablette yer darsa sadece 1 satır gösterelim */
+    -webkit-line-clamp: 1;
   }
 }
 
