@@ -470,7 +470,8 @@ body.dark-theme .close-menu-btn {
   z-index: 1500;
 }
 
-/* aktif overlay */
+/* aktif over
+y */
 .menu-overlay.active {
   opacity: 1;
   visibility: visible;
