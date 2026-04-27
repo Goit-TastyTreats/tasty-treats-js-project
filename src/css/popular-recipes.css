@@ -3,6 +3,10 @@
   margin-top: 40px;
 }
 
+.popular-title {
+  padding-bottom: 20px;
+}
+
 .popular-recipe-item {
   display: flex;
   align-items: center;
