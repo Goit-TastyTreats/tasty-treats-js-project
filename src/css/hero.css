@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
+  padding-right:0px !important
 }
 
 /* --- Content --- */
@@ -82,24 +83,27 @@
 .hero-slider {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+}
+
+.hero-swiper {
+  height: 280px;
+  padding-bottom: 26px;
 }
 
 .hero-slides {
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 280px;
 }
 
 .hero-slide {
-  display: none;
-  gap: 16px;
-  height: 280px;
+  overflow: hidden;
 }
 
-.hero-slide.is-active {
+.hero-slide-inner {
   display: flex;
+  gap: 16px;
+  height: 280px;
 }
 
 /* --- Cards --- */
@@ -195,37 +199,28 @@
   color: rgba(248, 248, 248, 0.2);
 }
 
-/* --- Dots --- */
-.hero-dots {
+/* --- Pagination --- */
+.hero-pagination.swiper-pagination {
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
-}
-
-.hero-dot {
-  width: 24px;
   height: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
 }
 
-.hero-dot::before {
-  content: '';
-  display: block;
+.hero-pagination .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background-color: rgba(5, 5, 5, 1);
+  opacity: 1;
+  margin: 0 !important;
+  cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.hero-dot.is-active::before {
+.hero-pagination .swiper-pagination-bullet-active {
   background-color: rgba(155, 181, 55, 1);
 }
 
@@ -262,15 +257,12 @@
     margin-top: 32px;
   }
 
-  .hero-slider {
-    overflow: visible;
-  }
-
-  .hero-slides {
+  .hero-swiper {
     height: 442px;
+    padding-bottom: 26px;
   }
 
-  .hero-slide {
+  .hero-slide-inner {
     gap: 16px;
     height: 442px;
   }
@@ -364,14 +356,14 @@
   .hero-slider {
     flex: 1;
     min-width: 0;
-    overflow: visible;
   }
 
-  .hero-slides {
+  .hero-swiper {
     height: 442px;
+    padding-bottom: 26px;
   }
 
-  .hero-slide {
+  .hero-slide-inner {
     gap: 16px;
     height: 442px;
   }
