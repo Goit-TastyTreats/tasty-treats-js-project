@@ -213,12 +213,10 @@
 
 /* ===== TABLET ===== */
 @media screen and (min-width: 768px) {
-  .hero {
-    padding: 40px 0 56px;
-  }
 
-.main-wrapper {
-    display: flex;
+
+  .hero-container {
+    padding-right: 32px !important;
   }
 
   .hero-content {
@@ -298,10 +296,6 @@
 
 /* ===== DESKTOP ===== */
 @media screen and (min-width: 1280px) {
-  .hero {
-    padding: 56px 0 72px;
-    overflow: hidden;
-  }
 
   .hero-container {
     flex-direction: row;
