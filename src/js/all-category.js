@@ -39,7 +39,7 @@ if (categoryList) {
 
     // Filtreleme fonksiyonunu çağır
     const categoryName = e.target.dataset.name;
-    reloadRecipesList({ category: categoryName });
+    reloadRecipesList({ category: categoryName, page: 1 });
   });
 }
 
@@ -49,7 +49,7 @@ if (allCatBtn) {
       .querySelectorAll('.category-btn')
       .forEach(btn => btn.classList.remove('active'));
     allCatBtn.classList.add('active');
-    reloadRecipesList(); // Filtreyi sıfırla
+    reloadRecipesList({ category: '', page: 1 }); // Filtreyi sıfırla
   });
 }
 
