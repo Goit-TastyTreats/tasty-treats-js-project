@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/spoon-knife.svg" />
     <title>Favorites</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
@@ -15,101 +16,59 @@
     />
 
     <main>
-      <section class="fav-hero-section">
-    <div class="container fav-hero-container">
-      <picture class="fav-hero-pic">
-        <source media="(min-width: 1280px)" srcset="
-                ./src/img/webp/favorites-deskop_1x.webp    1x,
-                ./src/img/webp/favorites-deskop_2x.webp 2x
+   
+<!-- favorites -->
+<section class="fav-hero-section">
+  <div class="container fav-hero-container">
+    <picture class="fav-hero-pic">
+      <source media="(min-width: 1280px)" srcset="
+                ./img/webp/favorites-desktop_1x.webp    1x,
+                ./img/webp/favorites-desktop_2x.webp 2x
+              " />  
+
+      <source media="(min-width: 768px)" srcset="
+                ./img/webp/favorites-tablet_1x.webp    1x,
+                ./img/webp/favorites-tablet_2x.webp 2x
               " />
 
-        <source media="(min-width: 768px)" srcset="
-                ./src/img/webp/favorites-table_1x.webp    1x,
-                ./src/img/webp/favorites-table_2x.webp 2x
-              " />
-
-        <source media="(max-width: 767px)" srcset="
-                ./src/img/webp/favorites-mob_1x.webp    1x,
-                ./src/img/webp/favorites-mob_2x.webp 2x
-              " />
-
-        <img loading="lazy" src="./src/img/webp/favorites-deskop_1x.webp" alt="Dish" />
-      </picture>
-    </div>
-  </section>
-
-  <section class="fav-content-section">
-    <div class="container fav-content-container">
-      <ul class="fav-category-recipe-list recipes-list">
-        <button type="button" class="all-category-btn category-btn">
-          All categories
-        </button>
-      </ul>
-
-      <ul class="fav-resipes-list"></ul>
-
-      <div class="fav-no-recipes-content is-hidden">
-        <svg class="no-recipes-icon">
-          <use href="./src/img/favicon.svg"></use>
-        </svg>
-
-        <p class="no-recipes-descr">
-          It appears that you haven't added any recipes to your favorites
-          yet. To get started, you can add recipes that you like to your
-          favorites for easier access in the future.
-        </p>
-      </div>
-
-  <section class="fav-hero-section">
-    <div class="container fav-hero-container">
-      <picture class="fav-hero-pic">
-        <source media="(min-width: 1280px)" srcset="
-                ./img/webp/favorites-deskop_1x.webp    1x,
-                ./img/webp/favorites-deskop_2x.webp 2x
-              " />
-
-        <source media="(min-width: 768px)" srcset="
-                ./img/webp/favorites-table_1x.webp    1x,
-                ./img/webp/favorites-table_2x.webp 2x
-              " />
-
-        <source media="(max-width: 767px)" srcset="
+      <source media="(max-width: 767px)" srcset="
                 ./img/webp/favorites-mob_1x.webp    1x,
                 ./img/webp/favorites-mob_2x.webp 2x
               " />
 
-        <img loading="lazy" src="./img/webp/favorites-deskop_1x.webp" alt="Dish" />
-      </picture>
+      <img loading="lazy" src="./img/webp/favorites-desktop_1x.webp" alt="Dish" />
+    </picture>
+  </div>
+</section>
+<!-- favv
+      -->
+<section class="fav-content-section">
+  <div class="container fav-content-container">
+    <ul class="fav-category-recipe-list recipes-list">
+      <button type="button" class="all-category-btn category-btn">
+        All categories
+      </button>
+    </ul>
+
+    <ul class="fav-recipes-list"></ul>
+
+    <div class="fav-no-recipes-content">
+      <svg class="no-recipes-icon">
+        <use href="./img/favorites.svg#icon-favorites"></use>
+      </svg>
+
+      <p class="no-recipes-descr">
+        It appears that you haven't added any recipes to your favorites
+        yet. To get started, you can add recipes that you like to your
+        favorites for easier access in the future.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="fav-content-section">
-    <div class="container fav-content-container">
-      <ul class="fav-category-recipe-list recipes-list">
-        <button type="button" class="all-category-btn category-btn">
-          All categories
-        </button>
-      </ul>
-
-      <ul class="fav-resipes-list"></ul>
-
-      <div class="fav-no-recipes-content is-hidden">
-        <svg class="no-recipes-icon">
-          <use href="./img/favicon.svg"></use>
-        </svg>
-
-        <p class="no-recipes-descr">
-          It appears that you haven't added any recipes to your favorites
-          yet. To get started, you can add recipes that you like to your
-          favorites for easier access in the future.
-        </p>
-      </div>
-    </div>
-  </section>
-
-    </main>
-
+</main>
 
     <load src="./partials/footer.html" />
+     <script type="module" src="./js/header.js"></script>
   </body>
 </html>
