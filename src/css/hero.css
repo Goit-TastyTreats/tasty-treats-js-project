@@ -217,6 +217,10 @@
     padding: 40px 0 56px;
   }
 
+.main-wrapper {
+    display: flex;
+  }
+
   .hero-content {
     width: 446px;
     margin-bottom: 64px;
@@ -315,3 +319,4 @@
     height: 271px;
   }
 }
+
