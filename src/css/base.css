@@ -4,6 +4,10 @@
   line-height: 1.5;
   font-weight: 400;
   --black: #050505;
+  --color-primary: #9BB537; 
+  --star-icon-color: #F2C94C;
+  --heart-icon-color: #EB5757;
+  --bg-color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,3 +29,4 @@ main {
 .desk-logo {
   display: none;
 }
+

@@ -9,6 +9,7 @@
 @import url('./base.css');
 @import url('./container.css');
 @import url('./animations.css');
+/* @import url('./dark-theme.css'); */
 
 /* Sections style */
 @import url('./header.css');
@@ -22,4 +23,5 @@
 @import url('./recipe-modal.css');
 @import url('./order-now-modal.css');
 @import url('./rating-modal.css');
+@import url('./favorites.css');
 

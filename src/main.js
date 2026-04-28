@@ -1,5 +1,11 @@
 // src/main.js
+import './js/header.js';
+import './js/theme-dark-mode.js';
+import './js/hero.js';
 import './js/all-category.js';
-import './js/popular-recipes.js'; // Bunu da hazırlayacağız
-// main.js dosyasına ekle
+import './js/popular-recipes.js';
 import './js/recipe-cards.js';
+import './js/filters.js';
+import './js/favorites.js';
+import './js/footer-modal.js';
+import './js/search.js';
