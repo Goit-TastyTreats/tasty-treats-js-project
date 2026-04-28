@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.dispatchEvent(
       new CustomEvent('filters-change', {
         detail: {
-          query: filters.search,
+          title: filters.search,
           time: filters.time,
           area: filters.area,
           ingredient: filters.ingredient,
@@ -45,9 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     );
 
+    const params = new URLSearchParams({
+      page: 1,
+      title: filters.search,
+      area: filters.area,
+      ingredient: filters.ingredient,
+      time: filters.time,
+    });
+
     reloadRecipesList({
       page: 1,
-      query: filters.search,
+      title: filters.search,
       area: filters.area,
       ingredient: filters.ingredient,
       time: filters.time,

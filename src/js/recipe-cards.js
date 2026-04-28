@@ -20,7 +20,7 @@ const state = {
   limit: 9,
   totalPages: 0,
   category: '',
-  query: '',
+  title: '',
   area: '',
   ingredient: '',
   time: '',
@@ -59,7 +59,7 @@ export const createRecipesList = data => {
 
     const favorites = getFavorites();
 
-    data.results.map(recipe => {
+    data.results.forEach(recipe => {
       const isFav =
         recipe._id &&
         Array.isArray(favorites) &&
@@ -107,14 +107,14 @@ export async function reloadRecipesList(options = {}) {
   recipesList.innerHTML = '';
   try {
     const newData = await fetchRecipes({
+      ...options,
       page: state.page,
       limit: state.limit,
       category: state.category,
       area: state.area,
       ingredient: state.ingredient,
       time: state.time,
-      query: state.query,
-      ...options,
+      title: state.title,
     });
 
     state.totalPages = newData.totalPages;
