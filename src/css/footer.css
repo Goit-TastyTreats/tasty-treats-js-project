@@ -75,15 +75,16 @@
 }
 
 .team-modal-content {
-  position: relative;
+ position: relative;
   width: 95%;
-  max-width: 1100px;
+  max-width: 1000px;
   background-color: #f3efe6; 
-  padding: 50px 30px;
-  border-radius: 20px;
+  padding: 40px 20px;
+  border-radius: 15px;
+  /* Kaydırma çubuğunu yok eden ve sayfaya sığdıran kritik kısım: */
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Başlık Ortalandı ve Büyütüldü */
@@ -137,10 +138,12 @@ position: absolute;
 /* Ekip Listesi */
 .team-list {
   display: grid;
+  /* Herkesin yan yana sığması için 4'lü dizim: */
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px 20px;
+  gap: 20px;
   list-style: none;
   padding: 0;
+  margin-top: 20px;
 }
 
 .team-item {
@@ -201,19 +204,55 @@ position: absolute;
   filter: grayscale(0);
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE AYARLARI (KAYDIRMA ÇUBUĞUNU YOK EDEN KESİN ÇÖZÜM) --- */
+
+/* Tablet ve Küçük Masaüstü (1279px altı) */
 @media screen and (max-width: 1279px) {
-  .team-list { grid-template-columns: repeat(3, 1fr); }
-  .team-title { font-size: 30px; }
+  .team-modal-content {
+    width: 90%; /* Kutuyu daralttık */
+    padding: 30px 20px;
+  }
+  .team-list { 
+    grid-template-columns: repeat(3, 1fr); /* 3 kişiye düşürdük */
+    gap: 15px;
+  }
+  .team-img {
+    width: 110px; /* Resimleri küçülttük */
+    height: 110px;
+  }
 }
 
+/* Mobil (767px altı) */
 @media screen and (max-width: 767px) {
-  .team-list { grid-template-columns: repeat(2, 1fr); }
-  .footer-team-button::after { left: 0; width: 100%; }
-  .team-title { font-size: 26px; }
-  .team-img { width: 100px; height: 100px; }
+  .team-modal-content {
+    width: 95%;
+    padding: 20px 10px;
+    max-height: 85vh; /* Mobilde taşmayı önlemek için yüksekliği kısıtladık */
+  }
+  .team-list { 
+    grid-template-columns: repeat(2, 1fr); /* Sadece 2 kişi yan yana */
+    gap: 10px;
+  }
+  .team-img { 
+    width: 90px; 
+    height: 90px; 
+  }
+  .team-title { 
+    font-size: 22px; 
+    margin-bottom: 25px;
+  }
+  .member-name {
+    font-size: 13px;
+  }
 }
 
+/* Çok Küçük Telefonlar (480px altı) */
 @media screen and (max-width: 480px) {
-  .team-list { grid-template-columns: 1fr; }
+  .team-list { 
+    grid-template-columns: 1fr; /* Herkesi tek sıra yaptık, taşma imkansız */
+  }
+  .team-img {
+    width: 80px;
+    height: 80px;
+  }
 }
