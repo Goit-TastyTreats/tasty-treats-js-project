@@ -42,6 +42,7 @@ export async function fetchRecipes(options = {}) {
         page: options.page || 1,
         limit: options.limit || 9, // Varsayılanı 9 yaptık
         category: options.category || '',
+        title: options.title || '',
         area: options.area || '',
         ingredient: options.ingredient || '',
         time: options.time || '',
@@ -60,7 +61,7 @@ export async function fetchRecipeById(id) {
     const { data } = await axios.get(`${BASE_URL}/recipes/${id}`);
     return data;
   } catch (error) {
-    console.error("Tarif detayları alınamadı:", error.message);
+    console.error('Tarif detayları alınamadı:', error.message);
     return null;
   }
 }
@@ -72,8 +73,7 @@ export async function createOrder(orderData) {
     const { data } = await axios.post(`${BASE_URL}/orders/add`, orderData);
     return data;
   } catch (error) {
-    console.error("Sipariş gönderilirken hata:", error.message);
+    console.error('Sipariş gönderilirken hata:', error.message);
     throw error; // Hatayı yukarı fırlat ki arayüzde kullanıcıya "Hata oluştu" diyebilelim
   }
 }
-
