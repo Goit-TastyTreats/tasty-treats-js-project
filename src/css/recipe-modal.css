@@ -20,7 +20,7 @@
   z-index: 999;
 
   /* Arka planı hafif karartmak için */
-  background-color: color: var(--black);
+  background-color: var(--black);
 
   /* İçindeki modal penceresini tam ortaya hizalamak için */
   display: flex;
@@ -194,7 +194,7 @@
   align-items: center;
   gap: 12px; /* Satırlar arası boşluk */
   padding-bottom: 8px;
-  border-bottom: 1px solid color: var(--black); /* Altlarındaki o ince gri çizgi */
+  border-bottom: 1px solid var(--black); /* Altlarındaki o ince gri çizgi */
   padding-top: 14px;
   min-width: 100%;
 }
@@ -231,7 +231,7 @@
   /* Dolgu ve Köşeler */
   padding: 8px;
   border-radius: 35px;
-  border: 1px solid color: var(--black); /* 1px border-width ve hafif gri renk */
+  border: 1px solid var(--black); /* 1px border-width ve hafif gri renk */
 
   /* Yazı Stili */
   font-weight: 500;
@@ -258,7 +258,7 @@
   leading-trim: NONE;
   line-height: 1.29em;
   letter-spacing: 0em;
-  color: color: var(--black);
+  color: var(--black);
 }
 
 /* --- BUTON GRUBU --- */
@@ -294,7 +294,7 @@
   /* 5. GÖRÜNÜM */
   background-color: transparent;
   border: 1px solid var(--color-primary);
-  color: color: var(--black);
+  color: var(--black);
   cursor: pointer;
   transition: all 0.3s ease;
 }

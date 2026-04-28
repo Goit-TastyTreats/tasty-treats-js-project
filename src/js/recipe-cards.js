@@ -257,7 +257,13 @@ recipesList.addEventListener('click', e => {
   const btn = e.target.closest('.see-recipe-btn');
   if (btn) {
     const id = btn.name;
-    // openRecipeModal(id);
+    if (window.openRecipeModal) {
+  // Senin modalını açması için API'den veri çekip fonksiyonunu tetikleyelim
+  fetch(`https://tasty-treats-backend.p.goit.global/api/recipes/${id}`)
+    .then(res => res.json())
+    .then(data => window.openRecipeModal(data))
+    .catch(err => console.error("Modal açılırken hata:", err));
+}
     console.log(id);
   }
 });
