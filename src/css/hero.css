@@ -43,10 +43,11 @@
 }
 
 .hero-btn {
-  display: inline-flex;
+  width: 127px;
+  height: 45px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
   border: 1px solid rgba(155, 181, 55, 1);
   border-radius: 15px;
   background: transparent;
@@ -55,6 +56,7 @@
   font-weight: 500;
   color: rgba(5, 5, 5, 1);
   cursor: pointer;
+  box-sizing: border-box;
   transition: background-color 0.25s, color 0.25s, border-color 0.25s;
 }
 
@@ -170,7 +172,12 @@
   transition: background-color 0.2s;
 }
 
-.hero-pagination .swiper-pagination-bullet-active {
+body.dark-theme .hero-pagination .swiper-pagination-bullet {
+  background-color: white;
+}
+
+.hero-pagination .swiper-pagination-bullet-active,
+body.dark-theme .hero-pagination .swiper-pagination-bullet-active  {
   background-color: rgba(155, 181, 55, 1);
 }
 
@@ -239,10 +246,6 @@
     line-height: 24px;
     margin: 16px 0 32px;
     width: 408px;
-  }
-
-  .hero-btn {
-    padding: 14px 28px;
   }
 
   .swiper-slide.hero-slide {
