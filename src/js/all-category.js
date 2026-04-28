@@ -1,5 +1,5 @@
 import { fetchCategories } from './api.js';
-import { renderRecipeCards } from './recipe-cards.js'; // Diğer dosyadan fonksiyonu çağırdık
+import { reloadRecipesList } from './recipe-cards.js'; // Bu importun olduğundan emin ol
 
 const categoryList = document.querySelector('#category-list');
 const allCatBtn = document.querySelector('#all-category-btn');
@@ -33,9 +33,7 @@ if (categoryList) {
 
     // Tıklanan kategoriyi al
     const categoryName = e.target.dataset.name;
-
-    // api.js'in beklediği formatta gönderiyoruz: { category: "Breakfast" }
-    renderRecipeCards({ category: categoryName });
+    reloadRecipesList({ category: categoryName, page: 1 });
   });
 }
 
@@ -46,9 +44,7 @@ if (allCatBtn) {
       .querySelectorAll('.category-btn')
       .forEach(btn => btn.classList.remove('active'));
     allCatBtn.classList.add('active');
-
-    // Filtreyi boş gönderince api.js tüm tarifleri çeker
-    renderRecipeCards({});
+    reloadRecipesList({ category: '', page: 1 }); // Filtreyi sıfırla
   });
 }
 

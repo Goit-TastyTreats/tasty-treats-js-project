@@ -1,23 +1,28 @@
+/* --- Modal Gizleme --- */
+.team-backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* --- Footer Genel Stilleri --- */
 .footer {
-
-  padding: 60px 0 28px 0; 
-  background-color: var(--bg-color); 
-
-  border: none; 
+  padding: 40px 0 28px 0;
+  background-color: var(--background-w);
+  border-top: 1px solid var(--gray-border-w);
 }
 
 .footer-text {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   text-align: center;
-  color: rgba(5, 5, 5, 0.6); 
-  line-height: 1.2;
+  color: var(--gray-title-w);
+  line-height: 1.5;
 }
 
 .footer-heart {
-
-  color: var(--color-primary); 
+  color: #9bb537;
+  margin: 0 4px;
 }
 
 .footer-team-button {
@@ -26,21 +31,32 @@
   padding: 0;
   color: inherit;
   font: inherit;
-  text-decoration: none; 
+  font-weight: 600;
   cursor: pointer;
-  transition: all 250ms ease;
+  position: relative;
+  transition: color var(--trns-general);
 }
 
-/* --- Hover Efekti (Turuncu Yazı + Yeşil Çizgi) --- */
-.footer-team-button:hover,
-.footer-team-button:focus {
-  color: rgb(255, 107, 8); 
-  
-  /* Alt çizgi aktif ve yeşil */
-  text-decoration: underline;
-  text-decoration-color: var(--color-primary);
-  text-underline-offset: 4px;
-  text-decoration-thickness: 2px;
+.footer-team-button:hover {
+  color: #ff6b08;
+}
+
+.footer-team-button::after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  bottom: -2px;
+  width: calc(100% + 22px);
+  height: 1px;
+  background-color: #9bb537;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--trns-general);
+}
+
+.footer-team-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* --- Team Modal (Ekip Penceresi) --- */
@@ -50,119 +66,154 @@
   left: 0;
   width: 100%;
   height: 100%;
-
-  background-color: rgba(5, 5, 5, 0.5); 
-  z-index: 9999; /* En üstte görünmesi için */
+  background-color: rgba(5, 5, 5, 0.5);
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 250ms ease, visibility 250ms ease;
-}
-
-.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  transition: opacity var(--trns-modal), visibility var(--trns-modal);
 }
 
 .team-modal-content {
   position: relative;
   width: 95%;
-  max-width: 600px;
-  min-height: 300px; /* İçerik boş olsa da kutu görünsün */
-  background-color: var(--bg-color);
-  padding: 40px 20px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 1100px;
+  background-color: #f3efe6; 
+  padding: 50px 30px;
+  border-radius: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Başlık Ortalandı ve Büyütüldü */
+.team-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 28px;
+position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;  /* Buton alanını genişlettik */
+  height: 50px;
   background: none;
   border: none;
+  font-size: 45px; /* X işaretini iyice büyüttük */
+  font-weight: 300; /* Daha zarif durması için incelttik */
   cursor: pointer;
-  color: var(--black);
+  color: #9bb537; /* Proje yeşili */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  transition: transform var(--trns-general), color var(--trns-general);
+  z-index: 100;
 }
+/* Üzerine gelince büyüme ve renk değişimi efekti */
+.modal-close-btn:hover {
+  transform: scale(1.2) rotate(90deg); /* Hem büyür hem de 90 derece döner */
+  color: #ff6b08; /* Hover'da turuncu olur */
+}
+
+/* Modalın başlık kısmını X butonuyla çakışmaması için biraz aşağı çekelim */
+.team-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 50px;
+  margin-top: 20px; /* Üstten biraz boşluk */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Ekip Listesi */
 .team-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 20px;
   list-style: none;
   padding: 0;
-  margin-top: 30px;
 }
 
 .team-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
 .team-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;   object-fit: cover;
-  margin-bottom: 10px;
-  border: 2px solid var(--color-primary);
+  width: 130px; /* Resimler biraz büyütüldü */
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #9bb537;
+  margin-bottom: 15px;
+  transition: transform var(--trns-general);
+}
+
+.team-item:hover .team-img {
+  transform: scale(1.05);
+}
+
+.member-info-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 5px;
 }
 
 .member-name {
   font-size: 16px;
+  font-weight: 700;
   color: var(--black);
-  margin-bottom: 5px;
+  margin: 0;
 }
 
 .member-role {
-  font-size: 12px;
-  color: rgba(5, 5, 5, 0.6);
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
 }
 
-.team-title {
-  text-align: center;
-  font-size: 24px;
-  color: var(--black);
-  text-transform: uppercase;
+/* GitHub İkonu */
+.team-github-link {
+  display: flex;
+  align-items: center;
 }
+
+.team-github-link img {
+  filter: grayscale(1);
+  transition: filter var(--trns-general);
+}
+
+.team-github-link:hover img {
+  filter: grayscale(0);
+}
+
 /* --- RESPONSIVE --- */
-/* Mobil cihazlarda 3 sütun yerine 1 veya 2 sütun görünsün */
-@media (max-width: 768px) {
-  .team-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media screen and (max-width: 1279px) {
+  .team-list { grid-template-columns: repeat(3, 1fr); }
+  .team-title { font-size: 30px; }
 }
 
-
-/* 1. Footer Yazısı İçin Mobil Düzenleme */
 @media screen and (max-width: 767px) {
-  .footer-text {
-    display: flex;
-    flex-direction: column; /* Mobilde alt alta dizer */
-    align-items: center;
-    gap: 8px; /* Aradaki boşluk */
-    line-height: 1.4;
-  }
+  .team-list { grid-template-columns: repeat(2, 1fr); }
+  .footer-team-button::after { left: 0; width: 100%; }
+  .team-title { font-size: 26px; }
+  .team-img { width: 100px; height: 100px; }
 }
 
-/* 2. Modal İçindeki Resimlerin Mobilde Boyutu */
-@media screen and (max-width: 767px) {
-  .team-img {
-    width: 70px; /* Mobilde biraz daha küçük resimler */
-    height: 70px;
-  }
-  
-  .team-list {
-    gap: 15px; /* Mobilde daha dar boşluk */
-  }
-
-  .team-modal-content {
-    padding: 30px 15px; /* Mobilde iç boşluğu azaltır */
-  }
-}
-
-/* 3. Büyük Ekranlarda Modal Genişliği */
-@media screen and (min-width: 1280px) {
-  .team-modal-content {
-    max-width: 700px; /* Geniş ekranda modal biraz daha büyük görünebilir */
-  }
+@media screen and (max-width: 480px) {
+  .team-list { grid-template-columns: 1fr; }
 }

@@ -1,4 +1,6 @@
 // src/main.js
+import './js/storage.js';
+import './js/rating';
 import './js/header.js';
 import './js/theme-dark-mode.js';
 import './js/hero.js';
@@ -8,3 +10,4 @@ import './js/recipe-cards.js';
 import './js/filters.js';
 import './js/favorites.js';
 import './js/footer-modal.js';
+import './js/search.js';

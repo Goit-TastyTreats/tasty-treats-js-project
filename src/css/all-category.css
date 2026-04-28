@@ -90,8 +90,8 @@
   font-weight: 600;
 }
 
-/* --- GENEL AYARLAR (Desktop Öncelikli) --- */
-.left-panel {
+/* Ana Layout Düzeni */
+.main-layout {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;

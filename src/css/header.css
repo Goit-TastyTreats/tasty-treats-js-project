@@ -1,3 +1,5 @@
+header.css
+
 .header {
   width: 100%;
 }
@@ -204,7 +206,39 @@ button:focus {
   outline: none;
 }
 
-/* SVGler */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme p,
+body.dark-theme button {
+  color: #fff;
+
+}
+
+body.dark-theme .all-category-button,
+body.dark-theme input::placeholder,
+body.dark-theme .filter-select,
+body.dark-theme .filter-label,
+body.dark-theme .reset-btn,
+body.dark-theme .rating-value {
+
+    color: rgba(255, 255, 255, 0.5);
+  
+  }
+ 
+body.dark-theme .category-btn {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+body.dark-theme .popular-recipe-description,
+body.dark-theme .recipe-card-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* SVGer */
 
 /*
 currentColor oldugu için
@@ -436,7 +470,8 @@ body.dark-theme .close-menu-btn {
   z-index: 1500;
 }
 
-/* aktif overlay */
+/* aktif over
+y */
 .menu-overlay.active {
   opacity: 1;
   visibility: visible;

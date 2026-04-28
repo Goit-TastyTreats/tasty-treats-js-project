@@ -108,6 +108,8 @@ document.addEventListener('click', event => {
     !hamburgerBtn.contains(event.target)
   ) {
     mobileMenu.classList.remove('active');
+
+    menuOverlay.classList.remove('active');
   }
 });
 });
