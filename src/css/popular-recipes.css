@@ -4,7 +4,7 @@
 }
 
 .popular-title {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 
 .popular-recipe-item {
@@ -74,6 +74,17 @@
     flex-direction: column;
     gap: 40px;
   }
+
+  .popular-title {
+    /* Figma'daki gibi sola yaslı durması için */
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: 600;
+  }
 }
 
 /* 4. Tablet Düzen */
@@ -86,6 +97,17 @@
   }
   .popular-recipe-description {
     -webkit-line-clamp: 1;
+  }
+
+  .popular-title {
+    /* Figma'daki gibi sola yaslı durması için */
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: 600;
   }
 }
 
@@ -100,6 +122,16 @@
     max-width: 100%; /* Kendi genişliğini içinde bulunduğu left-panel'den alsın */
   }
 
+  .popular-title {
+    /* Figma'daki gibi sola yaslı durması için */
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    font-size: 24px;
+    font-weight: 600;
+  }
   .left-panel {
     width: 280px;
     flex-shrink: 0;
