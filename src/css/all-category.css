@@ -11,6 +11,14 @@
   box-sizing: border-box;
 }
 
+/* saat 18:29 da eklendi */
+.categories-wrapper {
+  /* Figma'daki varsayılan yükseklik */
+  height: 416px;
+  display: flex;
+  flex-direction: column;
+}
+
 /* 2. KATEGORİ ALANI: Scrollbar ve buton düzeni */
 .category-sidebar {
   width: 100%;
@@ -64,15 +72,12 @@
   display: flex !important;
   flex-direction: column !important;
 
-  /* Yüksekliği biraz düşürelim ki 375px altında scroll tetiklensin */
-  height: 300px !important;
-  max-height: 300px !important;
+  /* KRİTİK DEĞİŞİKLİK: Sabit px yerine %100 yapıyoruz */
+  height: 100% !important;
+  width: 100%;
 
-  /* Scroll'u zorla aktif et */
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
   overflow-x: hidden !important;
-
-  /* Mobilde çubuğun görünmesini sağlar */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -177,6 +182,11 @@
     margin-left: 0 !important;
     margin-right: auto !important;
   }
+  .categories-wrapper {
+    height: 198px !important; /* Dış kutu 198px oldu */
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* Tablet (768px ve üstü) */
@@ -189,6 +199,10 @@
     margin: 0 auto;
     padding: 0; /* Figma'daki yan boşluklar */
     align-items: flex-start;
+  }
+
+  .categories-wrapper {
+    height: 416px; /* Figma tablet değeri */
   }
 
   .left-panel {
@@ -243,6 +257,10 @@
     margin: 0;
     max-width: 100%;
     margin-bottom: 40px;
+  }
+
+  .categories-wrapper {
+    height: 416px; /* Figma tablet değeri */
   }
   .all-category-button {
     /* FIGMA ÖLÇÜLERİ */

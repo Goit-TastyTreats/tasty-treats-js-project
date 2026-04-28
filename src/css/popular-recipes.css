@@ -75,6 +75,11 @@
     gap: 40px;
   }
 
+  /* Listede 2. elemandan sonrasını (3, 4, 5...) gizle */
+  .popular-recipe-item:nth-child(n + 3) {
+    display: none !important;
+  }
+
   .popular-title {
     /* Figma'daki gibi sola yaslı durması için */
     margin-left: 0;
@@ -91,6 +96,10 @@
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .popular-recipe-item {
     gap: 10px;
+  }
+
+  .popular-recipe-item {
+    display: flex !important; /* Tekrar görünür yap */
   }
   .popular-recipe-title {
     font-size: 12px;
@@ -131,6 +140,10 @@
     line-height: 28px;
     font-size: 24px;
     font-weight: 600;
+  }
+
+  .popular-recipe-item {
+    display: flex !important; /* Tekrar görünür yap */
   }
   .left-panel {
     width: 280px;
