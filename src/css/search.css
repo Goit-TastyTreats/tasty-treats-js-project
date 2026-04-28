@@ -303,6 +303,8 @@ body {
     }
 }
 
+/* Drak-theme*/
+
 
 body.dark-theme .custom-select-trigger {
     color: var(--text-secondary);
