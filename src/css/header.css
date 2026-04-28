@@ -179,11 +179,12 @@ body.dark-theme .theme-toggle {
 
   border-radius: 50%;
 
-  background-color: var(--bg-color);
+  background-color: #ffffff;
 
   position: absolute;
 
-  top: 2px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 2px;
 
   transition: left 0.3s ease;
@@ -191,7 +192,7 @@ body.dark-theme .theme-toggle {
 
 /* Dark mod toggle yeri */
 body.dark-theme .toggle-circle {
-  left: 20px;
+  left: calc(100% - 21px);
 }
 button {
   padding: 0;
@@ -282,6 +283,7 @@ svler text rengiyle aynı
 .logo-mobile {
   width: 93px;
   height: 20px;
+  margin-left: -12px;
 }
 
 /* desktop logo gizli */
