@@ -118,6 +118,7 @@
   margin-top: 40px;
   display: flex;
   justify-content: center;
+  min-width: 335px;
 }
 
 .nav-btn {
@@ -168,7 +169,7 @@
   margin-left: 14px;
   margin-right: 14px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -191,8 +192,11 @@
   width: 22px;
   height: 22px;
   stroke: #f8f8f8;
-  fill: transparent;
   cursor: pointer;
+}
+
+.favorite-icon use {
+  fill: transparent;
 }
 
 .add-to-favorites-btn {
@@ -206,7 +210,7 @@
 }
 
 .favorite-icon:is(:hover, :focus),
-.favorite-icon-active,
+.favorite-icon-active use,
 .choseRecipe {
   fill: #f8f8f8;
 }
@@ -252,7 +256,7 @@
 
 @media screen and (min-width: 768px) {
   .section-recipe {
-    width: 520px;
+    width: 496px;
     padding: 0 0 100px 0;
     margin-left: auto;
   }
@@ -318,6 +322,10 @@
   .recipes-pagination {
     margin-top: 64px;
   }
+
+  .page-numbers {
+    gap: 10px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -338,5 +346,105 @@
   .card-img {
     width: 250px;
     height: 287px;
+  }
+}
+
+/* LOADING */
+
+.loader {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  animation: rotate 1s linear infinite;
+  z-index: 2000;
+  top: 100px;
+  left: 140px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  margin: auto;
+}
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #32c581;
+  animation: prixClipFix 2s linear infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+.container-for-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 24px;
+  @media screen and (min-width: 768px) {
+    margin-top: 32px;
+  }
+}
+
+.loader-txt {
+  color: #32c581;
+  text-align: center;
+  font-size: 26px;
+  font-family: Inter;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.64px;
+  top: 190px;
+  left: 130px;
+  position: absolute;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .loader {
+    top: 150px;
+    left: 200px;
+  }
+  .loader-txt {
+    top: 250px;
+    left: 190px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loader {
+    top: 150px;
+    left: 300px;
+  }
+  .loader-txt {
+    top: 250px;
+    left: 290px;
   }
 }
