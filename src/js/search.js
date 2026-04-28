@@ -1,3 +1,5 @@
+import { createRecipesList } from './recipe-cards.js';
+
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,13 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
     document.dispatchEvent(
       new CustomEvent('filters-change', {
         detail: {
-          search: filters.search,
+          title: filters.search,
           time: filters.time,
           area: filters.area,
           ingredient: filters.ingredient,
         },
       })
     );
+
+    const params = new URLSearchParams({
+      page: '1',
+      limit: '9',
+      title: filters.search,
+      time: filters.time,
+      area: filters.area,
+      ingredient: filters.ingredient,
+    });
+
+    fetch(`${BASE_URL}/recipes?${params}`)
+      .then(response => response.json())
+      .then(data => createRecipesList(data))
+      .catch(error =>
+        console.error('Filtered recipes could not be fetched:', error)
+      );
   }
 
   function closeAllDropdowns() {
@@ -52,19 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dropdowns = document.querySelectorAll('.custom-dropdown');
 
-dropdowns.forEach(dropdown => {
-  let scrollTimeout;
+  dropdowns.forEach(dropdown => {
+    let scrollTimeout;
 
-  dropdown.addEventListener('scroll', () => {
-    dropdown.classList.add('is-scrolling');
+    dropdown.addEventListener('scroll', () => {
+      dropdown.classList.add('is-scrolling');
 
-    clearTimeout(scrollTimeout);
+      clearTimeout(scrollTimeout);
 
-    scrollTimeout = setTimeout(() => {
-      dropdown.classList.remove('is-scrolling');
-    }, 700);
+      scrollTimeout = setTimeout(() => {
+        dropdown.classList.remove('is-scrolling');
+      }, 700);
+    });
   });
-});
 
   function createOption({ value, label }) {
     return `
