@@ -1,10 +1,7 @@
+/* --- TEMEL YAPI --- */
 .popular-recipes {
-  width: 100%; /* İçinde bulunduğu 256px'lik panele yayılır */
+  width: 100%;
   margin-top: 40px;
-}
-
-.popular-title {
-  /* padding-bottom: 20px; */
 }
 
 .popular-recipe-item {
@@ -13,32 +10,33 @@
   gap: 16px;
   margin-bottom: 24px;
   width: 100%;
+  cursor: pointer;
 }
 
-/* Resmin kare ve düzgün durması için */
 .popular-recipe-img {
   width: 64px !important;
   height: 64px !important;
-  border-radius: 12px; /* Köşeleri yumuşatır */
+  border-radius: 12px;
   object-fit: cover;
-  flex-shrink: 0; /* Resmin daralmasını engeller */
+  flex-shrink: 0;
 }
 
-/* Yazı alanı - En kritik yer burası */
 .popular-recipe-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-grow: 1; /* Kalan tüm boşluğu yazıya verir */
-  min-width: 0; /* Metnin taşmasını önler */
+  flex-grow: 1;
+  min-width: 0; /* Yazıların taşmasını önleyen kritik kod */
 }
 
+/* --- BAŞLIK VE AÇIKLAMA (Ellipsis Ayarları) --- */
 .popular-recipe-title {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
   text-transform: uppercase;
   color: #050505;
+  /* Tek satırda kes ve üç nokta koy */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -48,92 +46,59 @@
   font-size: 12px;
   color: rgba(5, 5, 5, 0.5);
   line-height: 1.4;
+  /* Maksimum 2 satır göster, sonra üç nokta koy */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
-/* --- GENEL AYARLAR (Desktop Öncelikli) --- */
-.left-panel {
-  width: 256px;
-  flex-shrink: 0;
-}
+/* --- RESPONSIVE DÜZENLEMELER --- */
 
-/* 3. Mobil Düzen */
+/* 1. MOBİL (0px - 767px) */
 @media screen and (max-width: 767px) {
-  .left-panel {
-    width: 100%;
-  }
-  .main-wrapper {
-    flex-direction: column;
-    gap: 40px;
-  }
-
   .popular-title {
-    /* Figma'daki gibi sola yaslı durması için */
-    margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
-    font-family: 'Inter', sans-serif;
-    line-height: 28px;
     font-size: 18px;
     font-weight: 600;
+    margin-bottom: 32px;
+    line-height: 1.5;
   }
 }
 
-/* 4. Tablet Düzen */
+/* 2. TABLET (768px - 1279px) */
 @media screen and (min-width: 768px) and (max-width: 1279px) {
+  /* Tablette alan çok dar (176px) olduğu için ayarlar */
   .popular-recipe-item {
-    gap: 10px;
+    gap: 10px; /* Boşluğu biraz daralttık */
   }
+
   .popular-recipe-title {
-    font-size: 12px;
+    font-size: 12px; /* Yazıyı biraz küçülttük */
   }
+
   .popular-recipe-description {
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 1; /* Çok dar alanda açıklamayı tek satıra düşür */
   }
 
   .popular-title {
-    /* Figma'daki gibi sola yaslı durması için */
-    margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
-    font-family: 'Inter', sans-serif;
-    line-height: 28px;
     font-size: 18px;
-    font-weight: 600;
+    margin-bottom: 32px;
   }
 }
 
-/* 5. Masaüstü Düzen (En güçlü olan en altta) */
+/* 3. DESKTOP (1280px ve Üzeri) */
 @media screen and (min-width: 1280px) {
-  /* Sadece senin section'ın içindeki container'ı hedef alıyorum */
-  section.popular-recipes.container {
-    /* Arkadaşının verdiği padding'i sadece benim alanın için sıfırlıyorum veya azaltıyorum */
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0; /* Ortalamayı iptal edip sol panele yapıştırır */
-    max-width: 100%; /* Kendi genişliğini içinde bulunduğu left-panel'den alsın */
-  }
-
   .popular-title {
-    /* Figma'daki gibi sola yaslı durması için */
-    margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
-    font-family: 'Inter', sans-serif;
-    line-height: 28px;
     font-size: 24px;
     font-weight: 600;
+    margin-bottom: 32px;
   }
-  .left-panel {
-    width: 280px;
-    flex-shrink: 0;
+
+  /* Arkadaşının genel container padding'ini bu bölge için sıfırlıyoruz */
+  section.popular-recipes.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0;
+    max-width: 100%;
   }
 }
