@@ -11,7 +11,6 @@
   <body>
     <load
       src="./partials/header.html"
-      icon-path="./img/sprite.svg#logo"
       highlight-act="active"
     />
 
@@ -68,7 +67,7 @@
             <svg class="no-recipes-icon">
               <use href="./img/favorites.svg#icon-favorites"></use>
             </svg>
-            
+
             <p class="no-recipes-descr">
               It appears that you haven't added any recipes to your favorites
               yet. To get started, you can add recipes that you like to your
@@ -80,6 +79,8 @@
     </main>
 
     <load src="./partials/footer.html" />
-    <script type="module" src="./js/header.js"></script>
+    
+    <script src="./js/header.js" defer></script>
+    <script type="module" src="./js/favorites.js" defer></script>
   </body>
 </html>

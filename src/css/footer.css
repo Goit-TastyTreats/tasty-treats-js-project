@@ -18,6 +18,10 @@
   margin: 0 4px;
 }
 
+.team-member {
+  cursor: pointer;
+}
+
 .footer-team-button {
   background: none;
   border: none;
@@ -30,9 +34,21 @@
   transition: color var(--trns-general);
 }
 
+.team-item,
+.team-github-link,
+.team-img {
+  cursor: pointer;
+}
+
 .footer-team-button:hover {
   color: #ff6b08;
 }
+
+body.dark-theme .team-modal-content {
+  background-color: #2b2b2b; /* Karanlık modda daha koyu bir arka plan */
+  color: #f3efe6; /* Karanlık modda metin rengi */
+}
+
 
 /* --- Team Modal (Ekip Penceresi) --- */
 .team-backdrop {
