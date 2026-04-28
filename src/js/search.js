@@ -2,15 +2,15 @@ const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.querySelector('.search-input');
-  const timeSelect = document.querySelector('.time-select');
-  const areaSelect = document.querySelector('.area-select');
-  const ingredientsSelect = document.querySelector('.ingredients-select');
   const resetBtn = document.querySelector('.reset-btn');
 
-  if (!searchInput || !timeSelect || !areaSelect || !ingredientsSelect || !resetBtn) {
-    console.error('Filter elements not found. Please check HTML class names.');
-    return;
-  }
+  const timeSelect = document.querySelector('[data-filter="time"]');
+  const areaSelect = document.querySelector('[data-filter="area"]');
+  const ingredientSelect = document.querySelector('[data-filter="ingredient"]');
+
+  const timeDropdown = document.querySelector('.time-dropdown');
+  const areaDropdown = document.querySelector('.area-dropdown');
+  const ingredientsDropdown = document.querySelector('.ingredients-dropdown');
 
   const filters = {
     search: '',
@@ -31,13 +31,63 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function createTimeOptions() {
-    for (let i = 5; i <= 120; i += 5) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = `${i} min`;
-      timeSelect.appendChild(option);
+  function emitFiltersChange() {
+    document.dispatchEvent(
+      new CustomEvent('filters-change', {
+        detail: {
+          search: filters.search,
+          time: filters.time,
+          area: filters.area,
+          ingredient: filters.ingredient,
+        },
+      })
+    );
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.custom-select').forEach(select => {
+      select.classList.remove('is-open');
+    });
+  }
+
+  const dropdowns = document.querySelectorAll('.custom-dropdown');
+
+dropdowns.forEach(dropdown => {
+  let scrollTimeout;
+
+  dropdown.addEventListener('scroll', () => {
+    dropdown.classList.add('is-scrolling');
+
+    clearTimeout(scrollTimeout);
+
+    scrollTimeout = setTimeout(() => {
+      dropdown.classList.remove('is-scrolling');
+    }, 700);
+  });
+});
+
+  function createOption({ value, label }) {
+    return `
+      <li
+        class="custom-dropdown-option"
+        data-value="${value}"
+      >
+        ${label}
+      </li>
+    `;
+  }
+
+  function renderTimeOptions() {
+    const times = [];
+
+    for (let i = 10; i <= 120; i += 10) {
+      times.push({
+        value: i,
+        label: `${i} min`,
+      });
     }
+
+    timeDropdown.innerHTML = times.map(createOption).join('');
   }
 
   async function fetchAreas() {
@@ -65,11 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
       a.name.localeCompare(b.name)
     );
 
-    const markup = sortedAreas
-      .map(area => `<option value="${area.name}">${area.name}</option>`)
+    areaDropdown.innerHTML = sortedAreas
+      .map(area =>
+        createOption({
+          value: area.name,
+          label: area.name,
+        })
+      )
       .join('');
-
-    areaSelect.insertAdjacentHTML('beforeend', markup);
   }
 
   function renderIngredients(ingredients) {
@@ -77,50 +130,69 @@ document.addEventListener('DOMContentLoaded', () => {
       a.name.localeCompare(b.name)
     );
 
-    const markup = sortedIngredients
-      .map(
-        ingredient =>
-          `<option value="${ingredient._id}">${ingredient.name}</option>`
+    ingredientsDropdown.innerHTML = sortedIngredients
+      .map(ingredient =>
+        createOption({
+          value: ingredient._id,
+          label: ingredient.name,
+        })
       )
       .join('');
-
-    ingredientsSelect.insertAdjacentHTML('beforeend', markup);
   }
 
-  function emitFiltersChange() {
-    const filtersChangeEvent = new CustomEvent('filters-change', {
-      detail: {
-        search: filters.search,
-        time: filters.time,
-        area: filters.area,
-        ingredient: filters.ingredient,
-      },
+  function setSelectedOption(select, option) {
+    const filterName = select.dataset.filter;
+    const trigger = select.querySelector('.custom-select-trigger');
+    const selectedText = option.textContent.trim();
+    const selectedValue = option.dataset.value;
+
+    filters[filterName] = selectedValue;
+
+    trigger.firstChild.textContent = selectedText;
+
+    select.querySelectorAll('.custom-dropdown-option').forEach(item => {
+      item.classList.remove('is-selected');
     });
 
-    document.dispatchEvent(filtersChangeEvent);
+    option.classList.add('is-selected');
+
+    closeAllDropdowns();
+    emitFiltersChange();
   }
 
-  const debouncedSearch = debounce(event => {
-    filters.search = event.target.value.trim();
-    emitFiltersChange();
-  }, 300);
+  document.querySelectorAll('.custom-select').forEach(select => {
+    const trigger = select.querySelector('.custom-select-trigger');
 
-  searchInput.addEventListener('input', debouncedSearch);
+    trigger.addEventListener('click', event => {
+      event.stopPropagation();
 
-  timeSelect.addEventListener('change', event => {
-    filters.time = event.target.value;
-    emitFiltersChange();
+      const isOpen = select.classList.contains('is-open');
+
+      closeAllDropdowns();
+
+      if (!isOpen) {
+        select.classList.add('is-open');
+      }
+    });
+
+    select.addEventListener('click', event => {
+      const option = event.target.closest('.custom-dropdown-option');
+
+      if (!option) return;
+
+      setSelectedOption(select, option);
+    });
   });
 
-  areaSelect.addEventListener('change', event => {
-    filters.area = event.target.value;
-    emitFiltersChange();
-  });
+  document.addEventListener('click', closeAllDropdowns);
 
-  ingredientsSelect.addEventListener('change', event => {
-    filters.ingredient = event.target.value;
-    emitFiltersChange();
-  });
+  searchInput.addEventListener(
+    'input',
+    debounce(event => {
+      filters.search = event.target.value.trim();
+      emitFiltersChange();
+    }, 300)
+  );
 
   resetBtn.addEventListener('click', () => {
     filters.search = '';
@@ -129,16 +201,28 @@ document.addEventListener('DOMContentLoaded', () => {
     filters.ingredient = '';
 
     searchInput.value = '';
-    timeSelect.value = '';
-    areaSelect.value = '';
-    ingredientsSelect.value = '';
 
+    timeSelect.querySelector('.custom-select-trigger').firstChild.textContent =
+      'Any time';
+
+    areaSelect.querySelector('.custom-select-trigger').firstChild.textContent =
+      'Any area';
+
+    ingredientSelect.querySelector(
+      '.custom-select-trigger'
+    ).firstChild.textContent = 'Any ingredient';
+
+    document.querySelectorAll('.custom-dropdown-option').forEach(option => {
+      option.classList.remove('is-selected');
+    });
+
+    closeAllDropdowns();
     emitFiltersChange();
   });
 
   async function initFilters() {
     try {
-      createTimeOptions();
+      renderTimeOptions();
 
       const [areas, ingredients] = await Promise.all([
         fetchAreas(),
