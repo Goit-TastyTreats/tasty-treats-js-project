@@ -49,10 +49,3 @@ export const removeFavorite = id => {
 export const isFavorite = id => {
   return getFavorites().includes(id);
 };
-
-// -------- THEME İÇİN IMPORT EDİLEREK KULLANILABİLİR --------
-
-// const THEME_KEY = 'theme';
-
-// export const getTheme = () => getItem(THEME_KEY, 'light');
-// export const setTheme = theme => setItem(THEME_KEY, theme);

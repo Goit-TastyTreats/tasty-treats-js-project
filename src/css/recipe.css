@@ -17,10 +17,14 @@
   border-radius: 15px;
   background: linear-gradient(
     1deg,
-    rgba(5, 5, 5, 0.6) 0%,
+    rgba(5, 5, 5, 0.7) 0%,
     rgba(5, 5, 5, 0) 100%
   );
   overflow: hidden;
+}
+
+body.dark-theme .recipes-item {
+  background: linear-gradient(1deg, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 0) 100%);
 }
 
 .card-img {
@@ -96,6 +100,7 @@
 }
 
 .empty-star {
+  fill: #fff;
   opacity: 0.1;
 }
 

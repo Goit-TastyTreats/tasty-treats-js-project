@@ -46,7 +46,7 @@ const setResponsiveLimit = () => {
   else state.limit = 9;
 };
 
-const createRecipesList = data => {
+export const createRecipesList = data => {
   try {
     if (!recipesList) {
       console.error('recipesList bulunamadı');
@@ -123,7 +123,10 @@ export async function reloadRecipesList(options = {}) {
     return newData;
   } catch (err) {
     console.error(err);
-    Notiflix.Notify.failure('Data load failed');
+    Notiflix.Notify.failure('Data load failed', {
+      timeout: 5000,
+      position: 'right-top',
+    });
   } finally {
     hideLoader();
   }
@@ -152,7 +155,6 @@ window.addEventListener('resize', throttle(changeNumberRecipe, 1000));
 const renderPagination = () => {
   if (!paginationContainer) return;
 
-  // Hide pagination if only one page or no data
   if (state.totalPages <= 1) {
     paginationContainer.classList.add('visually-hidden');
     return;
