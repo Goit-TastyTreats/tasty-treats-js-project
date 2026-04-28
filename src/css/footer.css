@@ -1,0 +1,219 @@
+/* --- Modal Gizleme --- */
+.team-backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* --- Footer Genel Stilleri --- */
+.footer {
+  padding: 40px 0 28px 0;
+  background-color: var(--background-w);
+  border-top: 1px solid var(--gray-border-w);
+}
+
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: var(--gray-title-w);
+  line-height: 1.5;
+}
+
+.footer-heart {
+  color: #9bb537;
+  margin: 0 4px;
+}
+
+.footer-team-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--trns-general);
+}
+
+.footer-team-button:hover {
+  color: #ff6b08;
+}
+
+.footer-team-button::after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  bottom: -2px;
+  width: calc(100% + 22px);
+  height: 1px;
+  background-color: #9bb537;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--trns-general);
+}
+
+.footer-team-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- Team Modal (Ekip Penceresi) --- */
+.team-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 5, 5, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity var(--trns-modal), visibility var(--trns-modal);
+}
+
+.team-modal-content {
+  position: relative;
+  width: 95%;
+  max-width: 1100px;
+  background-color: #f3efe6; 
+  padding: 50px 30px;
+  border-radius: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Başlık Ortalandı ve Büyütüldü */
+.team-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-close-btn {
+position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;  /* Buton alanını genişlettik */
+  height: 50px;
+  background: none;
+  border: none;
+  font-size: 45px; /* X işaretini iyice büyüttük */
+  font-weight: 300; /* Daha zarif durması için incelttik */
+  cursor: pointer;
+  color: #9bb537; /* Proje yeşili */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  transition: transform var(--trns-general), color var(--trns-general);
+  z-index: 100;
+}
+/* Üzerine gelince büyüme ve renk değişimi efekti */
+.modal-close-btn:hover {
+  transform: scale(1.2) rotate(90deg); /* Hem büyür hem de 90 derece döner */
+  color: #ff6b08; /* Hover'da turuncu olur */
+}
+
+/* Modalın başlık kısmını X butonuyla çakışmaması için biraz aşağı çekelim */
+.team-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 50px;
+  margin-top: 20px; /* Üstten biraz boşluk */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Ekip Listesi */
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.team-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.team-img {
+  width: 130px; /* Resimler biraz büyütüldü */
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #9bb537;
+  margin-bottom: 15px;
+  transition: transform var(--trns-general);
+}
+
+.team-item:hover .team-img {
+  transform: scale(1.05);
+}
+
+.member-info-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.member-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0;
+}
+
+.member-role {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* GitHub İkonu */
+.team-github-link {
+  display: flex;
+  align-items: center;
+}
+
+.team-github-link img {
+  filter: grayscale(1);
+  transition: filter var(--trns-general);
+}
+
+.team-github-link:hover img {
+  filter: grayscale(0);
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 1279px) {
+  .team-list { grid-template-columns: repeat(3, 1fr); }
+  .team-title { font-size: 30px; }
+}
+
+@media screen and (max-width: 767px) {
+  .team-list { grid-template-columns: repeat(2, 1fr); }
+  .footer-team-button::after { left: 0; width: 100%; }
+  .team-title { font-size: 26px; }
+  .team-img { width: 100px; height: 100px; }
+}
+
+@media screen and (max-width: 480px) {
+  .team-list { grid-template-columns: 1fr; }
+}
