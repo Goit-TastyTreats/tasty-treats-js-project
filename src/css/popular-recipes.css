@@ -1,60 +1,189 @@
-/* Ana konteyner: Kartları dikeyde dizer ve aralarına boşluk bırakır */
-.popular-recipes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  list-style: none; /* Noktaları kaldırır */
-  padding: 0;
+.popular-recipes {
+  width: 100%; /* İçinde bulunduğu 256px'lik panele yayılır */
+  margin-top: 40px;
 }
 
-/* Tek bir kart satırı */
+.popular-title {
+  /* padding-bottom: 20px; */
+}
+
 .popular-recipe-item {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(5, 5, 5, 0.1);
-  cursor: pointer;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 24px;
+  width: 100%;
 }
 
-.popular-recipe-item:hover {
-  background-color: rgba(5, 5, 5, 0.03);
-}
-
-/* Resim: Boyutu sabit tutar ve köşeleri yuvarlar */
+/* Resmin kare ve düzgün durması için */
 .popular-recipe-img {
-  width: 64px;
-  height: 64px;
-  border-radius: 8px;
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 12px; /* Köşeleri yumuşatır */
   object-fit: cover;
-  flex-shrink: 0; /* Yazı alanı genişlese bile resmin ezilmesini engeller */
+  flex-shrink: 0; /* Resmin daralmasını engeller */
 }
 
-/* Bilgi alanı: Başlık ve açıklamayı dikeyde hizalar */
+/* Yazı alanı - En kritik yer burası */
 .popular-recipe-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+  flex-grow: 1; /* Kalan tüm boşluğu yazıya verir */
+  min-width: 0; /* Metnin taşmasını önler */
 }
 
 .popular-recipe-title {
   font-size: 14px;
   font-weight: 600;
-  line-height: 1.29;
-  color: #050505;
   margin-bottom: 4px;
   text-transform: uppercase;
+  color: #050505;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Açıklama: Figma'daki gibi 2 satırda keser ve "..." ekler */
 .popular-recipe-description {
-  font-size: 12px;
-  line-height: 1.33;
-  color: rgba(5, 5, 5, 0.5);
+  /* Figma Font Ayarları */
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: rgba(5, 5, 5, 0.8); /* Figma'daki opacity ayarı burada */
+
+  /* Figma Kutu Ayarları */
+  width: 100%;
+  height: 41px; /* 3 satır için tam sınır (14px * 3 = 42px yapar, 41px tam sınır) */
+
+  /* 3 Satır Sınırlama ve Üç Nokta */
   display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  /* Ekstra: Metinler arası boşluklar için */
+  letter-spacing: 0;
+  opacity: 1; /* Figma'daki genel opacity */
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --- GENEL AYARLAR (Desktop Öncelikli) --- */
+.left-panel {
+  width: 256px;
+  flex-shrink: 0;
+}
+
+/* 3. Mobil Düzen */
+@media screen and (max-width: 767px) {
+  .left-panel {
+    width: 100%;
+  }
+  .main-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Listede 2. elemandan sonrasını (3, 4, 5...) gizle */
+  .popular-recipe-item:nth-child(n + 3) {
+    display: none !important;
+  }
+
+  .popular-title {
+    /* Figma'daki gibi sola yaslı durması için */
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .popular-recipe-info {
+    width: 252px !important;
+    height: 67px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Başlık ve açıklamayı kutuya yayar */
+    overflow: hidden;
+  }
+}
+
+/* 4. Tablet Düzen */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .popular-recipe-item {
+    gap: 10px;
+  }
+
+  .popular-recipe-item {
+    display: flex !important; /* Tekrar görünür yap */
+  }
+  .popular-recipe-title {
+    font-size: 12px;
+  }
+
+  .popular-title {
+    /* Figma'daki gibi sola yaslı durması için */
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  /* Belirttiğin 120x67px ayarı */
+  .popular-recipe-info {
+    width: 120px !important;
+    height: 67px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Yazıları yukarıdan başlatır */
+    overflow: hidden;
+  }
+}
+
+/* 5. Masaüstü Düzen (En güçlü olan en altta) */
+@media screen and (min-width: 1280px) {
+  /* Sadece senin section'ın içindeki container'ı hedef alıyorum */
+  section.popular-recipes.container {
+    /* Arkadaşının verdiği padding'i sadece benim alanın için sıfırlıyorum veya azaltıyorum */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0; /* Ortalamayı iptal edip sol panele yapıştırır */
+    max-width: 100%; /* Kendi genişliğini içinde bulunduğu left-panel'den alsın */
+  }
+
+  .popular-title {
+    /* Figma'daki gibi sola yaslı durması için */
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 32px; /* Altındaki listeyle olan mesafe */
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .popular-recipe-info {
+    width: 155px !important;
+    height: 67px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Başlık ve açıklama arası denge */
+  }
+
+  .popular-recipe-item {
+    display: flex !important; /* Tekrar görünür yap */
+  }
+  .left-panel {
+    width: 280px;
+    flex-shrink: 0;
+  }
 }
