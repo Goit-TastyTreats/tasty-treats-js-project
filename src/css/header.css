@@ -219,6 +219,13 @@ body.dark-theme button {
 
 }
 
+body.dark-theme .desktop-theme-toggle {
+  box-shadow: 0 0 12px 4px rgba(155, 181, 55, 0.6);
+}
+body.dark-theme .desktop-toggle-circle {
+  background-color: #ffffff;
+}
+
 body.dark-theme .all-category-button,
 body.dark-theme input::placeholder,
 body.dark-theme .filter-select,
