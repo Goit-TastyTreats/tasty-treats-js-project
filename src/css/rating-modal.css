@@ -1,0 +1,123 @@
+/* rating-modal.css */
+
+/* Modal Arka Planı (Backdrop) */
+.rating-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Recipe modalın da üstünde görünsün diye */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rating-modal-backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Modal Penceresi */
+.rating-modal-window {
+  position: relative;
+  width: 90%;
+  max-width: 430px;
+  background-color: var(--bg-color);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Kapatma Butonu (X) */
+.rating-modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--black);
+}
+
+/* Rating Başlığı ve Yıldızlar */
+.rating-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(5, 5, 5, 0.5);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.rating-score-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.rating-number {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.rating-stars-list {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+}
+
+.rating-star-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--bg-color); /* Boş yıldız rengi */
+  cursor: pointer;
+  transition: fill 200ms ease;
+}
+
+.rating-star-icon.filled {
+  fill: var(--star-icon-color); /* Görseldeki turuncu-sarı renk */
+}
+
+/* Input Alanı (Email) */
+.rating-email-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+  border-radius: 12px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.rating-email-input:focus {
+  border-color: var(--color-primary);; /* Yeşil buton rengiyle uyumlu */
+}
+
+/* Gönder Butonu (Send) */
+.rating-send-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--color-primary); /* Görseldeki fıstık yeşili */
+  color: var(--bg-color);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.rating-send-btn:hover {
+  background-color: var(--color-primary);
+}

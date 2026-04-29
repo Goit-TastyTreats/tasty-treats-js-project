@@ -16,14 +16,25 @@ function renderModalContent(data) {
   const instructionsEl = document.querySelector('.js-instructions');
   const ingredientsListEl = document.querySelector('.js-ingredients');
   const videoWrapperEl = document.querySelector('.video-wrapper');
+  const tagsListEl = document.querySelector('.js-tags');
 
   if (titleEl) titleEl.textContent = data.title || '';
   if (instructionsEl) instructionsEl.textContent = data.instructions || '';
 
-  if (ingredientsListEl && data.ingredients) {
-    ingredientsListEl.innerHTML = data.ingredients
-      .map(ing => `<li class="ingredient-item">${ing.name} - ${ing.measure}</li>`)
+  if (tagsListEl && data.tags) {
+    tagsListEl.innerHTML = data.tags
+      .map(tag => `<li class="recipe-tag-item">#${tag}</li>`)
       .join('');
+  }
+
+  if (ingredientsListEl && data.ingredients) {
+    .map(ing => `
+      <li class="ingredient-item">
+        <span class="ingredient-name">${ing.name}</span>
+        <span class="ingredient-measure">${ing.measure}</span>
+      </li>
+    `)
+    .join('')
   }
 
   if (videoWrapperEl && data.youtube) {

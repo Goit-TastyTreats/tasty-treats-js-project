@@ -20,7 +20,7 @@
   z-index: 999;
 
   /* Arka planı hafif karartmak için */
-  background-color: var(--black);
+  background-color: rgba(0, 0, 0, 0.4);
 
   /* İçindeki modal penceresini tam ortaya hizalamak için */
   display: flex;
@@ -182,7 +182,7 @@
 }
 
 //malzeme listesi//
-.ingredients-list {
+#recipeModal .ingredients-list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -210,7 +210,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2em;
-  color: var(--black); /* Miktar kısmı görseldeki gibi daha gri/hafif */
+  color: rgb(78, 78, 78); /* Miktar kısmı görseldeki gibi daha gri/hafif */
 }
 
 .recipe-tags {
@@ -223,7 +223,7 @@
   margin-bottom: 24px;
 }
 
-.recipe-tag-item {
+#recipeModal .recipe-tag-item {
   min-width: 95px; /* Sabit 95 yerine min-width daha güvenlidir */
   height: 33px; /* Paddinglerle beraber yaklaşık bu yüksekliğe ulaşır */
   box-sizing: border-box;
@@ -231,21 +231,19 @@
   /* Dolgu ve Köşeler */
   padding: 8px;
   border-radius: 35px;
-  border: 1px solid var(--black); /* 1px border-width ve hafif gri renk */
+  border: 1px solid rgba(5, 5, 5, 0.2);
 
   /* Yazı Stili */
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2em;
-  color: var(--black);
+  color: #050505 !important;
 
   /* Hizalama */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-
-  opacity: 1;
 }
 
 /* tarif */
@@ -255,10 +253,9 @@
   font-weight: 400;
   font-style: Regular;
   font-size: 14px;
-  leading-trim: NONE;
+ 
   line-height: 1.29em;
   letter-spacing: 0em;
-  color: var(--black);
 }
 
 /* --- BUTON GRUBU --- */
@@ -383,7 +380,7 @@
     padding-right: 32px;
     margin-top: 16px;
     width: 65%;
-    margin-bottom: 33px;
+    
   }
 
   .recipe-tag-item {
@@ -396,7 +393,7 @@
   .instructions-container {
     width: 467px;
     order: 6;
-    margin-top: 32px;
+    
   }
 
   .modal-btn-group {
