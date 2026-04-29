@@ -26,18 +26,6 @@ function renderModalContent(data) {
       .map(tag => `<li class="recipe-tag-item">#${tag}</li>`)
       .join('');
   }
-<<<<<<< Updated upstream
-if (ingredientsListEl && data.ingredients) {
-    ingredientsListEl.innerHTML = data.ingredients // <-- Bu kısım eksik
-        .map(ing => `
-            <li class="ingredient-item">
-                <span class="ingredient-name">${ing.name}</span>
-                <span class="ingredient-measure">${ing.measure}</span>
-            </li>
-        `)
-        .join('');
-}
-=======
 
   if (ingredientsListEl && data.ingredients) {
     ingredientsListEl.innerHTML = data.ingredients
@@ -51,7 +39,6 @@ if (ingredientsListEl && data.ingredients) {
       )
       .join('');
   }
->>>>>>> Stashed changes
 
   if (videoWrapperEl && data.youtube) {
     const videoId = data.youtube.includes('=')
