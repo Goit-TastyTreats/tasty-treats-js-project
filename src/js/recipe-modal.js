@@ -26,16 +26,16 @@ function renderModalContent(data) {
       .map(tag => `<li class="recipe-tag-item">#${tag}</li>`)
       .join('');
   }
-
-  if (ingredientsListEl && data.ingredients) {
-    .map(ing => `
-      <li class="ingredient-item">
-        <span class="ingredient-name">${ing.name}</span>
-        <span class="ingredient-measure">${ing.measure}</span>
-      </li>
-    `)
-    .join('')
-  }
+if (ingredientsListEl && data.ingredients) {
+    ingredientsListEl.innerHTML = data.ingredients // <-- Bu kısım eksik
+        .map(ing => `
+            <li class="ingredient-item">
+                <span class="ingredient-name">${ing.name}</span>
+                <span class="ingredient-measure">${ing.measure}</span>
+            </li>
+        `)
+        .join('');
+}
 
   if (videoWrapperEl && data.youtube) {
     const videoId = data.youtube.includes('=') ? data.youtube.split('=')[1] : data.youtube.split('/').pop();
