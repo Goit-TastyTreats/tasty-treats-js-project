@@ -4,7 +4,7 @@ const modalBackdrop = document.querySelector('.js-recipe-modal-backdrop');
 const closeBtn = document.querySelector('.js-modal-close-btn');
 const videoWrapperEl = document.querySelector('.video-wrapper');
 
-window.openRecipeModal = function(recipeData) {
+window.openRecipeModal = function (recipeData) {
   if (!recipeData) return;
   renderModalContent(recipeData);
   if (modalBackdrop) {
@@ -31,6 +31,19 @@ function renderModalContent(data) {
   if (tagsListEl && data.tags) {
     tagsListEl.innerHTML = data.tags
       .map(tag => `<li class="recipe-tag-item">#${tag}</li>`)
+      .join('');
+  }
+
+  if (ingredientsListEl && data.ingredients) {
+    ingredientsListEl.innerHTML = data.ingredients
+      .map(
+        ing => `
+      <li class="ingredient-item">
+        <span class="ingredient-name">${ing.name}</span>
+        <span class="ingredient-measure">${ing.measure}</span>
+      </li>
+    `
+      )
       .join('');
   }
   if (starsContainer) {
@@ -65,7 +78,9 @@ function renderModalContent(data) {
   }
 
   if (videoWrapperEl && data.youtube) {
-    const videoId = data.youtube.includes('=') ? data.youtube.split('=')[1] : data.youtube.split('/').pop();
+    const videoId = data.youtube.includes('=')
+      ? data.youtube.split('=')[1]
+      : data.youtube.split('/').pop();
     videoWrapperEl.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
   }
 }
@@ -81,23 +96,27 @@ function closeModal() {
 document.addEventListener('DOMContentLoaded', () => {
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (modalBackdrop) {
-    modalBackdrop.addEventListener('click', (e) => {
+    modalBackdrop.addEventListener('click', e => {
       if (e.target === modalBackdrop) closeModal();
     });
   }
 
-  document.body.addEventListener('click', async (event) => {
-    const targetBtn = event.target.closest('.see-recipe-btn') || event.target.closest('.js-see-recipe');
+  document.body.addEventListener('click', async event => {
+    const targetBtn =
+      event.target.closest('.see-recipe-btn') ||
+      event.target.closest('.js-see-recipe');
     if (!targetBtn) return;
 
     const recipeId = targetBtn.dataset.id;
     if (recipeId) {
       try {
-        const response = await fetch(`https://tasty-treats-backend.p.goit.global/api/recipes/${recipeId}`);
+        const response = await fetch(
+          `https://tasty-treats-backend.p.goit.global/api/recipes/${recipeId}`
+        );
         const data = await response.json();
         window.openRecipeModal(data);
       } catch (error) {
-        console.error("Hata:", error);
+        console.error('Hata:', error);
       }
     }
   });
