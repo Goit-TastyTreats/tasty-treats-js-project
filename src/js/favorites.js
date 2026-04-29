@@ -1,124 +1,152 @@
-
- import './modal-recipe';
+import './modal-recipe';
 import './theme-dark-mode';
-import './api';
-import './popular-recipes';
-import './filters';
-
+import svg from '../img/favicon.svg';
+import { createRatingStars } from './rating';
+import { getFavorites, removeFavorite } from './storage';
+import { fetchRecipeById } from './api';
+import { openRecipe } from './modal-recipe';
 
 const heroPicture = document.querySelector('.fav-hero-pic');
-const categoryRecipeList = document.querySelector('.fav-category-recipe-list')
- const favoriteRecipesList = document.querySelector('.fav-resipes-list');
- const noFavoriteRecipesMessage = document.querySelector('.fav-no-recipes-content');
- const categoryAllFilters = document.querySelector('.all-category-btn'); 
+const categoryRecipeList = document.querySelector('.fav-category-recipe-list');
+const favoriteRecipesList = document.querySelector('.fav-recipes-list');
+const noFavoriteRecipesMessage = document.querySelector(
+  '.fav-no-recipes-content'
+);
+const categoryAllBtn = document.querySelector('.all-category-btn');
 
+let allRecipes = [];
 
- const localStorageKey = "favorites"
+initFavoritesPage();
 
-// modal aç
-favoriteRecipesList.addEventListener('click', openModalBtn);
+async function initFavoritesPage() {
+  const ids = getFavorites();
 
- function openModalBtn(e) {
-   const btnRecipesBtn = 'fav-recipe-card-button';
-   const id = e.target.name;
-  if (e.target.className === btnRecipesBtn) {
-    heardleRecipeById(id);
+  if (!ids || ids.length === 0) {
+    showEmptyState();
+    return;
+  }
+
+  try {
+    const recipes = (
+      await Promise.all(ids.map(id => fetchRecipeById(id)))
+    ).filter(Boolean);
+
+    if (recipes.length === 0) {
+      showEmptyState();
+      return;
+    }
+
+    allRecipes = recipes;
+
+    showContentState();
+    createCategories(recipes);
+    renderRecipes(recipes);
+  } catch (err) {
+    console.error(err);
+    showEmptyState();
   }
 }
 
-// //----------------------------------------------------------------------------------------------
+function renderRecipes(recipes) {
+  console.log(recipes);
+  favoriteRecipesList.innerHTML = '';
 
+  const markup = recipes
+    .map(recipe => {
+      return `
+      <li class="recipes-item" id="${recipe._id}">
+        <svg class="favorite-icon favorite-icon-active" data-id="${recipe._id}">
+          <use href="${svg}#icon-heart"></use>
+        </svg>
+        <img class="card-img" src="${recipe.preview}" alt="${recipe.description}" loading="lazy" />
+        <div class="recipe-card">
+          <div class="text-content">
+            <p class="recipe-card-title">${recipe.title}</p>
+            <p class="recipe-card-description">${recipe.description}</p>
+          </div>
+          <div class="card-btn-container">
+          <div class="rating-container">
+                <span class="rating-value">${recipe.rating || 0}</span>
+                <span class="rating-stars">${createRatingStars(recipe.rating)}</span>
+              </div>
+              <button type="button" class="see-recipe-btn" name="${recipe._id}" data-modal-recipte-open>
+              See recipe
+            </button>
+          </div>
+        </div>
+      </li>
+    `;
+    })
+    .join('');
 
- displayFavoriteResipes(localStorageKey); //favorites buraya seçilen tarifler eklenecektir.
- filterRecipesByCategoryBtn();
+  favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
+}
 
+function createCategories(recipes) {
+  const categories = [...new Set(recipes.map(r => r.category))];
 
+  categoryRecipeList.innerHTML = '';
+  categoryRecipeList.insertAdjacentHTML(
+    'beforeend',
+    `<button type="button" class="all-category-btn fav-category-btn">All categories</button>`
+  );
 
- function filterRecipesByCategoryBtn() {
-    const categoryFilters = document.querySelectorAll('.category-btn'); 
-    const dataFromLocalStorage = JSON.parse(localStorage.getItem(localStorageKey))
+  const markup = categories
+    .map(
+      cat => `<button type="button" class="fav-category-btn">${cat}</button>`
+    )
+    .join('');
 
-   for (const filter of categoryFilters) {
-    
-       filter.addEventListener('click', (event) => {     
-          const filteredRecipes = dataFromLocalStorage.filter(recipe => recipe.category === event.target.textContent);
-            createFavoriteRecipesCards(filteredRecipes);
+  categoryRecipeList.insertAdjacentHTML('beforeend', markup);
+}
 
-          if (event.target.textContent === "All categories") {
-                createFavoriteRecipesCards(dataFromLocalStorage);    
-           }
-       })
-   } }
+categoryRecipeList.addEventListener('click', e => {
+  if (!e.target.classList.contains('fav-category-btn')) return;
 
- function displayFavoriteResipes(key) {
+  const category = e.target.textContent;
 
-     if (localStorage.getItem(key) === null) {        
-        noFavoriteRecipesMessage.classList.remove('is-hidden');        
+  if (category === 'All categories') {
+    renderRecipes(allRecipes);
+    return;
+  }
+
+  const filtered = allRecipes.filter(r => r.category === category);
+  renderRecipes(filtered);
+});
+
+favoriteRecipesList.addEventListener('click', e => {
+  const icon = e.target.closest('.favorite-icon');
+  if (icon) {
+    const id = icon.dataset.id;
+
+    // remove from UI instantly
+    allRecipes = allRecipes.filter(r => r._id !== id);
+    removeFavorite(id);
+    renderRecipes(allRecipes);
+    createCategories(allRecipes);
+
+    if (allRecipes.length === 0) {
+      showEmptyState();
     }
-    
-     noFavoriteRecipesMessage.classList.add('is-hidden')
+  }
 
-    createFavoriteRecipesCategories(JSON.parse(localStorage.getItem(key)));
-    createFavoriteRecipesCards(JSON.parse(localStorage.getItem(key)));
- }
+  const btn = e.target.closest('.see-recipe-btn');
+  if (btn) {
+    const id = btn.name;
+    openRecipe(id);
+  }
+});
 
+function showEmptyState() {
+  noFavoriteRecipesMessage.classList.remove('is-hidden');
+  heroPicture.style.display = 'none';
+  categoryRecipeList.style.display = 'none';
+  favoriteRecipesList.style.display = 'none';
+}
 
- function displayResizeHandler() {
-    if (window.innerWidth < 768) {
-        heroPicture.style.display = "none";
-    }
-    else heroPicture.style.display = "";
-
-   window.addEventListener('resize', () => {
-        if (window.innerWidth < 768) {            
-            heroPicture.style.display = "none";
-         }
-        else heroPicture.style.display = "";
-     })
- }
-
- function createFavoriteRecipesCategories(recipes) { 
-    if (recipes === null) {
-         displayResizeHandler();
-        categoryAllFilters.classList.add('is-hidden');
-        noFavoriteRecipesMessage.classList.remove('is-hidden');
-        return;
-    }
-
-     const recipeCategories = recipes.flatMap(recipe => recipe.category)
-        .filter((category, index, array) => array.indexOf(category) === index);
-          
-     for (const category of recipeCategories) {
-         const categoryBtn = `<button type="button" class="category-btn">${category}</button>`;
-        categoryRecipeList.insertAdjacentHTML('beforeend', categoryBtn);
-    }
- }
-
- function createFavoriteRecipesCards(recipes) {
-    if (recipes === null) {
-       displayResizeHandler();
-        categoryAllFilters.classList.add('is-hidden');
-        noFavoriteRecipesMessage.classList.remove('is-hidden');
-        return;
-    }   
-
-     favoriteRecipesList.innerHTML = '';
-
-     for (const recipe of recipes) {
-         const recipeCard = `<li class="fav-recipes-list-item">
-                      
-         <div class="recipe-card-gradient"></div>      
-        <div class="fav-recipe-card">
-         <span  class="add-to-favorite-checkbox" role="checkbox" aria-checked="true">  
-        <svg class="favorite-icon">
-                <use href="${svg}#icon-heart"></use>               </svg> 
-        </span> 
-            <img src="${recipe.preview}" alt="${recipe.description}" loading="lazy" />
-            <p class="fav-recipe-card-title">${recipe.title}</p>
-             <p class="fav-recipe-card-description">${recipe.description}</p>
-<button type="button" class="fav-recipe-card-button" name="${recipe._id}" data-modal-recipe-open>See recipe</button>
-                   </div >      
-        </li>`;
-        favoriteRecipesList.insertAdjacentHTML('beforeend', recipeCard);
-     }
- }
+function showContentState() {
+  noFavoriteRecipesMessage.classList.add('is-hidden');
+  heroPicture.style.display = '';
+  categoryRecipeList.style.display = '';
+  favoriteRecipesList.style.display = '';
+}
