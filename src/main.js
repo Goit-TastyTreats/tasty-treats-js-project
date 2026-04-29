@@ -11,3 +11,4 @@ import './js/filters.js';
 import './js/footer-modal.js';
 import './js/search.js';
 import './js/recipe-modal.js';
+import './js/rating-modal.js';
