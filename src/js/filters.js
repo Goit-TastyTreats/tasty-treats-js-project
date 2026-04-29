@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 // import { fetchRecipesByFilter } from './api'; // İleride tarifleri filtrelemek için
+import { reloadRecipesList } from './recipe-cards';
 
 const searchInput = document.querySelector('#search-input');
 
@@ -16,6 +17,7 @@ const handleSearch = debounce(event => {
     console.log(`Aranan kelime: ${query}`);
     // Burada API'ye arama terimiyle istek atacağız
   }
+  reloadRecipesList({ query: query, page: 1 });
 }, 300);
 
 if (searchInput) {

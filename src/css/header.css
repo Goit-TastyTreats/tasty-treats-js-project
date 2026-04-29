@@ -179,11 +179,12 @@ body.dark-theme .theme-toggle {
 
   border-radius: 50%;
 
-  background-color: var(--bg-color);
+  background-color: #ffffff;
 
   position: absolute;
 
-  top: 2px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 2px;
 
   transition: left 0.3s ease;
@@ -191,7 +192,7 @@ body.dark-theme .theme-toggle {
 
 /* Dark mod toggle yeri */
 body.dark-theme .toggle-circle {
-  left: 20px;
+  left: calc(100% - 21px);
 }
 button {
   padding: 0;
@@ -206,6 +207,7 @@ button:focus {
   outline: none;
 }
 
+
 body.dark-theme h1,
 body.dark-theme h2,
 body.dark-theme h3,
@@ -216,6 +218,13 @@ body.dark-theme p,
 body.dark-theme button {
   color: #fff;
 
+}
+
+body.dark-theme .desktop-theme-toggle {
+  box-shadow: 0 0 12px 4px rgba(155, 181, 55, 0.6);
+}
+body.dark-theme .desktop-toggle-circle {
+  background-color: #ffffff;
 }
 
 body.dark-theme .all-category-button,
@@ -282,6 +291,7 @@ svler text rengiyle aynı
 .logo-mobile {
   width: 93px;
   height: 20px;
+  margin-left: -12px;
 }
 
 /* desktop logo gizli */

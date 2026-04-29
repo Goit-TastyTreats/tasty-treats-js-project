@@ -1,4 +1,6 @@
 // src/main.js
+import './js/storage.js';
+import './js/rating';
 import './js/header.js';
 import './js/theme-dark-mode.js';
 import './js/hero.js';

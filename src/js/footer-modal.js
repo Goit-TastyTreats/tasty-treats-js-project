@@ -25,7 +25,7 @@ if (teamBackdrop) {
   });
 }
 
-// ESC tuşu ile kapatma (Opsiyonel ama profesyonel durur)
+// ESC tuşu ile kapatma 
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && !teamBackdrop.classList.contains('is-hidden')) {
     teamBackdrop.classList.add('is-hidden');
