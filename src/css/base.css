@@ -4,6 +4,10 @@
   line-height: 1.5;
   font-weight: 400;
   --black: #050505;
+  --color-primary: #9bb537;
+  --star-icon-color: #f2c94c;
+  --heart-icon-color: #eb5757;
+  --bg-color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

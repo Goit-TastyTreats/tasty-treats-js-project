@@ -1,8 +1,17 @@
 // src/main.js
+import './js/storage.js';
+import './js/rating';
+import './js/header.js';
+import './js/theme-dark-mode.js';
+import './js/hero.js';
 import './js/all-category.js';
-import './js/popular-recipes.js'; // Bunu da hazırlayacağız
-// main.js dosyasına ekle
+import './js/popular-recipes.js';
 import './js/recipe-cards.js';
 // Modal etkileşimleri için gerekli dosyalar
-import './js/recipe-modal.js';
+
 import './js/rating-modal.js';
+import './js/filters.js';
+import './js/favorites.js';
+import './js/footer-modal.js';
+import './js/search.js';
+import './js/recipe-modal.js';

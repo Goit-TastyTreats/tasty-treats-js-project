@@ -1,7 +1,7 @@
 // src/js/popular-recipes.js
-import { fetchPopularRecipes } from './api.js';
+import { fetchPopularRecipes, fetchRecipeById } from './api.js'; // fetchRecipeById ekledik
 
-const popularList = document.querySelector('.popular-recipes-list'); // HTML'deki class veya ID ile eşleşmeli
+const popularList = document.querySelector('.popular-recipes-list');
 
 async function renderPopularRecipes() {
   try {
@@ -32,18 +32,25 @@ async function renderPopularRecipes() {
 
 renderPopularRecipes();
 
-// Kartlara tıklama olayı (Event Delegation)
+// Kartlara tıklama olayı
 if (popularList) {
-  popularList.addEventListener('click', e => {
-    // Tıklanan yerin en yakınındaki li elementini bul (data-id orada çünkü)
+  popularList.addEventListener('click', async e => {
     const recipeCard = e.target.closest('.popular-recipe-item');
 
     if (recipeCard) {
       const recipeId = recipeCard.dataset.id;
-      console.log('Açılacak Tarif ID:', recipeId);
 
-      // Buraya modalı açacak fonksiyonu ileride ekleyeceğiz
-      // Örn: openModal(recipeId);
+      try {
+        const recipeDetails = await fetchRecipeById(recipeId);
+
+        // Konsolda "Object" yerine detayları görmek için:
+        console.log('Tarif Detayları:', recipeDetails);
+
+        // Modal fonksiyonunu çağırıyoruz
+        openRecipeModal(recipeDetails);
+      } catch (err) {
+        console.error('Tarif detayları getirilemedi:', err);
+      }
     }
   });
 }
