@@ -1,30 +1,43 @@
 <div id="ratingModal" class="modal-overlay is-hidden">
   <div class="modal-content rating-modal-content">
-    <button type="button" class="modal-close-btn js-modal-close-btn">
-  &times;
-</button>
-
+    <button type="button" class="modal-close-btn js-modal-close-btn">&times;</button>
     <p class="rating-label">Rating</p>
     
     <div class="star-rating-container">
-      <span class="rating-value js-rating-value"></span>
-      
-      <div class="rating-stars js-rating-stars">
-        <img src="./img/favicon.svg" class="star-icon" data-value="1" alt="star">
-        <img src="./img/favicon.svg" class="star-icon" data-value="2" alt="star">
-        <img src="./img/favicon.svg" class="star-icon" data-value="3" alt="star">
-        <img src="./img/favicon.svg" class="star-icon" data-value="4" alt="star">
-        <img src="./img/favicon.svg" class="star-icon" data-value="5" alt="star">
-      </div>
-    </div> <form class="rating-form js-rating-form">
-      <input 
-        type="email" 
-        class="rating-input" 
-        name="email" 
-        placeholder="Enter email" 
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-        required
-      >
+      <!-- js-rating-value buraya 0.0 yazacak -->
+      <span class="rating-value js-rating-value">0.0</span>
+      <ul class="rating-stars-list">
+        <li class="rating-star-item" data-value="1">
+  <svg class="star-icon">
+    <!-- Dosya adın star-icon.svg olduğu için yolu böyle güncelledik -->
+    <use href="./img/star-icon.svg#star-icon"></use> 
+  </svg>
+</li>
+<li class="rating-star-item" data-value="2">
+  <svg class="star-icon">
+    use href="./img/star-icon.svg#star-icon"></use>
+  </svg>
+</li>
+<li class="rating-star-item" data-value="3">
+  <svg class="star-icon">
+    use href="./img/star-icon.svg#star-icon"></use>
+  </svg>
+</li>
+<li class="rating-star-item" data-value="4">
+  <svg class="star-icon">
+    use href="./img/star-icon.svg#star-icon"></use>
+  </svg>
+</li>
+<li class="rating-star-item" data-value="5">
+  <svg class="star-icon">
+    use href="./img/star-icon.svg#star-icon"></use>
+  </svg>
+</li>
+      </ul>
+    </div>
+
+    <form class="rating-form js-rating-form">
+      <input type="email" class="rating-input" name="email" placeholder="Enter email" required>
       <button type="submit" class="btn btn-send">Send</button>
     </form>
   </div>

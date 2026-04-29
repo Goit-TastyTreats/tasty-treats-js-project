@@ -1,3 +1,26 @@
+/* Modal Arka Planı (Backdrop) */
+.rating-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Recipe modalın da üstünde görünsün diye */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rating-modal-backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* 1. Kendi renk değişkenlerini tanımla (base.css'tekilerle çakışmaz) */
 .rating-modal-content {
   /* Işık modu (Light Mode) renkleri */
@@ -73,38 +96,64 @@ body.dark .rating-modal-content {
   color: var(--rating-text-color);
   margin-bottom: 4px;
 }
-.star-rating-container {
+
+.rating-value {
+  font-size: 18px;
+  font-weight: 500;
+  color: #050505; /* Net siyah yaptık */
+  margin-right: 10px;
+}
+
+/* Yıldızların yan yana gelmesi için kritik kısım */
+.rating-stars-list {
   display: flex;
-  align-items: center;
-  gap: 0.57em; /* 8px civarı (gap:2 Figma'da bazen farklı yorumlanabilir) */
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.star-rating-container {
+  display: flex; /* İçindekileri yan yana dizer */
+  align-items: center; /* Dikeyde ortalar */
+  gap: 10px; /* Puan ve yıldızlar arasındaki boşluk */
   margin-bottom: 24px;
 }
 
-.rating-value {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.28em; /* 18px / 14px = 1.28em */
-  letter-spacing: 0em;
-  color: var(--rating-text-color);
-}
-
-.rating-stars {
-  display: flex;
-  gap: 2px;
+.rating-stars-list {
+  display: flex; /* Yıldızları yan yana dizer */
+  gap: 4px; /* Yıldızların kendi arasındaki mesafe */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .star-icon {
   width: 24px;
   height: 24px;
+  display: block; /* Kapladığı alanı netleştirir */
   cursor: pointer;
-  filter: grayscale(1) opacity(0.3); /* Boş yıldızlar için soluk gri efekt */
-  transition: transform 0.2s;
+  border: 1px solid red;
+  /* Önemli: fill değerini net bir gri yapalım */
+  fill: #757575 !important; 
+  transition: fill 250ms ease;
 }
 
-.star-icon.filled {
-  filter: none; /* Filtreyi kaldırır */
-  /* Eğer ikon SVG ise rengini değiştirmek için: */
-  /* fill: var(--rating-star-filled); */
+/* Tıklandığında veya üzerine gelindiğinde sarı olması için */
+.star-icon.filled,
+.rating-star-item:hover .star-icon {
+  fill: #F8AB31 !important;
+}
+
+/* Modal kutusunun içindeki form düzeni */
+.rating-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-modal-content {
+  /* Kutunun boyunu içeriğe göre otomatik ayarla */
+  height: auto; 
+  padding-bottom: 30px;
 }
 
 /* Email Kutusu */
