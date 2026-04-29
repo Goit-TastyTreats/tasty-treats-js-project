@@ -316,7 +316,8 @@
   .category-btn {
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 24px;
+    display: block;
+    gap: 24px; /* Figma Desktop gap değeri, fakat display block olduğu için width ve height arasında otomatik olarak sığacak yine de yazdım */
     padding: 0;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
