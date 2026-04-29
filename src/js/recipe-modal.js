@@ -3,6 +3,8 @@ const modalBackdrop = document.querySelector('.js-recipe-modal-backdrop');
 const closeBtn = document.querySelector('.js-modal-close-btn');
 const videoWrapperEl = document.querySelector('.video-wrapper');
 
+
+
 // 2. MERT VE ATEŞ BEY İÇİN KÜRESEL AÇMA FONKSİYONU
 window.openRecipeModal = function(recipeData) {
   console.log("Dışarıdan veri geldi, modal tetiklendi!", recipeData);
