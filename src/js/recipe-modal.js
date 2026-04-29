@@ -1,3 +1,5 @@
+import { createRatingStars } from './rating';
+
 const modalBackdrop = document.querySelector('.js-recipe-modal-backdrop');
 const closeBtn = document.querySelector('.js-modal-close-btn');
 const videoWrapperEl = document.querySelector('.video-wrapper');
@@ -15,27 +17,52 @@ function renderModalContent(data) {
   const titleEl = document.querySelector('.js-recipe-title');
   const instructionsEl = document.querySelector('.js-instructions');
   const ingredientsListEl = document.querySelector('.js-ingredients');
+  const ratingEl = document.querySelector('.js-recipe-rating');
+  const timeEl = document.querySelector('.js-recipe-time');
+  const starsContainer = document.querySelector('.js-recipe-stars');
   const videoWrapperEl = document.querySelector('.video-wrapper');
   const tagsListEl = document.querySelector('.js-tags');
 
   if (titleEl) titleEl.textContent = data.title || '';
   if (instructionsEl) instructionsEl.textContent = data.instructions || '';
 
+  if (ratingEl) ratingEl.textContent = data.rating || '0.0';
+  if (timeEl) timeEl.textContent = `${data.time} min` || '';
   if (tagsListEl && data.tags) {
     tagsListEl.innerHTML = data.tags
       .map(tag => `<li class="recipe-tag-item">#${tag}</li>`)
       .join('');
   }
-if (ingredientsListEl && data.ingredients) {
-    ingredientsListEl.innerHTML = data.ingredients // <-- Bu kısım eksik
-        .map(ing => `
-            <li class="ingredient-item">
-                <span class="ingredient-name">${ing.name}</span>
-                <span class="ingredient-measure">${ing.measure}</span>
-            </li>
-        `)
-        .join('');
+  if (starsContainer) {
+    starsContainer.innerHTML = createRatingStars(data.rating);
+  }
+
+  // 1. Puanı ve Süreyi Yazdır
+  if (ratingEl) ratingEl.textContent = data.rating || '0.0';
+  if (timeEl) timeEl.textContent = `${data.time} min` || '';
+
+  function renderModalContent(data) {
+  // ... (diğer querySelector tanımların)
+  const starsContainer = document.querySelector('.js-recipe-stars');
+
+  if (starsContainer) {
+    // Fonksiyondan gelen yıldızları (HTML string olarak) kutunun içine basıyoruz
+    starsContainer.innerHTML = createRatingStars(data.rating);
+  }
+  // ... (diğer kodların)
 }
+
+
+  if (ingredientsListEl && data.ingredients) {
+    ingredientsListEl.innerHTML = data.ingredients
+    .map(ing => `
+      <li class="ingredient-item">
+        <span class="ingredient-name">${ing.name}</span>
+        <span class="ingredient-measure">${ing.measure}</span>
+      </li>
+    `)
+    .join('')
+  }
 
   if (videoWrapperEl && data.youtube) {
     const videoId = data.youtube.includes('=') ? data.youtube.split('=')[1] : data.youtube.split('/').pop();
