@@ -29,9 +29,7 @@ const currentPage = window.location.pathname
   .split('/')
   .pop();
 
-const allLinks = document.querySelectorAll(
-  '.nav-link, .mobile-nav-link'
-);
+const allLinks = document.querySelectorAll('.nav-link');
 
 allLinks.forEach(link => {
   const linkPage = link
@@ -75,29 +73,57 @@ desktopThemeToggle.addEventListener('click', () => {
 
 // ORDER MODAL penceresi
 
-const openOrderModalBtn = document.getElementById('openOrderModal');
+const openOrderModalBtn =
+  document.getElementById('openOrderModal');
+
 const orderModal = document.querySelector(
   '[data-modal-id="order-now"]'
 );
 
-openOrderModalBtn.addEventListener('click', event => {
-  event.preventDefault();
 
-  orderModal.classList.remove('is-hidden');
-});
+/* 
+Sadece elementler varsa çalıştır.
+Favorites page'de modal olmayabilir.
+*/
 
-const closeOrderModalBtn =
-  orderModal.querySelector('[data-modal-close]');
+if (openOrderModalBtn && orderModal) {
 
-closeOrderModalBtn.addEventListener('click', () => {
-  orderModal.classList.add('is-hidden');
-});
+  openOrderModalBtn.addEventListener('click', event => {
 
-orderModal.addEventListener('click', event => {
-  if (event.target === orderModal) {
+    event.preventDefault();
+
+    orderModal.classList.remove('is-hidden');
+
+  });
+
+}
+
+if (orderModal) {
+
+  const closeOrderModalBtn =
+    orderModal.querySelector('[data-modal-close]');
+
+
+  // modal kapat
+  closeOrderModalBtn.addEventListener('click', () => {
+
     orderModal.classList.add('is-hidden');
-  }
-});
+
+  });
+
+
+  // overlay click
+  orderModal.addEventListener('click', event => {
+
+    if (event.target === orderModal) {
+
+      orderModal.classList.add('is-hidden');
+
+    }
+
+  });
+
+}
 
 document.addEventListener('click', event => {
   const isMenuOpen = mobileMenu.classList.contains('active');

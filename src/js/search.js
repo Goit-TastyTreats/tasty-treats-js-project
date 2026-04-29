@@ -1,3 +1,5 @@
+import { reloadRecipesList } from './recipe-cards.js';
+
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,13 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
     document.dispatchEvent(
       new CustomEvent('filters-change', {
         detail: {
-          search: filters.search,
+          title: filters.search,
           time: filters.time,
           area: filters.area,
           ingredient: filters.ingredient,
         },
       })
     );
+
+    const params = new URLSearchParams({
+      page: 1,
+      title: filters.search,
+      area: filters.area,
+      ingredient: filters.ingredient,
+      time: filters.time,
+    });
+
+    reloadRecipesList({
+      page: 1,
+      title: filters.search,
+      area: filters.area,
+      ingredient: filters.ingredient,
+      time: filters.time,
+    });
   }
 
   function closeAllDropdowns() {
@@ -52,19 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dropdowns = document.querySelectorAll('.custom-dropdown');
 
-dropdowns.forEach(dropdown => {
-  let scrollTimeout;
+  dropdowns.forEach(dropdown => {
+    let scrollTimeout;
 
-  dropdown.addEventListener('scroll', () => {
-    dropdown.classList.add('is-scrolling');
+    dropdown.addEventListener('scroll', () => {
+      dropdown.classList.add('is-scrolling');
 
-    clearTimeout(scrollTimeout);
+      clearTimeout(scrollTimeout);
 
-    scrollTimeout = setTimeout(() => {
-      dropdown.classList.remove('is-scrolling');
-    }, 700);
+      scrollTimeout = setTimeout(() => {
+        dropdown.classList.remove('is-scrolling');
+      }, 700);
+    });
   });
-});
 
   function createOption({ value, label }) {
     return `
@@ -111,9 +129,7 @@ dropdowns.forEach(dropdown => {
   }
 
   function renderAreas(areas) {
-    const sortedAreas = [...areas].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
+    const sortedAreas = [...areas].sort((a, b) => a.name.localeCompare(b.name));
 
     areaDropdown.innerHTML = sortedAreas
       .map(area =>
