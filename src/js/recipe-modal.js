@@ -61,6 +61,16 @@ function renderModalContent(data) {
       index < roundedRating ? star.classList.add('filled') : star.classList.remove('filled');
     });
   }
+if (ingredientsListEl && data.ingredients) {
+    ingredientsListEl.innerHTML = data.ingredients // <-- Bu kısım eksik
+        .map(ing => `
+            <li class="ingredient-item">
+                <span class="ingredient-name">${ing.name}</span>
+                <span class="ingredient-measure">${ing.measure}</span>
+            </li>
+        `)
+        .join('');
+}
 
   // Videoyu Yerleştir
   if (videoWrapperEl && data.youtube) {
