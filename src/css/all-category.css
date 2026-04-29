@@ -1,9 +1,7 @@
 /* 1. ANA PANEL AYARI: Sol tarafın sınırlarını belirliyorum */
 .main-wrapper {
   display: flex;
-  gap: 64px;
-  align-items: flex-start;
-  padding: 40px 20px;
+  align-items: center;
 }
 
 /* saat 18:29 da eklendi */
@@ -27,11 +25,11 @@
 
 /* "All Categories" Butonu */
 #all-category-btn {
-  width: 176px !important;
+  width: 176px;
   min-width: 176px !important;
   max-width: 176px !important;
   height: 50px !important;
-
+  
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -39,11 +37,11 @@
   background-color: transparent;
   border: 1px solid rgba(5, 5, 5, 0.1);
   border-radius: 15px;
-
+  margin-top: 80px;
   font-size: 18px;
   font-weight: 500;
   color: rgba(5, 5, 5, 0.5);
-  margin-bottom: 24px;
+  margin-bottom: 64px;
   cursor: pointer;
   transition: all 250ms ease;
 }
@@ -111,18 +109,6 @@
   width: 100%;
 }
 
-/* --- EKRAN BOYUTLARINA GÖRE PANEL GENİŞLİĞİ --- */
-
-/* --- MOBİL DÜZENLEME (375px ve Genel Mobil) --- */
-
-/* Ekstra: Çok dar cihazlar için (0-374px) eklediğin kuralı bunun hemen altına bırakabilirsin */
-@media screen and (max-width: 374px) {
-  #all-category-btn {
-    width: 150px !important;
-    font-size: 16px !important;
-    margin-top: 80px !important;
-  }
-}
 /* Sadece 375px'ten büyük VE 768px'ten küçük ekranlar için */
 @media (min-width: 375px) and (max-width: 768px) {
   #category-list .cat-items {
@@ -145,8 +131,6 @@
     border-radius: 15px !important;
     font-size: 18px !important;
     font-weight: 500;
-    margin-bottom: 34px !important;
-    margin-top: 80px !important;
     cursor: pointer;
     transition: all 250ms ease;
   }
@@ -200,10 +184,10 @@
     border-radius: 15px !important;
     font-size: 18px !important;
     font-weight: 500;
-    margin-bottom: 30px !important;
-    margin-top: 126px;
     cursor: pointer;
     transition: all 250ms ease;
+    margin-top: 106px;
+    margin-bottom: 30px;
   }
 
   /* Kategori Listesi: Tablet yüksekliği 352px */
@@ -273,14 +257,11 @@
     justify-content: center;
     margin-left: 0;
     margin-right: auto;
-    margin-bottom: 42px !important;
-
     font-size: 18px;
     font-weight: 500;
     line-height: 1.2;
     margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 42px;
+    margin-bottom: 42px !important;
   }
 
   /* Kategori Listesi: Desktop yüksekliği 352px */
