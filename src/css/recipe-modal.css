@@ -8,6 +8,28 @@
   box-sizing: border-box;
 }
 
+body.dark-theme .ingredient-measure {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-theme .ingredient-name {
+  color: #fff;
+}
+
+body.dark-theme .recipe-instructions {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-theme #recipeModal .recipe-tag-item {
+  color: #fff !important;
+  border-color: #fff !important;
+
+}
+
+body.dark-theme #recipeModal .recipe-tag-item {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
 .recipe-modal-backdrop {
   /* Sayfaya sabitlemek için 'fixed' kullanıyoruz */
   position: fixed;

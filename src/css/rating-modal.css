@@ -1,3 +1,5 @@
+rating-modal.css
+
 /* rating-modal.css */
 
 /* Modal Arka Planı (Backdrop) */
@@ -101,7 +103,7 @@
 }
 
 .rating-email-input:focus {
-  border-color: var(--color-primary);; /* Yeşil buton rengiyle uyumlu */
+  border-color: var(--color-primary); /* Yeşil buton rengiyle uyumlu */
 }
 
 /* Gönder Butonu (Send) */

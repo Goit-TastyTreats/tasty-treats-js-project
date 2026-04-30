@@ -5,6 +5,7 @@
   font-weight: 400;
   --black: #050505;
   --color-primary: #9bb537;
+  --description-color: rgba(5, 5, 5, 0.8);
   --star-icon-color: #f2c94c;
   --heart-icon-color: #eb5757;
   --bg-color: #ffffff;
@@ -12,6 +13,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+body.dark-theme {
+  --description-color: rgba(255, 255, 255, 0.8);
 }
 
 body {

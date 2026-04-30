@@ -86,7 +86,7 @@
     overflow: hidden !important;
     margin: 0 !important;
 
-    color: rgba(5, 5, 5, 0.8) !important;
+    color: var(--description-color) !important;
   }
 
   /* Resim Ayarı */
@@ -172,7 +172,7 @@
     font-size: 12px !important; /* Değişmeyen kısım burasıydı */
     line-height: 14px !important;
     letter-spacing: 0% !important;
-    color: rgba(5, 5, 5, 0.8) !important;
+    color: var(--description-color) !important;
 
     /* Metin sınırlama ayarları */
     -webkit-line-clamp: 3 !important;
@@ -275,7 +275,7 @@
     font-size: 10px !important; /* Değişmeyen kısım burasıydı */
     line-height: 14px !important;
     letter-spacing: 0% !important;
-    color: rgba(5, 5, 5, 0.8) !important;
+    color: var(--description-color) !important;
 
     /* Metin sınırlama ayarları */
     -webkit-line-clamp: 3 !important;

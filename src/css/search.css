@@ -316,3 +316,26 @@ body.dark-theme .custom-dropdown-option:hover,
 body.dark-theme .custom-dropdown-option.is-selected {
   color: var(--text-color);
 }
+
+body.dark-theme .search-icon {
+  color: var(--text-secondary);
+}
+
+
+body.dark-theme .select-chevron {
+  border-left-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+.filter-input {
+  cursor: text;
+}
+
+body.dark-theme .search-wrapper:focus-within .search-icon {
+  color: var(--color-primary);
+  stroke: var(--color-primary);
+}
+
+body.dark-theme .custom-select.is-open .select-chevron {
+  border-left-color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}

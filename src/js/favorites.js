@@ -48,7 +48,7 @@ async function initFavoritesPage() {
 }
 
 function renderRecipes(recipes) {
-  console.log(recipes);
+  // console.log(recipes);
   favoriteRecipesList.innerHTML = '';
 
   const markup = recipes

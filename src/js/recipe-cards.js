@@ -86,7 +86,7 @@ export const createRecipesList = data => {
                 <span class="rating-value">${recipe.rating || 0}</span>
                 <span class="rating-stars">${createRatingStars(recipe.rating)}</span>
               </div>
-              <button type="button" class="see-recipe-btn" name="${recipe._id}" data-modal-recipte-open>See recipe</button>
+              <button type="button" class="see-recipe-btn" name="${recipe._id}" data-id="${recipe._id}" data-modal-recipte-open>See recipe</button>
             </div>
           </div>
         </li>`;
@@ -247,9 +247,7 @@ recipesList.addEventListener('click', e => {
 
   const btn = e.target.closest('.see-recipe-btn');
   if (btn) {
-    const id = btn.name;
+    const id = btn.dataset.id;
     openRecipe(id);
-
-    // console.log(id);
   }
 });
