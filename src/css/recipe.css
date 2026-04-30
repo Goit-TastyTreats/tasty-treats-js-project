@@ -104,6 +104,7 @@ body.dark-theme .recipes-item {
   opacity: 0.1;
 }
 
+
 .see-recipe-btn {
   position: absolute;
   bottom: 16px;
@@ -219,6 +220,19 @@ body.dark-theme .recipes-item {
 .choseRecipe {
   fill: #f8f8f8;
 }
+
+/* Hover ve Focus durumunda içindeki use elemanını boya */
+.favorite-icon:hover use,
+.favorite-icon:focus use {
+  fill: #f8f8f8 !important;
+}
+
+/* Mevcut aktif sınıfın zaten çalışıyor demiştin */
+.favorite-icon-active use {
+  fill: #f8f8f8;
+}
+
+
 
 .filter-form-list {
   display: flex;

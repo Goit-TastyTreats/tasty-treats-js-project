@@ -173,7 +173,7 @@ body.dark .rating-modal-content {
 .rating-input {
   width: 100%;
   height: 46px;
-  border: 1px solid #05050533;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 15px;
   padding: 14px 18px;
   font-weight: 500;
@@ -204,4 +204,8 @@ body.dark .rating-modal-content {
 
 .btn-send:hover {
   background: #8aa131; /* Hafif koyu bir hover efekti güzel olur */
+}
+
+body.dark-theme .rating-modal-content {
+  background-color: #050505;
 }
