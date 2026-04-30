@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Favicon yolunu src olarak güncelledik -->
-    <link rel="icon" type="image/svg+xml" href="/tasty-treats-js-project/assets/spoon-knife-CBGSSiOk.svg" />
+    <link rel="icon" type="image/svg+xml" href="/tasty-treats-js-project/spoon-knife.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -39,12 +38,12 @@
       <a class="nav-logo" href="/index.html" aria-label="Site logo">
         <!-- mobile logo -->
         <svg class="logo-icon logo-mobile">
-          <use href="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg#icon-tasty-mob"></use>
+          <use href="../img/favicon.svg#icon-tasty-mob"></use>
         </svg>
 
         <!-- tablet & desktop logo -->
         <svg class="logo-icon logo-desktop">
-          <use href="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg#icon-tasty-desk"></use>
+          <use href="../img/favicon.svg#icon-tasty-desk"></use>
         </svg>
       </a>
 
@@ -56,7 +55,7 @@
         <a href="#" class="phone-btn" id="openOrderModal">
           <!-- sepet SVG -->
           <svg class="shopping-icon">
-            <use href="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg#icon-shopping"></use>
+            <use href="../img/favicon.svg#icon-shopping"></use>
           </svg>
         </a>
 
@@ -68,7 +67,7 @@
         <!-- hamburger menü -->
         <button class="hamburger-btn" id="hamburgerBtn">
           <svg class="hamburger-icon">
-            <use href="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg#icon-burger"></use>
+            <use href="../img/favicon.svg#icon-burger"></use>
           </svg>
         </button>
       </div>
@@ -83,7 +82,7 @@
     <!-- close buton -->
     <button class="close-menu-btn" id="closeMenuBtn">
       <svg class="close-icon">
-        <use href="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg#icon-close"></use>
+        <use href="../img/favicon.svg#icon-close"></use>
       </svg>
     </button>
 
@@ -107,23 +106,21 @@
       <section class="fav-hero-section">
         <div class="container fav-hero-container">
           <picture class="fav-hero-pic">
-            <!-- Desktop yolu düzeltildi: ./src/ eklendi -->
             <source
               media="(min-width: 1280px)"
-              srcset="/tasty-treats-js-project/assets/favorites-desktop_1x-5BAx5B0z.webp 1x, /tasty-treats-js-project/assets/favorites-desktop_2x-DTnc-gx9.webp 2x, ./src/img/webp/favorites-desktop_3x.webp 3x"
+              srcset="/tasty-treats-js-project/assets/favorites-desktop_1x-5BAx5B0z.webp 1x, /tasty-treats-js-project/assets/favorites-desktop_2x-DTnc-gx9.webp 2x"
             />
 
             <source
               media="(min-width: 768px)"
-              srcset="/tasty-treats-js-project/assets/favorites-tablet_1x-CmC33L6H.webp 1x, /tasty-treats-js-project/assets/favorites-tablet_2x-n2CG4YlI.webp 2x, /tasty-treats-js-project/assets/favorites-tablet_3x-eX4I_sqS.webp 3x"
+              srcset="/tasty-treats-js-project/assets/favorites-tablet_1x-CmC33L6H.webp 1x, /tasty-treats-js-project/assets/favorites-tablet_2x-n2CG4YlI.webp 2x"
             />
 
             <source
               media="(max-width: 767px)"
-              srcset="/tasty-treats-js-project/assets/favorites-mob_1x-DRUE-g1y.webp 1x, /tasty-treats-js-project/assets/favorites-mob_2x-CGBvuqzD.webp 2x, /tasty-treats-js-project/assets/favorites-mob_3x-D2JX8gTK.webp 3x"
+              srcset="/tasty-treats-js-project/assets/favorites-mob_1x-DRUE-g1y.webp 1x, /tasty-treats-js-project/assets/favorites-mob_2x-CGBvuqzD.webp 2x"
             />
 
-            <!-- img etiketi fallback olarak src yoluna çekildi -->
             <img
               loading="lazy"
               src="/tasty-treats-js-project/assets/favorites-desktop_1x-5BAx5B0z.webp"
@@ -132,7 +129,8 @@
           </picture>
         </div>
       </section>
-
+      <!-- favv
+      -->
       <section class="fav-content-section">
         <div class="container fav-content-container">
           <ul class="fav-category-recipe-list recipes-list">
@@ -145,7 +143,6 @@
 
           <div class="fav-no-recipes-content">
             <svg class="no-recipes-icon">
-              <!-- SVG yolu düzeltildi: ./src/ eklendi -->
               <use href="/tasty-treats-js-project/assets/favorites-CoOmANsc.svg#icon-favorites"></use>
             </svg>
 
@@ -176,11 +173,11 @@
       <div class="recipe-stats">
         <span class="recipe-rating js-recipe-rating"></span>
         <div class="recipe-stars js-recipe-stars">
-          <img src="./img/favicon.svg" class="star-icon filled" alt="star" />
-          <img src="./img/favicon.svg" class="star-icon filled" alt="star" />
-          <img src="./img/favicon.svg" class="star-icon filled" alt="star" />
-          <img src="./img/favicon.svg" class="star-icon filled" alt="star" />
-          <img src="./img/favicon.svg" class="star-icon" alt="star" />
+          <img src="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg" class="star-icon filled" alt="star" />
+          <img src="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg" class="star-icon filled" alt="star" />
+          <img src="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg" class="star-icon filled" alt="star" />
+          <img src="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg" class="star-icon filled" alt="star" />
+          <img src="/tasty-treats-js-project/assets/favicon-CFE2HipG.svg" class="star-icon" alt="star" />
         </div>
         <span class="recipe-time js-recipe-time"></span>
       </div>
@@ -429,8 +426,6 @@
   </div>
 </div>
 
-    
-    <!-- Script yolları src içine çekildi -->
-    <script src="./src/js/header.js" defer></script>
+    <script src="./js/header.js" defer></script>
   </body>
 </html>
