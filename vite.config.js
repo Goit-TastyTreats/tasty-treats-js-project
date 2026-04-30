@@ -9,6 +9,7 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+     base: '/tasty-treats-js-project/',
     root: './', 
     
     build: {
