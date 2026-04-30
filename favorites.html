@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/spoon-knife.svg" />
+    <!-- Favicon yolunu src olarak güncelledik -->
+    <link rel="icon" type="image/svg+xml" href="./src/img/spoon-knife.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <title>Favorites</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./src/css/styles.css" />
   </head>
   <body>
     <load src="./partials/header.html" highlight-act="active" />
@@ -20,40 +21,44 @@
       <section class="fav-hero-section">
         <div class="container fav-hero-container">
           <picture class="fav-hero-pic">
+            <!-- Desktop yolu düzeltildi: ./src/ eklendi -->
             <source
               media="(min-width: 1280px)"
               srcset="
-                ./img/webp/favorites-desktop_1x.webp 1x,
-                ./img/webp/favorites-desktop_2x.webp 2x
+                ./src/img/webp/favorites-desktop_1x.webp 1x,
+                ./src/img/webp/favorites-desktop_2x.webp 2x,
+                ./src/img/webp/favorites-desktop_3x.webp 3x
               "
             />
 
             <source
               media="(min-width: 768px)"
               srcset="
-                ./img/webp/favorites-tablet_1x.webp 1x,
-                ./img/webp/favorites-tablet_2x.webp 2x
+                ./src/img/webp/favorites-tablet_1x.webp 1x,
+                ./src/img/webp/favorites-tablet_2x.webp 2x,
+                ./src/img/webp/favorites-tablet_3x.webp 3x
               "
             />
 
             <source
               media="(max-width: 767px)"
               srcset="
-                ./img/webp/favorites-mob_1x.webp 1x,
-                ./img/webp/favorites-mob_2x.webp 2x
+                ./src/img/webp/favorites-mob_1x.webp 1x,
+                ./src/img/webp/favorites-mob_2x.webp 2x,
+                ./src/img/webp/favorites-mob_3x.webp 3x
               "
             />
 
+            <!-- img etiketi fallback olarak src yoluna çekildi -->
             <img
               loading="lazy"
-              src="./img/webp/favorites-desktop_1x.webp"
+              src="./src/img/webp/favorites-desktop_1x.webp"
               alt="Dish"
             />
           </picture>
         </div>
       </section>
-      <!-- favv
-      -->
+
       <section class="fav-content-section">
         <div class="container fav-content-container">
           <ul class="fav-category-recipe-list recipes-list">
@@ -66,7 +71,8 @@
 
           <div class="fav-no-recipes-content">
             <svg class="no-recipes-icon">
-              <use href="./img/favorites.svg#icon-favorites"></use>
+              <!-- SVG yolu düzeltildi: ./src/ eklendi -->
+              <use href="./src/img/favorites.svg#icon-favorites"></use>
             </svg>
 
             <p class="no-recipes-descr">
@@ -81,11 +87,13 @@
       <load src="./partials/rating-modal.html" />
     </main>
 
-    <load src="partials/footer.html" />
-    <load src="partials/order-now-modal.html" />
-    <script src="./js/header.js" defer></script>
-    <script type="module" src="./js/favorites.js" defer></script>
-    <script type="module" src="./js/recipe-modal.js" defer></script>
-    <script type="module" src="./js/footer-modal.js" defer></script>
+    <load src="./partials/footer.html" />
+    <load src="./partials/order-now-modal.html" />
+    
+    <!-- Script yolları src içine çekildi -->
+    <script src="./src/js/header.js" defer></script>
+    <script type="module" src="./src/js/favorites.js" defer></script>
+    <script type="module" src="./src/js/recipe-modal.js" defer></script>
+    <script type="module" src="./src/js/footer-modal.js" defer></script>
   </body>
 </html>

@@ -9,11 +9,14 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    root: 'src',
+    // 1. ADIM: Root'u ana dizine çek (src silindi)
+    root: './', 
+    
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        // 2. ADIM: Input yolunu güncelle (Artık html dosyaları ana dizinde)
+        input: glob.sync('./*.html'), 
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -34,12 +37,14 @@ export default defineConfig(({ command }) => {
           },
         },
       },
-      outDir: '../dist',
+      // 3. ADIM: outDir'i düzelt (Artık dist bir üstte değil, yan yana olacak)
+      outDir: 'dist', 
       emptyOutDir: true,
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**.html']),
+      // 4. ADIM: Reload yolunu güncelle
+      FullReload(['./**.html']),
       SortCss({
         sort: 'mobile-first',
       }),
