@@ -1,3 +1,7 @@
+rating-modal.css
+
+/* rating-modal.css */
+
 /* Modal Arka Planı (Backdrop) */
 .rating-modal-backdrop {
   position: fixed;
@@ -21,174 +25,101 @@
   pointer-events: none;
 }
 
-/* 1. Kendi renk değişkenlerini tanımla (base.css'tekilerle çakışmaz) */
-.rating-modal-content {
-  /* Işık modu (Light Mode) renkleri */
-  --modal-bg: #FFFFFF;
-  --modal-text: var(--black); /* base.css'teki değişkeni kullandık */
-  --input-border: rgba(5, 5, 5, 0.2);
-  --star-empty: rgba(5, 5, 5, 0.1);
-}
-
-/* 2. Dark Mode geldiğinde bu değişkenleri güncelle */
-/* (Takım liderin dark modu body'ye 'dark' class'ı vererek yaptıysa böyle kullanırsın) */
-body.dark .rating-modal-content {
-  --modal-bg: #111111;
-  --modal-text: #F8F8F8;
-  --input-border: rgba(248, 248, 248, 0.3);
-  --star-empty: rgba(248, 248, 248, 0.2);
-}
-
-.is-hidden {
-  display: none !important;
-}
-/* Rating modal açıkken nasıl görünmeli? */
-#ratingModal:not(.is-hidden) {
-  display: flex !important;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(5, 5, 5, 0.4); /* Arka planı biraz karartır */
-  z-index: 1000; /* Recipe modal'dan daha üstte olması için */
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Arka planı hafif karartır */
-  display: flex; /*MODALIN GOZUKMESI ICIN TEKRAR FLEX YAP AC*/
-  align-items: center; /* Dikeyde ortalar */
-  justify-content: center; /* Yatayda ortalar */
-  z-index: 999; /* Her şeyin üstünde görünmesi için */
-}
-
-/* 3. Şimdi bu değişkenleri kullan */
-.rating-modal-content {
-  width: 100%;
-  max-width: 335px;
-  background-color: var(--modal-bg);
-  border-radius: 15px;
-  padding: 20px;
-  color: var(--modal-text);
-  min-height: 216px;
+/* Modal Penceresi */
+.rating-modal-window {
   position: relative;
-  font-family: 'Inter', sans-serif;
-  
+  width: 90%;
+  max-width: 430px;
+  background-color: var(--bg-color);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.rating-input {
-    border: 1px solid var(--input-border);
-    background: transparent;
-    color: var(--modal-text);
+/* Kapatma Butonu (X) */
+.rating-modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--black);
 }
 
+/* Rating Başlığı ve Yıldızlar */
 .rating-label {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.20em;
-  color: var(--rating-text-color);
-  margin-bottom: 4px;
-}
-
-.rating-value {
-  font-size: 18px;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
-  color: #050505; /* Net siyah yaptık */
-  margin-left: -170px;
+  font-size: 14px;
+  color: rgba(5, 5, 5, 0.5);
+  margin-bottom: 8px;
+  display: block;
 }
 
-/* Yıldızların yan yana gelmesi için kritik kısım */
-/* Yıldız Listesi */
-.star-rating-container {
+.rating-score-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
   margin-bottom: 24px;
-  margin-left: 60px;
+}
+
+.rating-number {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
 }
 
 .rating-stars-list {
   display: flex;
   gap: 4px;
   list-style: none;
-  padding-left: 15px;
+  padding: 0;
 }
 
-.rating-star-item {
+.rating-star-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--bg-color); /* Boş yıldız rengi */
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: fill 200ms ease;
 }
 
-.rating-star-item:hover {
-  transform: scale(1.1); /* Üzerine gelince hafif büyüsün */
+.rating-star-icon.filled {
+  fill: var(--star-icon-color); /* Görseldeki turuncu-sarı renk */
 }
 
-/* İkon Boyutları ve Renkleri */
-.icon-star1 {
-  width: 24px;
-  height: 24px;
-  fill: #d3d3d3; /* Varsayılan gri renk */
-  transition: fill 0.2s ease;
-}
-
-/* Aktif (Sarı) Yıldızlar */
-.rating-star-item.active .icon-star1 {
-  fill: #f2c94c; /* Canlı sarı renk */
-}
-
-/* Modal kutusunun içindeki form düzeni */
-.rating-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.rating-modal-content {
-  /* Kutunun boyunu içeriğe göre otomatik ayarla */
-  height: auto; 
-  padding-bottom: 30px;
-}
-
-/* Email Kutusu */
-.rating-input {
+/* Input Alanı (Email) */
+.rating-email-input {
   width: 100%;
-  height: 46px;
-  border: 1px solid #05050533;
-  border-radius: 15px;
   padding: 14px 18px;
-  font-weight: 500;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+  border-radius: 12px;
   font-size: 14px;
-  line-height: 1.28em;
+  margin-bottom: 16px;
   outline: none;
-  background: transparent;
-  margin-bottom: 14px;
+  transition: border-color 200ms ease;
 }
 
-.rating-input::placeholder {
-  color: rgba(5, 5, 5, 0.5); /* Koyu modda bunu da değişkene bağlayabilirsin */
+.rating-email-input:focus {
+  border-color: var(--color-primary); /* Yeşil buton rengiyle uyumlu */
 }
 
-/* Send Butonu */
-.btn-send {
+/* Gönder Butonu (Send) */
+.rating-send-btn {
   width: 100%;
-  height: 46px;
-  background: #9BB537;
-  border-radius: 15px;
+  padding: 14px;
+  background-color: var(--color-primary); /* Görseldeki fıstık yeşili */
+  color: var(--bg-color);
   border: none;
-  color: var(--rating-btn-text);
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 100%;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 200ms ease;
 }
 
-.btn-send:hover {
-  background: #8aa131; /* Hafif koyu bir hover efekti güzel olur */
+.rating-send-btn:hover {
+  background-color: var(--color-primary);
 }
