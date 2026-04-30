@@ -75,5 +75,5 @@ export async function createOrder(orderData) {
   } catch (error) {
     console.error('Sipariş gönderilirken hata:', error.message);
     throw error; // Hatayı yukarı fırlat ki arayüzde kullanıcıya "Hata oluştu" diyebilelim
-  }
+  }// Hatayı yukarı fırlat ki arayüzde kullanıcıya "Hata oluştu" diyebilelim
 }
