@@ -1,5 +1,7 @@
 // rating-modal.js
 
+
+
 // 1. MODALI AÇMA VE KAPATMA MANTIĞI
 document.addEventListener('click', (event) => {
   const ratingBtn = event.target.closest('#giveRatingBtn') || event.target.closest('.js-give-rating-btn');
@@ -22,6 +24,42 @@ document.addEventListener('click', (event) => {
     }
   }
 });
+
+// Elementleri seçiyoruz
+const stars = document.querySelectorAll('.rating-star-item');
+const ratingValueText = document.querySelector('.js-rating-value');
+const ratingForm = document.querySelector('.js-rating-form');
+
+// Her bir yıldıza tıklama olayı ekliyoruz
+stars.forEach((star) => {
+  star.addEventListener('click', () => {
+    const value = star.getAttribute('data-value'); // Tıklanan yıldızın rakam değerini al (1, 2, 3...)
+
+    // 1. Puan yazısını güncelle (Örn: 3.0)
+    ratingValueText.textContent = `${value}.0`;
+
+    // 2. Yıldızların boyanmasını sağla
+    updateStars(value);
+  });
+});
+
+// Yıldızları boyama fonksiyonu
+function updateStars(currentValue) {
+  stars.forEach((star) => {
+    const starValue = star.getAttribute('data-value');
+
+    if (starValue <= currentValue) {
+      // Tıklanan değerden küçük veya eşit olanlara 'active' sınıfı ekle (Sarı yap)
+      star.classList.add('active');
+    } else {
+      // Büyük olanlardan 'active' sınıfını çıkar (Gri yap)
+      star.classList.remove('active');
+    }
+  });
+}
+
+
+// Yıldızları boyama fonksiyonu
 
 document.addEventListener('DOMContentLoaded', () => {
   const ratingModal = document.getElementById('ratingModal');

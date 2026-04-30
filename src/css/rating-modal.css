@@ -101,47 +101,46 @@ body.dark .rating-modal-content {
   font-size: 18px;
   font-weight: 500;
   color: #050505; /* Net siyah yaptık */
-  margin-right: 10px;
+  margin-left: -170px;
 }
 
 /* Yıldızların yan yana gelmesi için kritik kısım */
+/* Yıldız Listesi */
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  margin-left: 60px;
+}
+
 .rating-stars-list {
   display: flex;
   gap: 4px;
   list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.star-rating-container {
-  display: flex; /* İçindekileri yan yana dizer */
-  align-items: center; /* Dikeyde ortalar */
-  gap: 10px; /* Puan ve yıldızlar arasındaki boşluk */
-  margin-bottom: 24px;
+  padding-left: 15px;
 }
 
-.rating-stars-list {
-  display: flex; /* Yıldızları yan yana dizer */
-  gap: 4px; /* Yıldızların kendi arasındaki mesafe */
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.rating-star-item {
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.star-icon {
+.rating-star-item:hover {
+  transform: scale(1.1); /* Üzerine gelince hafif büyüsün */
+}
+
+/* İkon Boyutları ve Renkleri */
+.icon-star1 {
   width: 24px;
   height: 24px;
-  display: block; /* Kapladığı alanı netleştirir */
-  cursor: pointer;
-  border: 1px solid red;
-  /* Önemli: fill değerini net bir gri yapalım */
-  fill: #757575 !important; 
-  transition: fill 250ms ease;
+  fill: #d3d3d3; /* Varsayılan gri renk */
+  transition: fill 0.2s ease;
 }
 
-/* Tıklandığında veya üzerine gelindiğinde sarı olması için */
-.star-icon.filled,
-.rating-star-item:hover .star-icon {
-  fill: #F8AB31 !important;
+/* Aktif (Sarı) Yıldızlar */
+.rating-star-item.active .icon-star1 {
+  fill: #f2c94c; /* Canlı sarı renk */
 }
 
 /* Modal kutusunun içindeki form düzeni */
