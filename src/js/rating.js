@@ -16,7 +16,6 @@ export const createRatingStars = rating => {
   `;
 
   let stars = '';
-
   for (let i = 0; i < 5; i++) {
     stars += i < rounded ? filledStar : emptyStar;
   }

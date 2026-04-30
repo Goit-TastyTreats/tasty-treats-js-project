@@ -1,5 +1,5 @@
 import './modal-recipe';
-import './theme-dark-mode';
+import './rating-modal.js';
 import svg from '../img/favicon.svg';
 import { createRatingStars } from './rating';
 import { getFavorites, removeFavorite } from './storage';
@@ -9,9 +9,7 @@ import { openRecipe } from './modal-recipe';
 const heroPicture = document.querySelector('.fav-hero-pic');
 const categoryRecipeList = document.querySelector('.fav-category-recipe-list');
 const favoriteRecipesList = document.querySelector('.fav-recipes-list');
-const noFavoriteRecipesMessage = document.querySelector(
-  '.fav-no-recipes-content'
-);
+const noFavoriteRecipesMessage = document.querySelector('.fav-no-recipes-content');
 const categoryAllBtn = document.querySelector('.all-category-btn');
 
 let allRecipes = [];
@@ -37,7 +35,6 @@ async function initFavoritesPage() {
     }
 
     allRecipes = recipes;
-
     showContentState();
     createCategories(recipes);
     renderRecipes(recipes);
@@ -48,7 +45,6 @@ async function initFavoritesPage() {
 }
 
 function renderRecipes(recipes) {
-  // console.log(recipes);
   favoriteRecipesList.innerHTML = '';
 
   const markup = recipes
@@ -65,11 +61,11 @@ function renderRecipes(recipes) {
             <p class="recipe-card-description">${recipe.description}</p>
           </div>
           <div class="card-btn-container">
-          <div class="rating-container">
-                <span class="rating-value">${recipe.rating || 0}</span>
-                <span class="rating-stars">${createRatingStars(recipe.rating)}</span>
-              </div>
-              <button type="button" class="see-recipe-btn" name="${recipe._id}" data-modal-recipte-open>
+            <div class="rating-container">
+              <span class="rating-value">${recipe.rating || 0}</span>
+              <span class="rating-stars">${createRatingStars(recipe.rating)}</span>
+            </div>
+            <button type="button" class="see-recipe-btn" name="${recipe._id}" data-modal-recipte-open>
               See recipe
             </button>
           </div>
@@ -92,9 +88,7 @@ function createCategories(recipes) {
   );
 
   const markup = categories
-    .map(
-      cat => `<button type="button" class="fav-category-btn">${cat}</button>`
-    )
+    .map(cat => `<button type="button" class="fav-category-btn">${cat}</button>`)
     .join('');
 
   categoryRecipeList.insertAdjacentHTML('beforeend', markup);
@@ -119,15 +113,20 @@ favoriteRecipesList.addEventListener('click', e => {
   if (icon) {
     const id = icon.dataset.id;
 
-    // remove from UI instantly
-    allRecipes = allRecipes.filter(r => r._id !== id);
-    removeFavorite(id);
-    renderRecipes(allRecipes);
-    createCategories(allRecipes);
+    // İkonu beyaza çevir
+    icon.classList.remove('favorite-icon-active');
 
-    if (allRecipes.length === 0) {
-      showEmptyState();
-    }
+    // 300ms sonra listeden kaldır
+    setTimeout(() => {
+      allRecipes = allRecipes.filter(r => r._id !== id);
+      removeFavorite(id);
+      renderRecipes(allRecipes);
+      createCategories(allRecipes);
+
+      if (allRecipes.length === 0) {
+        showEmptyState();
+      }
+    }, 300);
   }
 
   const btn = e.target.closest('.see-recipe-btn');
@@ -150,3 +149,15 @@ function showContentState() {
   categoryRecipeList.style.display = '';
   favoriteRecipesList.style.display = '';
 }
+
+document.addEventListener('favoriteRemoved', (e) => {
+  const id = e.detail.id;
+  allRecipes = allRecipes.filter(r => r._id !== id);
+  removeFavorite(id);
+  renderRecipes(allRecipes);
+  createCategories(allRecipes);
+
+  if (allRecipes.length === 0) {
+    showEmptyState();
+  }
+});

@@ -1,4 +1,3 @@
-// 1. MODALI AÇMA VE KAPATMA MANTIĞI
 document.addEventListener('click', (event) => {
   const ratingBtn = event.target.closest('#giveRatingBtn') || event.target.closest('.js-give-rating-btn');
   const closeBtn = event.target.closest('.js-modal-close-btn');
@@ -6,21 +5,16 @@ document.addEventListener('click', (event) => {
 
   if (ratingBtn) {
     if (ratingModal) {
-      // Önce recipe modalını kapat
+      ratingModal.classList.remove('is-hidden');
+      document.body.style.overflow = 'hidden';
+
       const recipeModalBackdrop = document.getElementById('recipeModal');
       if (recipeModalBackdrop) {
         recipeModalBackdrop.classList.add('is-hidden');
       }
-
-      // 300ms bekle sonra rating modalını aç
-      setTimeout(() => {
-        ratingModal.classList.remove('is-hidden');
-        document.body.style.overflow = 'hidden';
-      }, 300);
     }
   }
 
-  // Kapatma butonu veya backdrop tıklandığında
   if (closeBtn || event.target === ratingModal) {
     if (ratingModal) {
       ratingModal.classList.add('is-hidden');
@@ -29,93 +23,108 @@ document.addEventListener('click', (event) => {
   }
 });
 
-
-// Elementleri seçiyoruz
 const stars = document.querySelectorAll('.rating-star-item');
 const ratingValueText = document.querySelector('.js-rating-value');
-const ratingForm = document.querySelector('.js-rating-form');
 
-// Her bir yıldıza tıklama olayı ekliyoruz
 stars.forEach((star) => {
   star.addEventListener('click', () => {
-    const value = star.getAttribute('data-value'); // Tıklanan yıldızın rakam değerini al (1, 2, 3...)
-
-    // 1. Puan yazısını güncelle (Örn: 3.0)
+    const value = star.getAttribute('data-value');
     ratingValueText.textContent = `${value}.0`;
-
-    // 2. Yıldızların boyanmasını sağla
     updateStars(value);
   });
 });
 
-// Yıldızları boyama fonksiyonu
 function updateStars(currentValue) {
   stars.forEach((star) => {
     const starValue = star.getAttribute('data-value');
-
     if (starValue <= currentValue) {
-      // Tıklanan değerden küçük veya eşit olanlara 'active' sınıfı ekle (Sarı yap)
       star.classList.add('active');
     } else {
-      // Büyük olanlardan 'active' sınıfını çıkar (Gri yap)
       star.classList.remove('active');
     }
   });
 }
 
-
-// Yıldızları boyama fonksiyonu
+updateStars(0);
 
 document.addEventListener('DOMContentLoaded', () => {
   const ratingModal = document.getElementById('ratingModal');
   const ratingForm = document.querySelector('.js-rating-form');
   const stars = document.querySelectorAll('.rating-star-item');
   const ratingText = document.querySelector('.js-rating-value');
-  
+
   let currentRating = 0;
 
-  // 1. Yıldız Seçme Mantığı
   stars.forEach(item => {
     item.addEventListener('click', () => {
       currentRating = item.getAttribute('data-value');
       ratingText.textContent = `${currentRating}.0`;
 
-      // Yıldızları görsel olarak boya
       stars.forEach(star => {
-        const icon = star.querySelector('.star-icon');
-        if (star.getAttribute('data-value') <= currentRating) {
-          icon.classList.add('filled');
-        } else {
-          icon.classList.remove('filled');
+        const icon = star.querySelector('.icon-star1');
+        if (icon) {
+          if (star.getAttribute('data-value') <= currentRating) {
+            icon.classList.add('filled');
+          } else {
+            icon.classList.remove('filled');
+          }
         }
       });
     });
   });
 
-  // 2. Formu API'ye Gönderme
   ratingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    const email = e.target.elements.email.value;
 
-    // API'nin beklediği veri yapısı (Genelde id, rating ve email ister)
-    const dataToSend = {
-      rating: Number(currentRating),
-      email: email
-    };
+    const email = e.target.elements.email.value;
+    const isDark = document.body.classList.contains('dark-theme');
+    const textColor = isDark ? '#f8f8f8' : '#050505';
+    const subTextColor = isDark ? 'rgba(248,248,248,0.5)' : 'rgba(5,5,5,0.5)';
 
     try {
-      // Örnek API URL'i (Tasty Treats dökümanına göre düzenle)
-      const response = await fetch('https://tasty-treats-backend.p.goit.global/api/orders/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataToSend)
-      });
+      const response = await fetch(
+        `https://tasty-treats-backend.p.goit.global/api/recipes/${window.currentRecipeId}/rating`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rate: Number(currentRating), email: email }),
+        }
+      );
 
       if (response.ok) {
-        alert('Puanınız başarıyla gönderildi!');
-        ratingForm.reset();
-        ratingModal.classList.add('is-hidden');
+        ratingForm.innerHTML = `
+          <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px 0;
+            text-align: center;
+          ">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+              <circle cx="30" cy="30" r="30" fill="#9BB537"/>
+              <path d="M18 30L26 38L42 22" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p style="font-size: 18px; font-weight: 600; color: ${textColor}; margin: 0;">Thank you for your rating!</p>
+            <p style="font-size: 14px; color: ${subTextColor}; margin: 0;">Your feedback has been sent successfully.</p>
+          </div>
+        `;
+
+        setTimeout(() => {
+          ratingModal.classList.add('is-hidden');
+          document.body.style.overflow = 'auto';
+
+          currentRating = 0;
+          ratingText.textContent = '0.0';
+          updateStars(0);
+
+          ratingForm.innerHTML = `
+            <input type="email" class="rating-input" name="email" placeholder="Enter email" required>
+            <button type="submit" class="btn btn-send">Send</button>
+          `;
+        }, 2500);
+
       } else {
         alert('Bir hata oluştu, lütfen tekrar deneyin.');
       }
