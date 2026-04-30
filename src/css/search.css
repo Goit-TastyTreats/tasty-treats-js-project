@@ -335,7 +335,17 @@ body.dark-theme .search-wrapper:focus-within .search-icon {
   stroke: var(--color-primary);
 }
 
+.search-wrapper:focus-within .search-icon {
+  color: var(--color-primary);
+  stroke: var(--color-primary);
+}
+
 body.dark-theme .custom-select.is-open .select-chevron {
+  border-left-color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.custom-select.is-open .select-chevron {
   border-left-color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
