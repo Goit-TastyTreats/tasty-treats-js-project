@@ -293,3 +293,7 @@
     border-radius: 8px !important;
   }
 }
+
+.popular-recipe-img {
+  cursor: pointer;
+}

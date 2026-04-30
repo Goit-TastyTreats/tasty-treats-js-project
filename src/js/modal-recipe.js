@@ -9,3 +9,4 @@ export const openRecipe = id => {
       .catch(err => console.error('Modal açılırken hata:', err));
   }
 };
+
