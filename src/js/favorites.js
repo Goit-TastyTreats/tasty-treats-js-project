@@ -1,10 +1,9 @@
-import './modal-recipe';
+
 import './rating-modal.js';
 import svg from '../img/favicon.svg';
 import { createRatingStars } from './rating';
 import { getFavorites, removeFavorite } from './storage';
 import { fetchRecipeById } from './api';
-import { openRecipe } from './modal-recipe';
 
 const heroPicture = document.querySelector('.fav-hero-pic');
 const categoryRecipeList = document.querySelector('.fav-category-recipe-list');
