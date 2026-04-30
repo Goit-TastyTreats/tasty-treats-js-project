@@ -9,11 +9,12 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    root: './',
+    root: './', 
+    
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        input: glob.sync('./*.html'), 
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -34,12 +35,14 @@ export default defineConfig(({ command }) => {
           },
         },
       },
-      outDir: '../dist',
+      // dist klasörü ana dizinde oluşturulacak
+      outDir: 'dist', 
       emptyOutDir: true,
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**.html']),
+      // DÜZELTME: Reload yollarını da ana dizine göre güncelledik
+      FullReload(['./**.html', './partials/**.html']),
       SortCss({
         sort: 'mobile-first',
       }),
