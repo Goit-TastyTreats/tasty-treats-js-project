@@ -3,6 +3,7 @@ import Notiflix from 'notiflix';
 import svg from '../img/favicon.svg';
 import { createRatingStars } from './rating';
 import { fetchRecipes } from './api';
+import { openRecipe } from './modal-recipe';
 import {
   getFavorites,
   addFavorite,
@@ -85,7 +86,7 @@ export const createRecipesList = data => {
                 <span class="rating-value">${recipe.rating || 0}</span>
                 <span class="rating-stars">${createRatingStars(recipe.rating)}</span>
               </div>
-              <button type="button" class="see-recipe-btn" name="${recipe._id}" data-modal-recipte-open>See recipe</button>
+              <button type="button" class="see-recipe-btn" name="${recipe._id}" data-id="${recipe._id}" data-modal-recipte-open>See recipe</button>
             </div>
           </div>
         </li>`;
@@ -246,14 +247,7 @@ recipesList.addEventListener('click', e => {
 
   const btn = e.target.closest('.see-recipe-btn');
   if (btn) {
-    const id = btn.name;
-    if (window.openRecipeModal) {
-  // Senin modalını açması için API'den veri çekip fonksiyonunu tetikleyelim
-  fetch(`https://tasty-treats-backend.p.goit.global/api/recipes/${id}`)
-    .then(res => res.json())
-    .then(data => window.openRecipeModal(data))
-    .catch(err => console.error("Modal açılırken hata:", err));
-}
-    console.log(id);
+    const id = btn.dataset.id;
+    openRecipe(id);
   }
 });

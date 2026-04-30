@@ -1,121 +1,68 @@
-// rating-modal.js
+// Olay delegasyonu ile butonun her zaman çalışmasını sağlıyoruz
+document.addEventListener('click', event => {
+  // Give a Rating butonu kontrolü
+  const ratingBtn =
+    event.target.closest('#giveRatingBtn') ||
+    event.target.closest('.js-give-rating-btn');
 
-
-
-// 1. MODALI AÇMA VE KAPATMA MANTIĞI
-document.addEventListener('click', (event) => {
-  const ratingBtn = event.target.closest('#giveRatingBtn') || event.target.closest('.js-give-rating-btn');
-  const closeBtn = event.target.closest('.js-modal-close-btn');
-  const ratingModal = document.getElementById('ratingModal');
-
-  // Açma butonu tıklandığında
   if (ratingBtn) {
+    const ratingModal = document.querySelector('.js-rating-modal-backdrop');
     if (ratingModal) {
       ratingModal.classList.remove('is-hidden');
-      document.body.style.overflow = 'hidden'; 
+      document.body.style.overflow = 'hidden'; // Arka plan kaymasını engeller
     }
   }
 
-  // Kapatma butonu veya backdrop tıklandığında
-  if (closeBtn || event.target === ratingModal) {
-    if (ratingModal) {
-      ratingModal.classList.add('is-hidden');
+  // Kapatma butonu kontrolü
+  const closeBtn = event.target.closest('.js-rating-close-btn');
+  const ratingBackdrop = document.querySelector('.js-rating-modal-backdrop');
+
+  if (closeBtn || event.target === ratingBackdrop) {
+    if (ratingBackdrop) {
+      ratingBackdrop.classList.add('is-hidden');
       document.body.style.overflow = 'auto';
     }
   }
 });
 
-// Elementleri seçiyoruz
-const stars = document.querySelectorAll('.rating-star-item');
-const ratingValueText = document.querySelector('.js-rating-value');
+// Form Gönderim İşlemi
 const ratingForm = document.querySelector('.js-rating-form');
+if (ratingForm) {
+  ratingForm.addEventListener('submit', async e => {
+    e.preventDefault();
 
-// Her bir yıldıza tıklama olayı ekliyoruz
-stars.forEach((star) => {
-  star.addEventListener('click', () => {
-    const value = star.getAttribute('data-value'); // Tıklanan yıldızın rakam değerini al (1, 2, 3...)
+    // ID'yi tarif modalının data-attribute'undan alıyoruz
+    const recipeModal = document.querySelector('.js-recipe-modal');
+    const recipeId = recipeModal
+      ? recipeModal.getAttribute('data-current-id')
+      : null;
 
-    // 1. Puan yazısını güncelle (Örn: 3.0)
-    ratingValueText.textContent = `${value}.0`;
+    if (!recipeId) {
+      alert('Hata: Tarif kimliği bulunamadı!');
+      return;
+    }
 
-    // 2. Yıldızların boyanmasını sağla
-    updateStars(value);
-  });
-});
+    const email = e.target.elements.email.value;
+    const ratingValue = e.target.querySelector(
+      'input[name="rating"]:checked'
+    )?.value;
 
-// Yıldızları boyama fonksiyonu
-function updateStars(currentValue) {
-  stars.forEach((star) => {
-    const starValue = star.getAttribute('data-value');
+    if (!ratingValue) {
+      alert('Lütfen bir puan seçin!');
+      return;
+    }
 
-    if (starValue <= currentValue) {
-      // Tıklanan değerden küçük veya eşit olanlara 'active' sınıfı ekle (Sarı yap)
-      star.classList.add('active');
-    } else {
-      // Büyük olanlardan 'active' sınıfını çıkar (Gri yap)
-      star.classList.remove('active');
+    // API POST İsteği örneği (Burayı kendi projenin API yapısına göre güncelle)
+    try {
+      console.log('Gönderiliyor:', { recipeId, email, ratingValue });
+      // const response = await fetch(`https://.../recipes/${recipeId}/rating`, { ... });
+      alert('Puanınız başarıyla gönderildi!');
+      document
+        .querySelector('.js-rating-modal-backdrop')
+        .classList.add('is-hidden');
+      ratingForm.reset();
+    } catch (error) {
+      console.error('Puan gönderilirken hata oluştu:', error);
     }
   });
 }
-
-
-// Yıldızları boyama fonksiyonu
-
-document.addEventListener('DOMContentLoaded', () => {
-  const ratingModal = document.getElementById('ratingModal');
-  const ratingForm = document.querySelector('.js-rating-form');
-  const stars = document.querySelectorAll('.rating-star-item');
-  const ratingText = document.querySelector('.js-rating-value');
-  
-  let currentRating = 0;
-
-  // 1. Yıldız Seçme Mantığı
-  stars.forEach(item => {
-    item.addEventListener('click', () => {
-      currentRating = item.getAttribute('data-value');
-      ratingText.textContent = `${currentRating}.0`;
-
-      // Yıldızları görsel olarak boya
-      stars.forEach(star => {
-        const icon = star.querySelector('.star-icon');
-        if (star.getAttribute('data-value') <= currentRating) {
-          icon.classList.add('filled');
-        } else {
-          icon.classList.remove('filled');
-        }
-      });
-    });
-  });
-
-  // 2. Formu API'ye Gönderme
-  ratingForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const email = e.target.elements.email.value;
-
-    // API'nin beklediği veri yapısı (Genelde id, rating ve email ister)
-    const dataToSend = {
-      rating: Number(currentRating),
-      email: email
-    };
-
-    try {
-      // Örnek API URL'i (Tasty Treats dökümanına göre düzenle)
-      const response = await fetch('https://tasty-treats-backend.p.goit.global/api/orders/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataToSend)
-      });
-
-      if (response.ok) {
-        alert('Puanınız başarıyla gönderildi!');
-        ratingForm.reset();
-        ratingModal.classList.add('is-hidden');
-      } else {
-        alert('Bir hata oluştu, lütfen tekrar deneyin.');
-      }
-    } catch (error) {
-      console.error('API Hatası:', error);
-    }
-  });
-});

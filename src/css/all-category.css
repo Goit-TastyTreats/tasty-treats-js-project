@@ -18,6 +18,7 @@
 .category-sidebar {
   width: 100%;
   margin-bottom: 40px;
+  padding: 0;
 }
 
 #category-list .cat-items {
@@ -112,205 +113,220 @@
 
 /* --- EKRAN BOYUTLARINA GÖRE PANEL GENİŞLİĞİ --- */
 
-/* --- MOBİL ÖZEL DÜZELTME (0px - 374px) --- */
+/* --- MOBİL DÜZENLEME (375px ve Genel Mobil) --- */
+
+/* Ekstra: Çok dar cihazlar için (0-374px) eklediğin kuralı bunun hemen altına bırakabilirsin */
 @media screen and (max-width: 374px) {
-  /* Kategori listesinin çökmesini engellemek için */
-  .category-list {
-    height: 352px !important; /* Yüksekliği mobilde de koru */
-    overflow-y: scroll !important; /* "auto" yerine "scroll" ile çubuğu zorla getir */
-    display: block !important; /* Flex bazen küçük ekranlarda daralabiliyor */
-    padding-right: 15px !important;
-  }
-
-  /* Webkit scrollbar'ın küçük ekranda gizlenmesini engelle */
-  .category-list::-webkit-scrollbar {
-    width: 6px !important;
-    display: block !important;
-  }
-
-  /* All Categories butonu küçük ekranda taşıyorsa genişliğini ayarla */
-  .all-category-button {
-    width: 150px !important; /* Çok dar ekranlarda 176px fazla gelirse diye */
+  #all-category-btn {
+    width: 150px !important;
     font-size: 16px !important;
+    margin-top: 80px !important;
   }
 }
-
-/* Dokunmatik ekranlarda kaydırmayı hızlandır (iOS/Android) */
-.category-list {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* --- MOBİL ÖZEL DÜZELTME (Sadece senin dosyanda kalacak şekilde) --- */
-
-@media screen and (max-width: 767px) {
-  /* 1. Ana sarmalayıcıyı sadece senin section'ının olduğu yerde hedefliyoruz */
-  /* Bu sayede diğer sayfalardaki main-wrapper'lar etkilenmez */
-  .category-sidebar ~ .main-wrapper,
-  .left-panel .main-wrapper,
-  body .main-wrapper {
-    display: flex !important;
-    flex-direction: column !important; /* Alt alta dizilim */
-    gap: 40px !important;
-    padding: 0 !important;
-    margin-top: 20px !important;
+/* Sadece 375px'ten büyük VE 768px'ten küçük ekranlar için */
+@media (min-width: 375px) and (max-width: 768px) {
+  #category-list .cat-items {
+    margin-bottom: 16px !important;
+    width: 31px !important;
+    height: 18px !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 500;
   }
 
-  /* 2. Senin sol panelinin mobilde tam genişlik olmasını sağlıyoruz */
-  .left-panel {
-    width: 100% !important;
-    max-width: 100% !important;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Elemanları sola yaslar */
-  }
-
-  /* 3. Senin section kapsayıcın (Arkadaşının container ayarlarını ezer) */
-  section.category-sidebar.container {
-    padding: 0 !important;
-    margin-bottom: 0 !important; /* Main-wrapper gap'i zaten boşluk bırakıyor */
-    max-width: 100% !important;
-  }
-
-  /* 4. Butonun mobilde de 176px kalıp sola yaslanması (Figma) */
   #all-category-btn {
     width: 176px !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-  }
-  .categories-wrapper {
-    height: 198px !important; /* Dış kutu 198px oldu */
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-/* Tablet (768px ve üstü) */
-@media screen and (min-width: 768px) {
-  .main-wrapper {
-    display: flex;
-    /* Figma'daki sol panel ve kartlar arası boşluk */
-    gap: 32px;
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 0; /* Figma'daki yan boşluklar */
-    align-items: flex-start;
-  }
-
-  .categories-wrapper {
-    height: 416px; /* Figma tablet değeri */
-  }
-
-  .left-panel {
-    /* ARKADAŞININ İSTEDİĞİ KRİTİK GENİŞLİK */
-    width: 176px;
-    flex-shrink: 0; /* Panelin daralmasını kesin olarak engeller */
-  }
-
-  .all-category-button {
-    width: 100%; /* 176px olan kapsayıcıya tam yayılır */
-    height: 48px; /* Figma tablet ölçüsü genellikle 48-50px'dir */
-    font-size: 16px; /* Mobilden tablete geçerken yazı boyutu ayarı */
-  }
-
-  .category-list {
-    /* 1. Metinlerin scrollbar altında kalmaması için sağdan boşluk açıyoruz */
-    padding-right: 20px !important;
-
-    /* 2. Alanın yüksekliğini mobilde biraz daha kısa tutalım ki scroll tetiklensin */
-    height: 352px !important;
-    overflow-y: scroll !important; /* Her zaman göster */
-
-    /* 3. Mobilde çubuk bazen görünmez, rengini belirginleştirelim */
-    scrollbar-width: thin; /* Firefox için */
-    scrollbar-color: rgba(5, 5, 5, 0.2) transparent; /* Firefox için */
-  }
-
-  /* Webkit (Chrome, Edge, Android) için scrollbar'ı görünür kıl */
-  .category-list::-webkit-scrollbar {
-    width: 6px !important;
-    display: block !important;
-  }
-
-  .category-list::-webkit-scrollbar-thumb {
-    background-color: rgba(
-      5,
-      5,
-      5,
-      0.2
-    ) !important; /* Rengi biraz koyulaştırdık */
-    border-radius: 10px !important;
-  }
-}
-
-/* Desktop (1280px ve üstü) */
-
-@media screen and (min-width: 1280px) {
-  /* Diğer container'ların senin alanını sıkıştırmasını engelliyoruz */
-  .category-sidebar.container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0;
-    max-width: 100%;
-    margin-bottom: 40px;
-  }
-
-  .categories-wrapper {
-    height: 416px; /* Figma tablet değeri */
-  }
-  .all-category-button {
-    /* FIGMA ÖLÇÜLERİ */
-    width: 176px !important; /* Genişliği 176px'e sabitledik */
-    height: 50px !important; /* Yüksekliği 50px'e sabitledik */
-
-    display: flex;
+    height: 50px !important;
+    display: flex !important;
     align-items: center;
     justify-content: center;
-
-    /* Yazı ayarları */
-    font-size: 18px;
+    border: 1px solid rgba(5, 5, 5, 0.1);
+    color: rgba(5, 5, 5, 0.5);
+    border-radius: 15px !important;
+    font-size: 18px !important;
     font-weight: 500;
-    line-height: 1.2;
-
-    /* Butonun sola yaslı durması için (Figma'daki gibi) */
-    margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 24px; /* Altındaki listeyle olan mesafe */
+    margin-bottom: 34px !important;
+    margin-top: 80px !important;
+    cursor: pointer;
+    transition: all 250ms ease;
   }
 
+  /* Kategori Listesi: Mobil yüksekliği 198px */
+  .categories-wrapper {
+    height: 198px !important;
+    width: 326px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .category-btn {
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 500 !important;
+    margin-bottom: 16px !important;
+    padding: 0 !important;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    width: 31px !important;
+    height: 18px !important;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) color 250ms
+      cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@media screen and (min-width: 768px) {
   .main-wrapper {
-    display: flex;
-    /* Figma Desktop'ta sol panel ile sağ panel arası tam 64px */
-    gap: 64px;
-    max-width: 1280px;
+    display: flex !important;
+    gap: 32px !important; /* Figma'daki tablet gap değeri */
+    max-width: 768px;
     margin: 0 auto;
-    /* Sayfayı ortalayan ana boşluklar */
-    padding: 0 100px;
+    padding: 0 32px !important; /* Tablet yan boşlukları */
     align-items: flex-start;
   }
 
   .left-panel {
-    /* Sol panel genişliğini 280px'e sabitleyerek Popular Recipes ile hizaladık */
-    width: 280px;
+    width: 176px !important; /* Notlarındaki kritik genişlik */
     flex-shrink: 0;
   }
 
+  #all-category-btn {
+    width: 176px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(5, 5, 5, 0.1);
+    color: rgba(5, 5, 5, 0.5);
+    border-radius: 15px !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    margin-bottom: 30px !important;
+    margin-top: 126px;
+    cursor: pointer;
+    transition: all 250ms ease;
+  }
+
+  /* Kategori Listesi: Tablet yüksekliği 352px */
+  .categories-wrapper {
+    height: 416px;
+    width: 176px;
+    gap: 58px;
+  }
+
+  .category-list {
+    display: flex !important;
+    height: 416px !important;
+    gap: 24px !important;
+    padding-right: 20px !important;
+    overflow-y: scroll !important;
+    scrollbar-width: 8px !important;
+  }
+
+  .category-btn {
+    font-size: 16px !important;
+    line-height: 20px !important;
+    /* margin-bottom: 24px !important; */
+    padding: 0 !important;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Scrollbar tablet görünümü */
+  .category-list::-webkit-scrollbar {
+    width: 8px !important;
+    height: 201px !important;
+    color: rgba(5, 5, 5, 0.18);
+  }
+
+  #category-list .cat-items {
+    margin-bottom: 0px !important;
+  }
+}
+
+/* all-category.css içindeki 1280px media query alanını güncelle */
+@media screen and (min-width: 1280px) {
+  .main-wrapper {
+    display: flex !important;
+    gap: 64px !important; /* Figma Desktop gap değeri */
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 100px !important; /* Sayfayı ortalayan yan boşluklar */
+    align-items: flex-start;
+  }
+
+  .left-panel {
+    width: 280px !important; /* Sol panel genişliğini sabitledik */
+    flex-shrink: 0;
+  }
+
+  .cat-items {
+    width: 36px;
+    height: 100%;
+  }
+
+  .all-category-button {
+    width: 174px !important;
+    height: 50px !important;
+    font-size: 18px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 42px !important;
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 42px;
+  }
+
+  /* Kategori Listesi: Desktop yüksekliği 352px */
   .category-list {
     width: 100%;
-    height: 352px;
-    /* Metinlerin scrollbar'a yapışmaması için Figma payı */
-    padding-right: 18px;
-    overflow-y: auto;
+    height: 416px !important;
+    padding-right: 18px !important;
+    overflow-y: auto !important;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .cat-items {
-    width: 100%;
+  .category-list::-webkit-scrollbar {
+    width: 8px !important;
+    height: 201px !important;
   }
 
-  /* Kaydırma çubuğu (Scrollbar) */
-  .category-list::-webkit-scrollbar {
-    width: 7px;
+  .category-sidebar.container {
+    width: 100%;
+    margin-bottom: 42px; /* Figma'daki desktop alt boşluk değeri */
+    padding: 0;
+    margin-top: 106px !important; /* Figma'daki üst boşluk */
+    padding-left: 0 !important; /* Sol boşluk sıfırlandı */
+    padding-right: 0 !important; /* Sağ boşluk sıfırlandı */
+  }
+
+  .categories-wrapper {
+    width: 235px !important;
+    height: 416px !important;
+  }
+
+  .category-btn {
+    font-size: 16px;
+    line-height: 20px;
+    display: block;
+    gap: 24px; /* Figma Desktop gap değeri, fakat display block olduğu için width ve height arasında otomatik olarak sığacak yine de yazdım */
+    padding: 0;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    width: 36px;
+    height: 20px;
+    padding: 0 !important;
+  }
+
+  #category-list .cat-items {
+    margin-bottom: 0px !important;
   }
 }

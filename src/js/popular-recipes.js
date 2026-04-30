@@ -9,17 +9,26 @@ async function renderPopularRecipes() {
     if (!recipes || recipes.length === 0) return;
 
     const markup = recipes
-      .map(
-        ({ _id, title, description, preview }) => `
+      .map(({ _id, title, description, preview }) => {
+        // 1. Önce description var mı diye kontrol et (Komple gitmesini engeller)
+        const rawDescription = description || 'No description available';
+
+        // 2. Metni 80 karakterle sınırla (Figma'daki 3 satıra denk gelir)
+        const shortDescription =
+          rawDescription.length > 80
+            ? rawDescription.substring(0, 80) + '...'
+            : rawDescription;
+
+        return `
       <li class="popular-recipe-item" data-id="${_id}">
         <img class="popular-recipe-img" src="${preview}" alt="${title}">
         <div class="popular-recipe-info">
           <h3 class="popular-recipe-title">${title}</h3>
-          <p class="popular-recipe-description">${description}</p>
+          <p class="popular-recipe-description">${shortDescription}</p>
         </div>
       </li>
-    `
-      )
+    `;
+      })
       .join('');
 
     if (popularList) {

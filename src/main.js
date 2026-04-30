@@ -11,7 +11,7 @@ import './js/recipe-cards.js';
 
 import './js/rating-modal.js';
 import './js/filters.js';
-import './js/favorites.js';
 import './js/footer-modal.js';
 import './js/search.js';
 import './js/recipe-modal.js';
+import './js/rating-modal.js';
