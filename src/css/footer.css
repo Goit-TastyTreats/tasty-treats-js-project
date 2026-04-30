@@ -195,7 +195,7 @@ width: 130px;
   .team-list { grid-template-columns: repeat(2, 1fr); }
   .team-title { font-size: 24px; }
 }
-/* Kalp Ritim Animasyonu - Dosyanın en altına ekle */
+
 .footer-heart-animation {
   display: inline-block;
   animation: heartbeat 1.5s ease-in-out infinite;

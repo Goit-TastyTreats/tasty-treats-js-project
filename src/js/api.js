@@ -69,11 +69,11 @@ export async function fetchRecipeById(id) {
 // Yeni bir sipariş oluşturur (POST isteği)
 export async function createOrder(orderData) {
   try {
-    // orderData: { name, phone, email, comment } gibi bir obje olmalı
+  
     const { data } = await axios.post(`${BASE_URL}/orders/add`, orderData);
     return data;
   } catch (error) {
     console.error('Sipariş gönderilirken hata:', error.message);
-    throw error; // Hatayı yukarı fırlat ki arayüzde kullanıcıya "Hata oluştu" diyebilelim
-  }// Hatayı yukarı fırlat ki arayüzde kullanıcıya "Hata oluştu" diyebilelim
+    throw error; 
+  }
 }
