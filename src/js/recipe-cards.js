@@ -3,7 +3,6 @@ import Notiflix from 'notiflix';
 import svg from '../img/favicon.svg';
 import { createRatingStars } from './rating';
 import { fetchRecipes } from './api';
-import { openRecipe } from './modal-recipe';
 import {
   getFavorites,
   addFavorite,
