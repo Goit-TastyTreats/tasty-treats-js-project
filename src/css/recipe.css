@@ -216,7 +216,8 @@ body.dark-theme .recipes-item {
 
 .favorite-icon:is(:hover, :focus),
 .favorite-icon-active use,
-.choseRecipe {
+.choseRecipe,
+.favorite-icon:hover use {
   fill: #f8f8f8;
 }
 
