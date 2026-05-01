@@ -6,15 +6,15 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {},
-    },
-    root: './',
     base: '/tasty-treats-js-project/',
+    define: {
+      global: {},
+    },
+    root: 'src',
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: 'index.html',
+        input: glob.sync('./src/*.html'),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
