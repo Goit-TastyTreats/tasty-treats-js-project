@@ -20,7 +20,7 @@ export const setItem = (key, value) => {
     console.error(`localStorage set error for key: ${key}`, err);
   }
 };
-
+// -------- EVRENSEL LOCALSTORAGE KULLANIMLARINI BU BÖLÜME TANIMLADIM. İHTİYACA GÖRE GET, SET, REMOVE METHODLARI KULLANILARAK YENİ KEY'LER OLUŞTURULABİLİR --------
 export const removeItem = key => {
   localStorage.removeItem(key);
 };
