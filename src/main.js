@@ -1,6 +1,6 @@
 // src/main.js
 import './js/storage.js';
-import './js/rating';
+import './js/rating.js';
 import './js/header.js';
 import './js/hero.js';
 import './js/all-category.js';
