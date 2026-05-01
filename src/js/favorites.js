@@ -1,4 +1,3 @@
-
 import './rating-modal.js';
 import svg from '../img/favicon.svg';
 import { createRatingStars } from './rating';
@@ -8,7 +7,9 @@ import { fetchRecipeById } from './api';
 const heroPicture = document.querySelector('.fav-hero-pic');
 const categoryRecipeList = document.querySelector('.fav-category-recipe-list');
 const favoriteRecipesList = document.querySelector('.fav-recipes-list');
-const noFavoriteRecipesMessage = document.querySelector('.fav-no-recipes-content');
+const noFavoriteRecipesMessage = document.querySelector(
+  '.fav-no-recipes-content'
+);
 const categoryAllBtn = document.querySelector('.all-category-btn');
 
 let allRecipes = [];
@@ -87,7 +88,9 @@ function createCategories(recipes) {
   );
 
   const markup = categories
-    .map(cat => `<button type="button" class="fav-category-btn">${cat}</button>`)
+    .map(
+      cat => `<button type="button" class="fav-category-btn">${cat}</button>`
+    )
     .join('');
 
   categoryRecipeList.insertAdjacentHTML('beforeend', markup);
@@ -149,7 +152,7 @@ function showContentState() {
   favoriteRecipesList.style.display = '';
 }
 
-document.addEventListener('favoriteRemoved', (e) => {
+document.addEventListener('favoriteRemoved', e => {
   const id = e.detail.id;
   allRecipes = allRecipes.filter(r => r._id !== id);
   removeFavorite(id);
