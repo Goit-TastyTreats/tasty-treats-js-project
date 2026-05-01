@@ -10,6 +10,7 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: './',
+    base: '/tasty-treats-js-project/',
     build: {
       sourcemap: true,
       rollupOptions: {
