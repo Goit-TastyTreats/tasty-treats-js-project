@@ -57,7 +57,26 @@ tasty-treats-js-project/
 PageDescriptionindex.htmlHome page — browse and filter recipesfavorites.htmlSaved/favorited recipes
 
 👥 Team
-NameRoleAbdullah Burak ÖzaslanTeam LeaderSevcan ÖzdemirScrum Master & PresentationDoga Ceren ErkekHeader Structure & LayoutGülistan UzunHero Section & Order NowMert KöroğluMain Recipe Blockİbrahim AteşRecipe List SectionPelda BegerFavorites SectionÖzan Erenay ŞenerSearch SectionMeryem ÖzkanFooter & Presentation
+Name                         Role
+----------------------------------------------------------
+Abdullah Burak Özaslan       Team Leader 
+----------------------------------------------------------
+Sevcan Özdemir               Scrum Master & Presentation
+----------------------------------------------------------
+Doga Ceren Erkek             Header Structure & Layout
+----------------------------------------------------------
+Gülistan Uzun                Hero Section & Order Now
+----------------------------------------------------------
+Mert Köroğlu                 Main Recipe Block
+----------------------------------------------------------
+İbrahim Ateş                 Recipe List Section
+----------------------------------------------------------
+Pelda Beger                  Favorites Section
+----------------------------------------------------------
+Özan Erenay Şener            Search Section
+----------------------------------------------------------
+Meryem Özkan                 Footer & Presentation
+----------------------------------------------------------
 
 📝 Notes for QA Testers
 
