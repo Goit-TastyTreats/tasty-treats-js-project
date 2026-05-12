@@ -73,56 +73,131 @@ desktopThemeToggle.addEventListener('click', () => {
 
 // ORDER MODAL penceresi
 
-const openOrderModalBtn =
-  document.getElementById('openOrderModal');
+const openOrderModalBtn = document.getElementById('openOrderModal');
 
-const orderModal = document.querySelector(
-  '[data-modal-id="order-now"]'
-);
+const orderModal = document.querySelector('[data-modal-id="order-now"]');
 
+const closeModal = () => {
+  if (!orderModal) return;
+  orderModal.classList.add('is-hidden');
+  document.body.style.overflow = '';
 
-/* 
-Sadece elementler varsa çalıştır.
-Favorites page'de modal olmayabilir.
-*/
+  const form = orderModal.querySelector('.modal-form');
+  if (form) {
+    form.reset();
+    form.querySelectorAll('.error-msg').forEach(el => el.remove());
+    form.querySelectorAll('input, textarea').forEach(el => {
+      el.style.borderColor = '';
+    });
+    form.style.display = '';
+    const thanks = orderModal.querySelector('.thanks-msg');
+    if (thanks) thanks.remove();
+  }
+};
 
 if (openOrderModalBtn && orderModal) {
-
   openOrderModalBtn.addEventListener('click', event => {
-
     event.preventDefault();
-
     orderModal.classList.remove('is-hidden');
-
+    document.body.style.overflow = 'hidden';
   });
-
 }
 
 if (orderModal) {
+  const closeOrderModalBtn = orderModal.querySelector('[data-modal-close]');
 
-  const closeOrderModalBtn =
-    orderModal.querySelector('[data-modal-close]');
+  closeOrderModalBtn.addEventListener('click', closeModal);
 
-
-  // modal kapat
-  closeOrderModalBtn.addEventListener('click', () => {
-
-    orderModal.classList.add('is-hidden');
-
-  });
-
-
-  // overlay click
   orderModal.addEventListener('click', event => {
-
-    if (event.target === orderModal) {
-
-      orderModal.classList.add('is-hidden');
-
-    }
-
+    if (event.target === orderModal) closeModal();
   });
 
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !orderModal.classList.contains('is-hidden')) closeModal();
+  });
+
+  // FORM VALIDATION
+  const form = orderModal.querySelector('.modal-form');
+
+  if (form) {
+    const showError = (input, message) => {
+      const existing = input.parentElement.querySelector('.error-msg');
+      if (existing) existing.remove();
+      input.style.borderColor = 'red';
+      const error = document.createElement('span');
+      error.classList.add('error-msg');
+      error.style.cssText = 'color:red; font-size:12px; display:block; margin-top:4px;';
+      error.textContent = message;
+      input.parentElement.appendChild(error);
+    };
+
+    const clearError = input => {
+      const existing = input.parentElement.querySelector('.error-msg');
+      if (existing) existing.remove();
+      input.style.borderColor = '';
+    };
+
+    const validateEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone => /^[0-9+\s\-()]{7,15}$/.test(phone);
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nameInput = form.querySelector('input[name="name"]');
+      const phoneInput = form.querySelector('input[name="phone"]');
+      const emailInput = form.querySelector('input[name="email"]');
+
+      let isValid = true;
+
+      // Ad kontrolü
+      if (!nameInput.value.trim()) {
+        showError(nameInput, 'Name is required.');
+        isValid = false;
+      } else {
+        clearError(nameInput);
+      }
+
+      // Telefon kontrolü
+      if (!phoneInput.value.trim()) {
+        showError(phoneInput, 'Phone number is required.');
+        isValid = false;
+      } else if (!validatePhone(phoneInput.value.trim())) {
+        showError(phoneInput, 'Please enter a valid phone number.');
+        isValid = false;
+      } else {
+        clearError(phoneInput);
+      }
+
+      // E-posta kontrolü
+      if (!emailInput.value.trim()) {
+        showError(emailInput, 'Email is required.');
+        isValid = false;
+      } else if (!validateEmail(emailInput.value.trim())) {
+        showError(emailInput, 'Please enter a valid email address.');
+        isValid = false;
+      } else {
+        clearError(emailInput);
+      }
+
+      // Tüm alanlar geçerliyse teşekkür mesajı göster
+      if (isValid) {
+        form.style.display = 'none';
+
+        const thanks = document.createElement('div');
+        thanks.classList.add('thanks-msg');
+        thanks.style.cssText = 'text-align:center; padding:40px 20px;';
+        thanks.innerHTML = `
+          <p style="font-size:24px; font-weight:bold; margin-bottom:12px;">🎉 Thank you!</p>
+          <p style="font-size:16px; color:#555;">Your order has been received.<br>We will contact you shortly.</p>
+        `;
+        form.parentElement.appendChild(thanks);
+
+        setTimeout(() => {
+          closeModal();
+        }, 3000);
+      }
+    });
+  }
 }
 
 document.addEventListener('click', event => {
