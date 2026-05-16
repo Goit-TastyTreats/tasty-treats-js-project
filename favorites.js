@@ -1,24 +1,24 @@
-import{a as e,c as t,o as n,r,u as i}from"./assets/rating-modal-BR4MughV.js";var a=document.querySelector(`.fav-hero-pic`),o=document.querySelector(`.fav-category-recipe-list`),s=document.querySelector(`.fav-recipes-list`),c=document.querySelector(`.fav-no-recipes-content`);document.querySelector(`.all-category-btn`);var l=[];u();async function u(){let e=t();if(!e||e.length===0){p();return}try{let t=(await Promise.all(e.map(e=>r(e)))).filter(Boolean);if(t.length===0){p();return}l=t,m(),f(t),d(t)}catch(e){console.error(e),p()}}function d(t){s.innerHTML=``;let r=t.map(t=>`
-      <li class="recipes-item" id="${t._id}">
-        <svg class="favorite-icon favorite-icon-active" data-id="${t._id}">
-          <use href="${n}#icon-heart"></use>
+import{d as e,i as t,l as n,o as r,s as i}from"./assets/rating-modal-CRbJLA8H.js";var a=document.querySelector(`.fav-hero-pic`),o=document.querySelector(`.fav-category-recipe-list`),s=document.querySelector(`.fav-recipes-list`),c=document.querySelector(`.fav-no-recipes-content`);document.querySelector(`.all-category-btn`);var l=[];u();async function u(){let e=n();if(!e||e.length===0){p();return}try{let n=(await Promise.all(e.map(e=>t(e)))).filter(Boolean);if(n.length===0){p();return}l=n,m(),f(n),d(n)}catch(e){console.error(e),p()}}function d(e){s.innerHTML=``;let t=e.map(e=>`
+      <li class="recipes-item" id="${e._id}">
+        <svg class="favorite-icon favorite-icon-active" data-id="${e._id}">
+          <use href="${i}#icon-heart"></use>
         </svg>
-        <img class="card-img" src="${t.preview}" alt="${t.description}" loading="lazy" />
+        <img class="card-img" src="${e.preview}" alt="${e.description}" loading="lazy" />
         <div class="recipe-card">
           <div class="text-content">
-            <p class="recipe-card-title">${t.title}</p>
-            <p class="recipe-card-description">${t.description}</p>
+            <p class="recipe-card-title">${e.title}</p>
+            <p class="recipe-card-description">${e.description}</p>
           </div>
           <div class="card-btn-container">
             <div class="rating-container">
-              <span class="rating-value">${t.rating||0}</span>
-              <span class="rating-stars">${e(t.rating)}</span>
+              <span class="rating-value">${e.rating||0}</span>
+              <span class="rating-stars">${r(e.rating)}</span>
             </div>
-            <button type="button" class="see-recipe-btn" name="${t._id}" data-modal-recipte-open>
+            <button type="button" class="see-recipe-btn" name="${e._id}" data-modal-recipte-open>
               See recipe
             </button>
           </div>
         </div>
       </li>
-    `).join(``);s.insertAdjacentHTML(`beforeend`,r)}function f(e){let t=[...new Set(e.map(e=>e.category))];o.innerHTML=``,o.insertAdjacentHTML(`beforeend`,`<button type="button" class="all-category-btn fav-category-btn">All categories</button>`);let n=t.map(e=>`<button type="button" class="fav-category-btn">${e}</button>`).join(``);o.insertAdjacentHTML(`beforeend`,n)}o.addEventListener(`click`,e=>{if(!e.target.classList.contains(`fav-category-btn`))return;let t=e.target.textContent;if(t===`All categories`){d(l);return}d(l.filter(e=>e.category===t))}),s.addEventListener(`click`,e=>{let t=e.target.closest(`.favorite-icon`);if(t){let e=t.dataset.id;t.classList.remove(`favorite-icon-active`),setTimeout(()=>{l=l.filter(t=>t._id!==e),i(e),d(l),f(l),l.length===0&&p()},300)}let n=e.target.closest(`.see-recipe-btn`);if(n){let e=n.name;openRecipe(e)}});function p(){c.classList.remove(`is-hidden`),a.style.display=`none`,o.style.display=`none`,s.style.display=`none`}function m(){c.classList.add(`is-hidden`),a.style.display=``,o.style.display=``,s.style.display=``}document.addEventListener(`favoriteRemoved`,e=>{let t=e.detail.id;l=l.filter(e=>e._id!==t),i(t),d(l),f(l),l.length===0&&p()});
+    `).join(``);s.insertAdjacentHTML(`beforeend`,t)}function f(e){let t=[...new Set(e.map(e=>e.category))];o.innerHTML=``,o.insertAdjacentHTML(`beforeend`,`<button type="button" class="all-category-btn fav-category-btn">All categories</button>`);let n=t.map(e=>`<button type="button" class="fav-category-btn">${e}</button>`).join(``);o.insertAdjacentHTML(`beforeend`,n)}o.addEventListener(`click`,e=>{if(!e.target.classList.contains(`fav-category-btn`))return;let t=e.target.textContent;if(t===`All categories`){d(l);return}d(l.filter(e=>e.category===t))}),s.addEventListener(`click`,t=>{let n=t.target.closest(`.favorite-icon`);if(n){let t=n.dataset.id;n.classList.remove(`favorite-icon-active`),setTimeout(()=>{l=l.filter(e=>e._id!==t),e(t),d(l),f(l),l.length===0&&p()},300)}let r=t.target.closest(`.see-recipe-btn`);if(r){let e=r.name;openRecipe(e)}});function p(){c.classList.remove(`is-hidden`),a.style.display=`none`,o.style.display=`none`,s.style.display=`none`}function m(){c.classList.add(`is-hidden`),a.style.display=``,o.style.display=``,s.style.display=``}document.addEventListener(`favoriteRemoved`,t=>{let n=t.detail.id;l=l.filter(e=>e._id!==n),e(n),d(l),f(l),l.length===0&&p()});
 //# sourceMappingURL=favorites.js.map
