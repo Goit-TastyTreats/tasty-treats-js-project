@@ -55,7 +55,20 @@ export const createRecipesList = data => {
 
     recipesList.innerHTML = '';
 
-    if (!Array.isArray(data?.results)) return;
+    if (!Array.isArray(data?.results) || data.results.length === 0) {
+      recipesList.innerHTML = `
+        <li style="
+          grid-column: 1/-1;
+          text-align: center;
+          padding: 60px 20px;
+          font-size: 18px;
+          color: #555;
+        ">
+          No recipes found matching your search criteria.
+        </li>
+      `;
+      return;
+    }
 
     const favorites = getFavorites();
 
@@ -233,7 +246,7 @@ recipesList.addEventListener('click', e => {
   const icon = e.target.closest('.favorite-icon');
   if (icon) {
     const id = icon.dataset.id;
-    let favorites = getFavorites(); // ilgili fonksiyon import edilip bağlanacak
+    let favorites = getFavorites();
 
     if (isFavorite(id)) {
       removeFavorite(id);

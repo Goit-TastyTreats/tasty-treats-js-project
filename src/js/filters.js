@@ -151,7 +151,12 @@ function init() {
     searchInput.addEventListener(
       'input',
       debounce(event => {
-        filters.search = event.target.value.trim();
+        const raw = event.target.value;
+        const sanitized = raw.replace(/[^a-zA-Z\s]/g, '');
+        if (raw !== sanitized) {
+          event.target.value = sanitized;
+        }
+        filters.search = sanitized.trim();
         emitFiltersChange();
       }, 300)
     );
